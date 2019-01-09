@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { TopModule } from './top/top.module';
 import { LoginModule } from './login/login.module';
 import { AccountModule } from './account/account.module';
+import { HeaderModule } from './shared/component/header/header.module';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { AccountModule } from './account/account.module';
     AppRoutingModule,
     TopModule,
     LoginModule,
-    AccountModule
+    AccountModule,
+    HeaderModule
   ],
   providers: [],
   bootstrap: [AppComponent]
