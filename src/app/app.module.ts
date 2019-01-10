@@ -7,6 +7,7 @@ import { TopModule } from './top/top.module';
 import { LoginModule } from './login/login.module';
 import { AccountModule } from './account/account.module';
 import { HeaderModule } from './shared/component/header/header.module';
+import { FooterModule } from './shared/component/footer/footer.module';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { HeaderModule } from './shared/component/header/header.module';
     TopModule,
     LoginModule,
     AccountModule,
-    HeaderModule
+    HeaderModule,
+    FooterModule
   ],
   providers: [],
   bootstrap: [AppComponent]
