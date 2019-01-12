@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { TopModule } from './top/top.module';
 import { LoginModule } from './login/login.module';
 import { AccountModule } from './account/account.module';
+import { CreateModule } from './create/create.module';
 import { HeaderModule } from './shared/component/header/header.module';
 import { FooterModule } from './shared/component/footer/footer.module';
 
@@ -19,6 +20,7 @@ import { FooterModule } from './shared/component/footer/footer.module';
     TopModule,
     LoginModule,
     AccountModule,
+    CreateModule,
     HeaderModule,
     FooterModule
   ],

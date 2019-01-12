@@ -1,0 +1,9 @@
+<section class="section">
+  <p>TODO: カメラリンク押したら直接ダイアログを出す</p>
+
+  <form>
+    <input id="upfile" name="upfile" type="file" #fl accept="image/*" (change)="onchange(fl.files)" />
+  </form>
+
+  <img src="{{blobUrl}}">
+</section>
