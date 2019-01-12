@@ -1,16 +1,19 @@
-<nav class="yellow lighten-2" role="navigation">
-  <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">あゝ愛しのチーズ</a>
-    <ul class="right hide-on-med-and-down">
-      <li><a href="#"><i class="material-icons">photo_camera</i></a></li>
-      <li><a href="#"><i class="material-icons">favorite</i></a></li>
-      <li><a href="#"><i class="material-icons">person</i></a></li>
-    </ul>
+<header>
+  <nav class="yellow lighten-2" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" routerLink="/" class="brand-logo">あゝ愛しのチーズ</a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="#"><i class="material-icons">photo_camera</i></a></li>
+        <li><a href="#"><i class="material-icons">favorite</i></a></li>
+        <li><a routerLink="account"><i class="material-icons">person</i></a></li>
+      </ul>
 
-    <ul id="nav-mobile" class="sidenav">
-      <li><a href="#"><i class="material-icons">photo_camera</i>投稿</a></li>
-      <li><a href="#"><i class="material-icons">favorite</i>お気に入り</a></li>
-      <li><a href="#"><i class="material-icons">person</i>アカウント</a></li>
-    </ul>
-    <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-  </div>
-</nav>
+      <ul id="nav-mobile" class="sidenav">
+        <li><a href="#"><i class="material-icons">photo_camera</i>投稿</a></li>
+        <li><a href="#"><i class="material-icons">favorite</i>お気に入り</a></li>
+        <li><a routerLink="account"><i class="material-icons">person</i>アカウント</a></li>
+        <li><a href="#" class="red-text"><i class="material-icons">exit_to_app</i>ログアウト</a></li>
+      </ul>
+      <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+</header>
