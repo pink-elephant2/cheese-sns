@@ -10,6 +10,8 @@ export class AccountComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    // タブ初期化
+    let instance = window['M'].Tabs.init(document.querySelectorAll('.tabs'), {});
   }
 
 }
