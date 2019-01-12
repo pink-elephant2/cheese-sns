@@ -11,7 +11,7 @@ export class AccountComponent implements OnInit {
 
   ngOnInit() {
     // タブ初期化
-    let instance = window['M'].Tabs.init(document.querySelectorAll('.tabs'), {});
+    const instance = window['M'].Tabs.init(document.querySelectorAll('.tabs'), {});
   }
 
 }

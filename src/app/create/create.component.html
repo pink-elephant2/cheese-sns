@@ -1,9 +1,31 @@
 <section class="section">
-  <p>TODO: カメラリンク押したら直接ダイアログを出す</p>
-
   <form>
-    <input id="upfile" name="upfile" type="file" #fl accept="image/*" (change)="onchange(fl.files)" />
-  </form>
+    <p>TODO: カメラリンク押したら直接ダイアログを出す</p>
 
-  <img src="{{blobUrl}}">
+    <div class="file-field input-field">
+      <div class="btn orange accent-4">
+        <span>参照</span>
+        <input type="file" name="upfile" accept="image/*" #fl (change)="onchange(fl.files)">
+      </div>
+      <div class="file-path-wrapper">
+        <input class="file-path validate" type="text">
+      </div>
+    </div>
+
+    <div class="row" *ngIf="blobUrl">
+      <img [src]="blobUrl" class="responsive-img">
+    </div>
+
+    <div class="row">
+      <div class="input-field">
+        <textarea name="caption" class="materialize-textarea" maxlength="120" data-length="120" placeholder="キャプションを入力してください"></textarea>
+      </div>
+    </div>
+
+    <div class="row">
+      <button class="btn waves-effect waves-light right orange accent-4" type="button">シェアする
+        <i class="material-icons right">send</i>
+      </button>
+    </div>
+  </form>
 </section>

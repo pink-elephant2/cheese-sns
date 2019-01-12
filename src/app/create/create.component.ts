@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-create',
@@ -7,37 +7,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreateComponent implements OnInit {
 
+  /** プレビュー画像パス */
   blobUrl: string;
 
   constructor() { }
 
   ngOnInit() {
+    // テキストエリア文字数カウント
+    window['$']('textarea').characterCounter();
   }
 
-  onchange(files: FileList) {
-    // ファイルが指定されていなければ
+  onchange(files: FileList): void {
     if (files.length <= 0) {
       return;
     }
-    
-    console.log(files[0]);
-
-    this.blobUrl = window.URL.createObjectURL(files[0]);
-
-    console.log(this.blobUrl);
-
-
-    // // ［3］ファイルを取得
-    // let f = files.item[0];
-    // // ［4］ファイルをセット
-    // let data = new FormData();
-    // data.append('upfile', f, f.name);
-
-    // ［5］サーバーに送信
-    // this.http.post('app/upload.php', data)
-    //   .subscribe(
-    //     data => console.log(data),
-    //     error => console.log(error)
-    //   );
+    const reader = new FileReader();
+    reader.addEventListener("load", () => {
+      this.blobUrl = reader.result.toString();
+    }, false);
+    reader.readAsDataURL(files[0]);
   }
 }
