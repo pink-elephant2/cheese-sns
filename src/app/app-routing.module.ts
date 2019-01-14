@@ -14,7 +14,8 @@ const routes: Routes = [
   { path: 'account', component: AccountComponent },
   { path: 'create', component: CreateComponent },
   { path: 'privacy', component: PrivacyComponent },
-  { path: 'terms', component: TermsComponent }
+  { path: 'terms', component: TermsComponent },
+  { path: 'setting', loadChildren: './setting/setting.module#SettingModule' }
 ];
 
 @NgModule({

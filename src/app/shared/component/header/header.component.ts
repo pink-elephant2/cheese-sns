@@ -10,6 +10,11 @@ export class HeaderComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    // ドロップダウン初期化
+    const option = {
+      constrainWidth: false
+    };
+    const instance = window['M'].Dropdown.init(document.querySelectorAll('.dropdown-trigger'), option);
   }
 
 }

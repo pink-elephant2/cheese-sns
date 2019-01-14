@@ -5,10 +5,12 @@ import { AccountPostComponent } from './account-post/account-post.component';
 import { AccountFollowingComponent } from './account-following/account-following.component';
 import { AccountFollowersComponent } from './account-followers/account-followers.component';
 import { AccountLikeComponent } from './account-like/account-like.component';
+import { AppRoutingModule } from '../app-routing.module';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    AppRoutingModule
   ],
   declarations: [
     AccountComponent,
