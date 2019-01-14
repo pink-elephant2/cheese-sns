@@ -1,4 +1,4 @@
-import { AccountService } from '../app/shared/service/account/account.service';
+import { AccountService } from 'shared/service/account';
 
 export const environment = {
   production: true,

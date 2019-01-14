@@ -1,7 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { AccountService } from '../shared/service/account/account.service';
-import { Account } from '../shared/service/account/account';
+import { Account, AccountService } from 'shared/service/account';
 
 @Component({
   selector: 'app-account',
@@ -11,7 +10,7 @@ import { Account } from '../shared/service/account/account';
 export class AccountComponent implements OnInit, OnDestroy {
 
   /** アカウントID */
-  private account: Account;
+  account: Account;
   private sub: any;
 
   constructor(
