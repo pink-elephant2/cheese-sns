@@ -24,7 +24,7 @@ export class SettingProfileComponent implements OnInit {
       return;
     }
     const reader = new FileReader();
-    reader.addEventListener("load", () => {
+    reader.addEventListener('load', () => {
       this.blobUrl = reader.result.toString();
     }, false);
     reader.readAsDataURL(files[0]);

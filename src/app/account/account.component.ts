@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AccountService } from '../shared/service/account/account.service';
 import { Account } from '../shared/service/account/account';
@@ -8,7 +8,7 @@ import { Account } from '../shared/service/account/account';
   templateUrl: './account.component.html',
   styleUrls: ['./account.component.scss']
 })
-export class AccountComponent implements OnInit {
+export class AccountComponent implements OnInit, OnDestroy {
 
   /** アカウントID */
   private account: Account;

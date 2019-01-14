@@ -1,5 +1,5 @@
-import { AccountService } from "../app/shared/service/account/account.service";
-import { AccountMockService } from "../app/shared/service/account/account-mock.service";
+import { AccountService } from '../app/shared/service/account/account.service';
+import { AccountMockService } from '../app/shared/service/account/account-mock.service';
 
 // The file contents for the current environment will overwrite these during build.
 // The build system defaults to the dev environment which uses `environment.ts`, but if you do
