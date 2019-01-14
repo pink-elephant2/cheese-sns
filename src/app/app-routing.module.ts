@@ -12,11 +12,11 @@ const routes: Routes = [
   { path: '', component: TopComponent },
   { path: 'login', component: LoginComponent },
   { path: 'account', component: AccountComponent },
-  { path: ':loginId', component: AccountComponent },
   { path: 'create', component: CreateComponent },
   { path: 'privacy', component: PrivacyComponent },
   { path: 'terms', component: TermsComponent },
-  { path: 'setting', loadChildren: './setting/setting.module#SettingModule' }
+  { path: 'setting', loadChildren: './setting/setting.module#SettingModule' },
+  { path: ':loginId', component: AccountComponent }
 ];
 
 @NgModule({
