@@ -12,6 +12,7 @@ const routes: Routes = [
   { path: '', component: TopComponent },
   { path: 'login', component: LoginComponent },
   { path: 'account', component: AccountComponent },
+  { path: ':loginId', component: AccountComponent },
   { path: 'create', component: CreateComponent },
   { path: 'privacy', component: PrivacyComponent },
   { path: 'terms', component: TermsComponent },

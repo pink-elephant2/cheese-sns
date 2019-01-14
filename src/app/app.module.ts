@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -18,6 +19,7 @@ import { FooterModule } from './shared/component/footer/footer.module';
   ],
   imports: [
     BrowserModule,
+    HttpModule,
     AppRoutingModule,
     TopModule,
     LoginModule,

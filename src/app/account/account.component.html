@@ -1,18 +1,18 @@
 <section class="section">
-  <div class="row">
+  <div class="row" *ngIf="account">
     <div class="col s3">
-      <img src="assets/images/mymelody.png" alt="my_melody" class="avatar circle responsive-img">
+      <img src="assets/images/{{account.loginId}}.png" alt="{{account.loginId}}" class="avatar circle responsive-img">
     </div>
     <div class="col s9">
-      <h3 class="h5">マイメロディ</h3>
-      <h2 class="h6 grey-text">@my_melody</h2>
+      <h3 class="h5">{{account.name}}</h3>
+      <h2 class="h6 grey-text">@{{account.loginId}}</h2>
       <a class="waves-effect waves-light btn-small right pink accent-2" routerLink="/setting/profile">プロフィール編集</a>
       <p>
         <img src="https://www.google.com/s2/favicons?domain=twitter.com" alt="twitter" width="16" height="16">
         <img src="https://www.google.com/s2/favicons?domain=www.facebook.com" alt="facebook" width="16" height="16">
         <img src="https://www.google.com/s2/favicons?domain=www.instagram.com" alt="instagram" width="16" height="16">
       </p>
-      <p>おはよう♪　あさごはん　ちゃんとたべた〜？　いっしゅうかん　がんばろうね♪</p>
+      <p>{{account.description}}</p>
     </div>
   </div>
   <div class="row">
