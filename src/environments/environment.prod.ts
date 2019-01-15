@@ -1,6 +1,6 @@
-import { AccountService } from 'shared/service/account';
+import { AccountService, AccountMockService } from 'shared/service/account';
 
 export const environment = {
   production: true,
-  AccountService: AccountService
+  AccountService: { provide: AccountService, useClass: AccountMockService },
 };
