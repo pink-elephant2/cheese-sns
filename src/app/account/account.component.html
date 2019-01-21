@@ -18,10 +18,9 @@
   <div class="row">
     <div class="col s12">
       <ul class="tabs">
-        <li class="tab col s3"><a class="active" href="account#post">投稿(4)</a></li>
-        <li class="tab col s3"><a href="account#following">フォロー(1)</a></li>
-        <li class="tab col s3 disabled"><a href="account#followers">フォローワー(0)</a></li>
-        <li class="tab col s3"><a href="account#like">いいね(2)</a></li>
+        <li class="tab col s3"><a class="active" href="account#post" title="投稿(4)">投稿(4)</a></li>
+        <li class="tab col s3"><a href="account#following" title="フォロー(1)">フォロー(1)</a></li>
+        <li class="tab col s3 disabled"><a href="account#followers" title="フォローワー(0)">フォローワー(0)</a></li>
       </ul>
     </div>
 
@@ -38,11 +37,6 @@
     <!-- フォローワー -->
     <div id="followers" class="col s12" style="display:none;">
       <app-account-followers></app-account-followers>
-    </div>
-
-    <!-- いいね -->
-    <div id="like" class="col s12" style="display:none;">
-      <app-account-like></app-account-like>
     </div>
   </div>
 </section>

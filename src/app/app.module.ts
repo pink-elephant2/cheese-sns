@@ -8,6 +8,7 @@ import { TopModule } from './top/top.module';
 import { LoginModule } from './login/login.module';
 import { AccountModule } from './account/account.module';
 import { CreateModule } from './create/create.module';
+import { ActivityModule } from './activity/activity.module';
 import { PrivacyModule } from './privacy/privacy.module';
 import { TermsModule } from './terms/terms.module';
 import { HeaderModule } from './shared/component/header/header.module';
@@ -25,6 +26,7 @@ import { FooterModule } from './shared/component/footer/footer.module';
     LoginModule,
     AccountModule,
     CreateModule,
+    ActivityModule,
     PrivacyModule,
     TermsModule,
     HeaderModule,
