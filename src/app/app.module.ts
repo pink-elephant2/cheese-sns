@@ -9,6 +9,7 @@ import { LoginModule } from './login/login.module';
 import { AccountModule } from './account/account.module';
 import { CreateModule } from './create/create.module';
 import { ActivityModule } from './activity/activity.module';
+import { PhotoModule } from './photo/photo.module';
 import { PrivacyModule } from './privacy/privacy.module';
 import { TermsModule } from './terms/terms.module';
 import { HeaderModule } from './shared/component/header/header.module';
@@ -27,6 +28,7 @@ import { FooterModule } from './shared/component/footer/footer.module';
     AccountModule,
     CreateModule,
     ActivityModule,
+    PhotoModule,
     PrivacyModule,
     TermsModule,
     HeaderModule,

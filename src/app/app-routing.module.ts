@@ -6,6 +6,7 @@ import { LoginComponent } from './login/login.component';
 import { AccountComponent } from './account/account.component';
 import { CreateComponent } from './create/create.component';
 import { ActivityComponent } from './activity/activity.component';
+import { PhotoComponent } from './photo/photo.component';
 import { PrivacyComponent } from './privacy/privacy.component';
 import { TermsComponent } from './terms/terms.component';
 
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'account', component: AccountComponent },
   { path: 'create', component: CreateComponent },
   { path: 'activity', component: ActivityComponent },
+  { path: 'photo/:photoId', component: PhotoComponent },
   { path: 'privacy', component: PrivacyComponent },
   { path: 'terms', component: TermsComponent },
   { path: 'setting', loadChildren: './setting/setting.module#SettingModule' },
