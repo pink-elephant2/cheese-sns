@@ -7,3 +7,9 @@ img {
 .collection .collection-item:nth-child(2) {
   padding: 0;
 }
+
+@media only screen and (max-width: 600px) {
+  .section {
+    padding-top: 0;
+  }
+}
