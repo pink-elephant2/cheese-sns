@@ -12,8 +12,8 @@ import { ActivityModule } from './activity/activity.module';
 import { PhotoModule } from './photo/photo.module';
 import { PrivacyModule } from './privacy/privacy.module';
 import { TermsModule } from './terms/terms.module';
-import { HeaderModule } from './shared/component/header/header.module';
-import { FooterModule } from './shared/component/footer/footer.module';
+import { HeaderModule, FooterModule } from './shared/component';
+import { PastDateModule } from './shared/pipe';
 
 @NgModule({
   declarations: [
@@ -32,7 +32,8 @@ import { FooterModule } from './shared/component/footer/footer.module';
     PrivacyModule,
     TermsModule,
     HeaderModule,
-    FooterModule
+    FooterModule,
+    PastDateModule
   ],
   providers: [],
   bootstrap: [AppComponent]

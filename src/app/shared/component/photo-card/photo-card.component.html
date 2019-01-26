@@ -1,0 +1,25 @@
+<ul class="collection" *ngIf="photo">
+  <li class="collection-item avatar row">
+    <a [routerLink]="['/', photo.account.loginId]"><img src="assets/images/{{photo.account.loginId}}.png" alt="" class="circle"></a>
+    <p class="title" *ngIf="hasInputComment">{{photo.account.loginId}}</p>
+    <p class="caption">{{photo.caption}}&nbsp;<span class="grey-text right">{{photo.createAt | pastDate}}</span></p>
+  </li>
+  <li class="collection-item center">
+    <img *ngIf="hasInputComment" src="{{photo.imgUrl}}" class="responsive-img">
+    <a *ngIf="!hasInputComment" [routerLink]="['/photo/', photo.cd]"><img src="{{photo.imgUrl}}" class="responsive-img"></a>
+  </li>
+  <li class="collection-item" *ngIf="hasInputComment">
+    <a class="pink-text"><i class="material-icons">favorite_border</i></a>
+    <a class="pink-text"><i class="material-icons">chat_bubble_outline</i></a>
+    <a class="pink-text"><i class="material-icons">share</i></a>
+    <a class="pink-text right"><i class="material-icons">bookmark_border</i></a>
+  </li>
+  <li class="collection-item row" *ngIf="hasInputComment">
+    <span class="col s7 m8 l9">
+      <input type="text" name="comment" placeholder="コメントする">
+    </span>
+    <span class="col s5 m4 l3">
+      <button class="btn waves-effect waves-light right pink accent-2" type="button">コメントする</button>
+    </span>
+  </li>
+</ul>
