@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Account } from 'shared/service/account';
-import { Photo } from 'shared/service/photo';
+import { Photo, PhotoService } from 'shared/service/photo';
 
 @Component({
   selector: 'app-top',
@@ -11,9 +11,12 @@ export class TopComponent implements OnInit {
 
   photo1: Photo;
 
-  constructor() { }
+  constructor(private photoService: PhotoService) { }
 
   ngOnInit() {
+
+    this.photoService.getPhoto('');
+
     this.photo1 = new Photo();
     this.photo1.id = 1;
     this.photo1.cd = 'aaa';
