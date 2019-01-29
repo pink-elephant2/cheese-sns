@@ -23,9 +23,9 @@ export class PhotoService extends ApiService {
   /**
    * 写真を取得する
    */
-  public getPhotoList(): Observable<Photo> {
+  public getPhotoList(): Observable<Photo[]> {
     const url = `${this.url}`;
-    return this.get(url).map(data => data as Photo);
+    return this.get(url).map(data => data as Photo[]);
   }
 
 }

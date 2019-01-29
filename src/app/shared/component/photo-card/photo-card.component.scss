@@ -4,6 +4,10 @@
 img {
   vertical-align: bottom;
 }
+.photo-list {
+  width: 100%;
+  object-fit: cover;
+}
 .collection .collection-item:nth-child(2) {
   padding: 0;
 }
@@ -15,6 +19,9 @@ img {
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
+  }
+  .photo-list {
+    max-height: 150px;
   }
 }
 

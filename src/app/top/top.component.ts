@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Account } from 'shared/service/account';
 import { Photo, PhotoService } from 'shared/service/photo';
 
+/**
+ * TOP画面
+ */
 @Component({
   selector: 'app-top',
   templateUrl: './top.component.html',
@@ -9,22 +11,16 @@ import { Photo, PhotoService } from 'shared/service/photo';
 })
 export class TopComponent implements OnInit {
 
-  photo1: Photo;
+  /** 写真リスト */
+  photoList: Photo[];
 
   constructor(private photoService: PhotoService) { }
 
   ngOnInit() {
-
-    this.photoService.getPhoto('');
-
-    this.photo1 = new Photo();
-    this.photo1.id = 1;
-    this.photo1.cd = 'aaa';
-    this.photo1.caption = '【フォンデュ＆ラクレット】 とろ～り、びよーん♪のおいしいチーズ料理';
-    this.photo1.imgUrl = 'assets/images/sample-1.jpg';
-    this.photo1.createAt = new Date('2019/01/27 6:30');
-    this.photo1.account = new Account();
-    this.photo1.account.loginId = 'ki_ri_mi';
+    // 写真を取得
+    this.photoService.getPhotoList().subscribe(photoList => {
+      this.photoList = photoList;
+    });
   }
 
 }
