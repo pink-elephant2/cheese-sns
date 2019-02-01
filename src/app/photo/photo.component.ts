@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Photo } from 'shared/service/photo';
-import { Account } from 'shared/service/account';
+import { ActivatedRoute } from '@angular/router';
+import { Photo, PhotoService } from 'shared/service/photo';
 
 @Component({
   selector: 'app-photo',
@@ -11,17 +11,27 @@ export class PhotoComponent implements OnInit {
 
   photo: Photo;
 
-  constructor() { }
+  private sub: any;
+
+  constructor(
+    private route: ActivatedRoute,
+    private photoService: PhotoService
+  ) { }
 
   ngOnInit() {
-    this.photo = new Photo();
-    this.photo.id = 1;
-    this.photo.cd = 'aaa';
-    this.photo.caption = '【フォンデュ＆ラクレット】 とろ～り、びよーん♪のおいしいチーズ料理';
-    this.photo.imgUrl = 'assets/images/sample-1.jpg';
-    this.photo.createAt = new Date('2019/01/27 6:30');
-    this.photo.account = new Account();
-    this.photo.account.loginId = 'ki_ri_mi';
+
+    this.sub = this.route.params.subscribe(params => {
+      const photoId = params['photoId'];
+
+      // 写真を取得
+      this.photoService.getPhoto(photoId).subscribe(photo => {
+        this.photo = photo;
+      });
+    });
+  }
+
+  ngOnDestroy() {
+    this.sub.unsubscribe();
   }
 
 }
