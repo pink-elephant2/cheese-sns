@@ -1,5 +1,6 @@
 import { AccountService, AccountMockService } from 'shared/service/account';
 import { PhotoService, PhotoMockService } from 'shared/service/photo';
+import { FollowService, FollowMockService } from 'shared/service/follow';
 
 // The file contents for the current environment will overwrite these during build.
 // The build system defaults to the dev environment which uses `environment.ts`, but if you do
@@ -9,5 +10,6 @@ import { PhotoService, PhotoMockService } from 'shared/service/photo';
 export const environment = {
   production: false,
   AccountService: { provide: AccountService, useClass: AccountMockService },
+  FollowService: { provide: FollowService, useClass: FollowMockService },
   PhotoService: { provide: PhotoService, useClass: PhotoMockService }
 };

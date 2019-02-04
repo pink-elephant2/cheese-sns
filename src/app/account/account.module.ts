@@ -23,7 +23,8 @@ import { AccountLikeComponent } from './account-like/account-like.component';
   ],
   exports: [AccountComponent],
   providers: [
-    environment.AccountService
+    environment.AccountService,
+    environment.FollowService
   ]
 })
 export class AccountModule { }

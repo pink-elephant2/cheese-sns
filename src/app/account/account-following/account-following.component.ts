@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { FollowService } from 'shared/service/follow';
+import { Account } from 'shared/service/account';
 
 @Component({
   selector: 'app-account-following',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AccountFollowingComponent implements OnInit {
 
-  constructor() { }
+  @Input() loginId: string;
+
+  accountList: Account[];
+
+  constructor(
+    private followService: FollowService
+  ) { }
 
   ngOnInit() {
+    // フォローを取得する
+    this.followService.getFollow(this.loginId).subscribe(accountList => {
+      this.accountList = accountList;
+    });
   }
 
 }
