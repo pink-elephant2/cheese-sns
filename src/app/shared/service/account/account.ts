@@ -19,4 +19,9 @@ export class Account {
   place: string;
   /** ウェブサイト */
   url: string;
+
+  /** Twitterアカウント */
+  twitter: string;
+  /** Instagramアカウント */
+  instagram: string;
 }

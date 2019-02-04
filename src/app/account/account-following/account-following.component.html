@@ -1,35 +1,5 @@
 <div class="row">
   <div class="col s6 m4 l4" *ngFor="let account of accountList">
-    <div id="profile-card" class="card">
-      <div class="card-image waves-effect waves-block waves-light">
-        <img class="activator" src="assets/images/{{account.loginId}}.png" alt="user bg">
-      </div>
-      <div class="card-content">
-        <img src="assets/images/{{account.loginId}}.png" alt="" class="circle responsive-img activator card-profile-image cyan lighten-1 padding-2">
-        <a class="btn-floating activator btn-move-up waves-effect waves-light red accent-2 right">
-          <i class="material-icons">edit</i>
-        </a>
-        <span class="card-title activator grey-text text-darken-4">{{account.loginId}}</span>
-        <span class="grey-text"><a [routerLink]="['/', account.loginId]">@{{account.loginId}}</a></span>
-      </div>
-      <div class="card-reveal">
-        <span class="card-title grey-text text-darken-4">{{account.loginId}}
-          <i class="material-icons right">close</i>
-        </span>
-        <p>{{account.description}}</p>
-        <p>
-          <i class="material-icons">perm_identity</i> Project Manager</p>
-        <p>
-          <i class="material-icons">cake</i> 18th June 1990
-        </p>
-        <p>
-        </p>
-        <p>
-          <i class="material-icons">airplanemode_active</i> BAR - AUS
-        </p>
-        <p>
-        </p>
-      </div>
-    </div>
+    <app-account-card [account]="account"></app-account-card>
   </div>
 </div>
