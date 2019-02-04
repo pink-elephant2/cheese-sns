@@ -4,8 +4,10 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { AuthGuard } from 'shared/service/auth';
 import { TopModule } from './top/top.module';
 import { LoginModule } from './login/login.module';
+import { LogoutModule } from './logout/logout.module';
 import { AccountModule } from './account/account.module';
 import { CreateModule } from './create/create.module';
 import { ActivityModule } from './activity/activity.module';
@@ -25,6 +27,7 @@ import { PastDateModule } from './shared/pipe';
     AppRoutingModule,
     TopModule,
     LoginModule,
+    LogoutModule,
     AccountModule,
     CreateModule,
     ActivityModule,
@@ -35,7 +38,7 @@ import { PastDateModule } from './shared/pipe';
     FooterModule,
     PastDateModule
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

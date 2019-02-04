@@ -14,6 +14,14 @@ export class AuthService extends ApiService {
     return sessionStorage.getItem('isLoggedIn') === 'true';
   }
 
+  public saveSession() {
+    sessionStorage.setItem('isLoggedIn', 'true');
+  }
+
+  public removeSession() {
+    sessionStorage.removeItem('isLoggedIn');
+  }
+
   /**
    * ログイン
    */
@@ -21,7 +29,7 @@ export class AuthService extends ApiService {
     const url = './api/login';
     return this.post(url, form).map(ret => {
       // ログイン成功
-      sessionStorage.setItem('isLoggedIn', 'true');
+      this.saveSession();
       return ret;
     });
   }
@@ -30,7 +38,7 @@ export class AuthService extends ApiService {
    * ログアウト
    */
   public logout(): Observable<any> {
-    sessionStorage.removeItem('isLoggedIn');
+    this.removeSession();
 
     const url = './api/logout';
     return this.get(url);
