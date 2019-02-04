@@ -6,15 +6,15 @@ import { Validators } from '@angular/forms';
  */
 export class LoginForm {
   /** ログインID */
-  id: string;
+  loginId: string;
   /** パスワード */
-  pass: string;
+  password: string;
 
   static validators = {
     /** ログインID */
-    id: ['', Validators.compose([Validators.required, Validators.maxLength(30)])],
+    loginId: ['', Validators.compose([Validators.required, Validators.maxLength(30)])],
     /** パスワード */
-    pass: ['', Validators.compose([Validators.required, Validators.maxLength(30)])]
+    password: ['', Validators.compose([Validators.required, Validators.maxLength(30)])]
   };
 
 }

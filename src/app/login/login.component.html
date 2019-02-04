@@ -1,3 +1,53 @@
-<p>
-  login works!
-</p>
+<section class="section animated fadeIn">
+  <div class="card-panel">
+    <form [formGroup]="form" (ngSubmit)="onSubmit(form.value, form.valid)">
+      <div class="row">
+        <div class="input-field">
+          <input id="loginId" type="text" class="validate" formControlName="loginId" required maxlength="30"
+            data-length="30">
+          <label for="loginId">ログインID</label>
+          <ng-container *ngIf="form.controls['loginId'].touched">
+            <span class="helper-text" *ngIf="form.controls['loginId'].hasError('required')" data-error="入力してください"></span>
+            <span class="helper-text" *ngIf="form.controls['loginId'].hasError('maxlength')" data-error="30文字以内で入力してください"></span>
+          </ng-container>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field">
+          <input id="password" type="password" class="validate" formControlName="password" required maxlength="30"
+            data-length="30">
+          <label for="password">パスワード</label>
+          <ng-container *ngIf="form.controls['password'].touched">
+            <span class="helper-text" *ngIf="form.controls['password'].hasError('required')" data-error="入力してください"></span>
+            <span class="helper-text" *ngIf="form.controls['password'].hasError('maxlength')" data-error="30文字以内で入力してください"></span>
+          </ng-container>
+        </div>
+      </div>
+
+      <div class="row">
+        <button [disabled]="!form.valid || isError" class="btn waves-effect waves-light right pink accent-2" type="submit">ログイン</button>
+      </div>
+
+      <div class="row">
+        <p class="red-text" *ngIf="isInValid">ユーザ名またはパスワードが間違っています。</p>
+        <p class="red-text" *ngIf="isError">申し訳ございません。ただいま回線が込み合っています。しばらくお待ちください。</p>
+      </div>
+    </form>
+  </div>
+
+  <div class="card-panel">
+    <div class="row center">
+      <button class="btn waves-effect waves-light light-blue lighten-1" type="button">Twitterでログインする</button>
+    </div>
+    <div class="row center">
+      <button class="btn waves-effect waves-light indigo darken-2" type="button">Facebookでログインする</button>
+    </div>
+    <div class="row center">
+      <button class="btn waves-effect waves-light deep-purple lighten-5 black-text" type="button">Instagramでログインする</button>
+    </div>
+    <div class="row center">
+      <a href="#">パスワードをお忘れの方</a>
+    </div>
+  </div>
+</section>
