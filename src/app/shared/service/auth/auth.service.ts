@@ -10,7 +10,7 @@ import { LoginForm } from 'app/login/login-form';
 @Injectable()
 export class AuthService extends ApiService {
 
-  public authenticated() {
+  public get authenticated() {
     return sessionStorage.getItem('isLoggedIn') === 'true';
   }
 
@@ -22,6 +22,14 @@ export class AuthService extends ApiService {
     sessionStorage.removeItem('isLoggedIn');
   }
 
+  /** ログインID */
+  protected _loginId: string;
+
+  /** ログインIDを取得する */
+  public get loginId() {
+    return this._loginId;
+  }
+
   /**
    * ログイン
    */
@@ -30,6 +38,7 @@ export class AuthService extends ApiService {
     return this.post(url, form).map(ret => {
       // ログイン成功
       this.saveSession();
+      this._loginId = form.loginId;
       return ret;
     });
   }
