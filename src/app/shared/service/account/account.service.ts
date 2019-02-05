@@ -10,7 +10,7 @@ import { Account } from './account';
 export class AccountService extends ApiService {
 
   /** エンドポイント */
-  protected url = './api/account';
+  protected url = '/api/v1/account';
 
   /**
    * アカウントを取得する

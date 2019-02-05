@@ -1,0 +1,11 @@
+{
+  "/api/v1": {
+    "target": {
+      "host": "cheese-sns-api.herokuapp.com",
+      "protocol": "https:",
+      "port": 443
+    },
+    "secure": true,
+    "changeOrigin": true
+  }
+}

@@ -10,7 +10,7 @@ import { Account } from '../account/account';
 export class FollowService extends ApiService {
 
   /** エンドポイント */
-  protected url = './api/account';
+  protected url = '/api/v1/account';
 
   /**
    * フォローを取得する

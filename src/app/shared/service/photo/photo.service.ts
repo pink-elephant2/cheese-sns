@@ -10,7 +10,7 @@ import { Photo } from './photo';
 export class PhotoService extends ApiService {
 
   /** エンドポイント */
-  protected url = './api/photo';
+  protected url = '/api/v1/photo';
 
   /**
    * 写真を取得する

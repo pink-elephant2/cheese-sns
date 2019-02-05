@@ -34,8 +34,8 @@ export class AuthService extends ApiService {
    * ログイン
    */
   public login(form: LoginForm): Observable<boolean> {
-    const url = './api/login';
-    return this.post(url, form).map(ret => {
+    const url = '/api/v1/login';
+    return this.get(url, form).map(ret => {
       // ログイン成功
       this.saveSession();
       this._loginId = form.loginId;
@@ -49,7 +49,7 @@ export class AuthService extends ApiService {
   public logout(): Observable<any> {
     this.removeSession();
 
-    const url = './api/logout';
+    const url = '/api/v1/logout';
     return this.get(url);
   }
 
