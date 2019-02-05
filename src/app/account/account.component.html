@@ -6,7 +6,7 @@
     <div class="col s9">
       <h3 class="h5">{{account.name}}</h3>
       <h2 class="h6 grey-text">@{{account.loginId}}</h2>
-      <a class="waves-effect waves-light btn-small right pink accent-2" routerLink="/setting/profile">プロフィール編集</a>
+      <a *ngIf="isMe" class="waves-effect waves-light btn-small right pink accent-2" routerLink="/setting/profile">プロフィール編集</a>
       <p>
         <img src="https://www.google.com/s2/favicons?domain=twitter.com" alt="twitter" width="16" height="16">
         <img src="https://www.google.com/s2/favicons?domain=www.facebook.com" alt="facebook" width="16" height="16">

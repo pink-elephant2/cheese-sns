@@ -13,6 +13,10 @@ export class AccountComponent implements OnInit, OnDestroy {
 
   /** アカウントID */
   account: Account;
+
+  /** 自分のアカウントを表示しているか */
+  isMe = false;
+
   private sub: any;
 
   constructor(
@@ -32,6 +36,7 @@ export class AccountComponent implements OnInit, OnDestroy {
         this.loadingService.setLoading(false);
 
         this.account = account;
+        this.isMe = this.account.loginId === this.authService.loginId;
 
         // タブ初期化
         const instance = window['M'].Tabs.init(document.querySelectorAll('.tabs'), {});

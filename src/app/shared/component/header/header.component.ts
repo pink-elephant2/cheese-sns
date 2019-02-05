@@ -9,14 +9,17 @@ import { AuthService } from 'shared/service/auth';
 export class HeaderComponent implements OnInit {
 
   /** ログイン状態 */
-  authenticated: boolean;
+  authenticated = false;
 
   constructor(
     private authService: AuthService
   ) { }
 
   ngOnInit() {
-    this.authenticated = this.authService.authenticated;
+    // ログイン検知
+    this.authService.isAuthenticated.subscribe(ret => {
+      this.authenticated = Boolean(ret);
+    });
 
     // ドロップダウン初期化
     const option = {
