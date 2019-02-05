@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 
 import { LoginForm } from './login-form';
 import { AuthService } from 'shared/service/auth';
+import { LoadingService } from 'shared/service/loading';
 
 /**
  * ログイン画面
@@ -26,7 +27,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private loadingService: LoadingService
   ) {
     this.form = this.formBuilder.group(LoginForm.validators);
   }
@@ -47,10 +49,15 @@ export class LoginComponent implements OnInit {
     this.isError = false;
 
     // ログイン
+    this.loadingService.setLoading(true);
     this.authService.login(this.form.value).subscribe((ret: boolean) => {
+      this.loadingService.setLoading(false);
+
       // TOP画面へ
       this.router.navigate(['/']);
     }, (error: Response) => {
+      this.loadingService.setLoading(false);
+
       switch (error.status) {
         case 403:
           this.isInValid = true;

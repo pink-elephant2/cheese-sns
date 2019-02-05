@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Account, AccountService } from 'shared/service/account';
 import { AuthService } from 'shared/service/auth';
+import { LoadingService } from 'shared/service/loading';
 
 @Component({
   selector: 'app-account',
@@ -17,15 +18,19 @@ export class AccountComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private accountService: AccountService,
-    private authService: AuthService
+    private authService: AuthService,
+    private loadingService: LoadingService
   ) { }
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
-      const loginId = this.authService.loginId || params['loginId'];
+      const loginId = params['loginId'] || this.authService.loginId;
 
       // アカウント取得
+      this.loadingService.setLoading(true);
       this.accountService.getAccount(loginId).subscribe(account => {
+        this.loadingService.setLoading(false);
+
         this.account = account;
 
         // タブ初期化

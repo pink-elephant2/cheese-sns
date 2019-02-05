@@ -14,7 +14,7 @@ import { ActivityModule } from './activity/activity.module';
 import { PhotoModule } from './photo/photo.module';
 import { PrivacyModule } from './privacy/privacy.module';
 import { TermsModule } from './terms/terms.module';
-import { HeaderModule, FooterModule } from './shared/component';
+import { HeaderModule, FooterModule, LoadingModule } from './shared/component';
 import { PastDateModule } from './shared/pipe';
 
 @NgModule({
@@ -36,7 +36,8 @@ import { PastDateModule } from './shared/pipe';
     TermsModule,
     HeaderModule,
     FooterModule,
-    PastDateModule
+    PastDateModule,
+    LoadingModule
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]

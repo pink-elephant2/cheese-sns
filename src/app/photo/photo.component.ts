@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Photo, PhotoService } from 'shared/service/photo';
+import { LoadingService } from 'shared/service/loading';
 
 @Component({
   selector: 'app-photo',
@@ -15,7 +16,8 @@ export class PhotoComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private photoService: PhotoService
+    private photoService: PhotoService,
+    private loadingService: LoadingService
   ) { }
 
   ngOnInit() {
@@ -24,7 +26,10 @@ export class PhotoComponent implements OnInit {
       const photoId = params['photoId'];
 
       // 写真を取得
+      this.loadingService.setLoading(true);
       this.photoService.getPhoto(photoId).subscribe(photo => {
+        this.loadingService.setLoading(false);
+
         this.photo = photo;
       });
     });
