@@ -3,8 +3,8 @@
     <form [formGroup]="form" (ngSubmit)="onSubmit(form.value, form.valid)">
       <div class="row">
         <div class="input-field">
-          <input id="loginId" type="text" class="validate" formControlName="loginId" required maxlength="30"
-            data-length="30">
+          <input id="loginId" type="email" class="validate" formControlName="loginId" required maxlength="30"
+            data-length="30" autocapitalize="off" autocorrect="off">
           <label for="loginId">ログインID</label>
           <ng-container *ngIf="form.controls['loginId'].touched">
             <span class="helper-text" *ngIf="form.controls['loginId'].hasError('required')" data-error="入力してください"></span>
