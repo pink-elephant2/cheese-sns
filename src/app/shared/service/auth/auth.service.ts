@@ -4,6 +4,7 @@ import { BehaviorSubject } from 'rxjs';
 
 import { ApiService } from '../api.service';
 import { LoginForm } from 'app/login/login-form';
+import { ApiConst } from 'shared/const';
 
 /**
  * ログインサービス
@@ -54,8 +55,7 @@ export class AuthService extends ApiService {
    * ログイン処理
    */
   public login(form: LoginForm): Observable<boolean> {
-    const url = '/api/v1/login';
-    return this.get(url, form).map(ret => {
+    return this.get(ApiConst.PATH.LOGIN, form).map(ret => {
       // ログイン成功
       this.saveSession();
       this._loginId = form.loginId;
@@ -69,8 +69,7 @@ export class AuthService extends ApiService {
   public logout(): Observable<any> {
     this.removeSession();
 
-    const url = '/api/v1/logout';
-    return this.get(url);
+    return this.get(ApiConst.PATH.LOGOUT);
   }
 
 }

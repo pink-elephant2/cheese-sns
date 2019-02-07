@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
+
 import { ApiService } from '../api.service';
 import { Photo } from './photo';
+import { ApiConst } from 'shared/const';
 
 /**
  * 写真サービス
@@ -9,14 +11,11 @@ import { Photo } from './photo';
 @Injectable()
 export class PhotoService extends ApiService {
 
-  /** エンドポイント */
-  protected url = '/api/v1/photo';
-
   /**
    * 写真を取得する
    */
   public getPhoto(cd: string): Observable<Photo> {
-    const url = `${this.url}/${cd}`;
+    const url = `${ApiConst.PATH.PHOTO}/${cd}`;
     return this.get(url).map(data => data as Photo);
   }
 
@@ -24,8 +23,7 @@ export class PhotoService extends ApiService {
    * 写真を取得する
    */
   public getPhotoList(): Observable<Photo[]> {
-    const url = `${this.url}`;
-    return this.get(url).map(data => data as Photo[]);
+    return this.get(ApiConst.PATH.PHOTO).map(data => data as Photo[]);
   }
 
 }
