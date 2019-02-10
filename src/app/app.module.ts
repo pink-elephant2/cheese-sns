@@ -8,6 +8,7 @@ import { AuthGuard } from 'shared/service/auth';
 import { TopModule } from './top/top.module';
 import { LoginModule } from './login/login.module';
 import { LogoutModule } from './logout/logout.module';
+import { SignupModule } from './signup/signup.module';
 import { AccountModule } from './account/account.module';
 import { CreateModule } from './create/create.module';
 import { ActivityModule } from './activity/activity.module';
@@ -28,6 +29,7 @@ import { PastDateModule } from './shared/pipe';
     TopModule,
     LoginModule,
     LogoutModule,
+    SignupModule,
     AccountModule,
     CreateModule,
     ActivityModule,
