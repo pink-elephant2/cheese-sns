@@ -53,8 +53,12 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.form.value).subscribe((ret: boolean) => {
       this.loadingService.setLoading(false);
 
-      // TOP画面へ
-      this.router.navigate(['/']);
+      if (ret) {
+        // マイページへ
+        this.router.navigate(['/account']);
+      } else {
+        this.isInValid = true;
+      }
     }, (error: Response) => {
       this.loadingService.setLoading(false);
 
