@@ -14,7 +14,7 @@ export class AuthService extends ApiService {
 
   /** ログイン状態か */
   public get authenticated(): boolean {
-    return sessionStorage.getItem('isLoggedIn') === 'true';
+    return localStorage.getItem('isLoggedIn') === 'true';
   }
 
   /** ログイン検知 */
@@ -32,7 +32,7 @@ export class AuthService extends ApiService {
    */
   public saveSession() {
     this.setAuthenticated(true);
-    sessionStorage.setItem('isLoggedIn', 'true');
+    localStorage.setItem('isLoggedIn', 'true');
   }
 
   /**
@@ -40,7 +40,7 @@ export class AuthService extends ApiService {
    */
   public removeSession() {
     this.setAuthenticated(false);
-    sessionStorage.removeItem('isLoggedIn');
+    localStorage.removeItem('isLoggedIn');
   }
 
   /** ログインID */

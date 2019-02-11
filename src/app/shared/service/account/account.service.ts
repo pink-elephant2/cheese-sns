@@ -14,7 +14,7 @@ export class AccountService extends ApiService {
   /**
    * アカウントを取得する
    */
-  public getAccount(loginId: string): Observable<Account> {
+  public getAccount(loginId?: string): Observable<Account> {
     const url = `${ApiConst.PATH.ACCOUNT}/${loginId}`;
     return this.get(url).map(data => data as Account);
   }

@@ -15,24 +15,27 @@ export class AccountMockService extends AccountService {
     id: 1,
     loginId: 'my_melody',
     name: 'マイメロディ',
-    description: 'おはよう♪　あさごはん　ちゃんとたべた〜？　いっしゅうかん　がんばろうね♪'
+    description: 'おはよう♪　あさごはん　ちゃんとたべた〜？　いっしゅうかん　がんばろうね♪',
+    twitter: 'Melody_Mariland',
   } as Account, {
     id: 2,
     loginId: 'ki_ri_mi',
     name: 'KIRIMIちゃん.',
-    description: 'ラブ！サーモン！>°))))◁'
+    description: 'ラブ！サーモン！>°))))◁',
+    twitter: 'kirimi_sanrio'
   } as Account, {
     id: 3,
     loginId: 'gudetama',
     name: 'ぐでたま',
-    description: 'だるい'
+    description: 'だるい',
+    twitter: 'gudetama_sanrio'
   } as Account
   ];
 
   /**
    * アカウントを取得する
    */
-  public getAccount(loginId: string): Observable<Account> {
+  public getAccount(loginId?: string): Observable<Account> {
     if (!loginId) {
       loginId = 'my_melody';
     }
