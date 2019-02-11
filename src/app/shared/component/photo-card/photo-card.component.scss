@@ -11,6 +11,15 @@ img {
 .collection .collection-item:nth-child(2) {
   padding: 0;
 }
+.comments {
+  .row {
+    margin-bottom: 0.5rem;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
 
 /* M以上 */
 @media only screen and (min-width: 600px) {

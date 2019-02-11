@@ -24,6 +24,12 @@ export class Photo {
   /** 投稿ユーザー */
   public account: Account;
 
+  /** いいね件数 */
+  public likeCount: number;
+
+  /** 自分がいいねしたか */
+  public isLike: boolean;
+
   /** コメント */
   public comments: Comment[];
 }

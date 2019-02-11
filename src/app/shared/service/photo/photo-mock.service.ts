@@ -23,16 +23,25 @@ export class PhotoMockService extends PhotoService {
       id: 2,
       loginId: 'ki_ri_mi'
     } as Account,
-    comments: [
-      {
-        comment: 'おいしそう😍',
-        createAt: new Date('2019/01/01 6:31'),
-        account: {
-          id: 2,
-          loginId: 'ki_ri_mi'
-        } as Account
-      } as Comment
-    ]
+    likeCount: 1,
+    isLike: true,
+    comments: [{
+      comment: 'おいしそう😍',
+      createAt: new Date('2019/01/01 6:31'),
+      account: {
+        id: 2,
+        loginId: 'ki_ri_mi'
+      } as Account,
+      isLike: true,
+    } as Comment, {
+      comment: '作るのだるい',
+      createAt: new Date('2019/01/01 6:32'),
+      account: {
+        id: 3,
+        loginId: 'gudetama'
+      } as Account,
+      isLike: false,
+    } as Comment]
   } as Photo, {
     id: 2,
     cd: 'bbb',
@@ -43,6 +52,9 @@ export class PhotoMockService extends PhotoService {
       id: 2,
       loginId: 'ki_ri_mi'
     } as Account,
+    likeCount: 0,
+    isLike: true,
+    comments: []
   } as Photo, {
     id: 3,
     cd: 'ccc',
@@ -53,6 +65,9 @@ export class PhotoMockService extends PhotoService {
       id: 2,
       loginId: 'ki_ri_mi'
     } as Account,
+    likeCount: 0,
+    isLike: true,
+    comments: []
   } as Photo, {
     id: 4,
     cd: 'ddd',
@@ -73,6 +88,9 @@ export class PhotoMockService extends PhotoService {
       id: 2,
       loginId: 'ki_ri_mi'
     } as Account,
+    likeCount: 0,
+    isLike: false,
+    comments: []
   } as Photo, {
     id: 6,
     cd: 'fff',
@@ -83,6 +101,9 @@ export class PhotoMockService extends PhotoService {
       id: 1,
       loginId: 'my_melody'
     } as Account,
+    likeCount: 0,
+    isLike: false,
+    comments: []
   } as Photo
   ];
 

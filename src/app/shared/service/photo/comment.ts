@@ -16,4 +16,7 @@ export class Comment {
 
   /** コメントユーザー */
   public account: Account;
+
+  /** 自分がいいねしたか */
+  public isLike: boolean;
 }
