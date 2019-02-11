@@ -15,14 +15,11 @@ export class PastDatePipe implements PipeTransform {
 
     if (0 < diffYear) {
       return diffYear.toString() + '年前';
-    }
-    else if (0 < diffMonth) {
+    } else if (0 < diffMonth) {
       return diffMonth.toString() + 'か月前';
-    }
-    else if (0 < diffDay) {
+    } else if (0 < diffDay) {
       return diffDay.toString() + '日前';
-    }
-    else if (0 < diffHour) {
+    } else if (0 < diffHour) {
       return diffHour.toString() + '時間前';
     }
     return diffMinute.toString() + '分前';

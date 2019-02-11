@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Photo, PhotoService } from 'shared/service/photo';
 import { LoadingService } from 'shared/service/loading';
@@ -8,7 +8,7 @@ import { LoadingService } from 'shared/service/loading';
   templateUrl: './photo.component.html',
   styleUrls: ['./photo.component.scss']
 })
-export class PhotoComponent implements OnInit {
+export class PhotoComponent implements OnInit, OnDestroy {
 
   photo: Photo;
 
