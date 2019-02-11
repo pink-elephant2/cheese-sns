@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-account-post',
@@ -6,6 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./account-post.component.scss']
 })
 export class AccountPostComponent implements OnInit {
+
+  @Input() loginId: string;
+
+  accountList: Account[];
 
   constructor() { }
 

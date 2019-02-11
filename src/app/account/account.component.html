@@ -8,7 +8,9 @@
       <h2 class="h6 grey-text">@{{account.loginId}}</h2>
       <a *ngIf="isMe" class="waves-effect waves-light btn-small right pink accent-2" routerLink="/setting/profile">プロフィール編集</a>
       <p>
-        <img src="https://www.google.com/s2/favicons?domain=twitter.com" alt="twitter" width="16" height="16">
+        <a *ngIf="account.twitter" href="https://twitter.com/{{account.twitter}}" target="_blank">
+          <img src="https://www.google.com/s2/favicons?domain=twitter.com" alt="twitter" width="16" height="16">
+        </a>
         <img src="https://www.google.com/s2/favicons?domain=www.facebook.com" alt="facebook" width="16" height="16">
         <img src="https://www.google.com/s2/favicons?domain=www.instagram.com" alt="instagram" width="16" height="16">
       </p>
@@ -26,17 +28,17 @@
 
     <!-- 投稿 -->
     <div id="post" class="col s12">
-      <app-account-post></app-account-post>
+      <app-account-post [loginId]="account.loginId"></app-account-post>
     </div>
 
     <!-- フォロー -->
     <div id="following" class="col s12" style="display:none;">
-      <app-account-following></app-account-following>
+      <app-account-following [loginId]="account.loginId"></app-account-following>
     </div>
 
     <!-- フォローワー -->
     <div id="followers" class="col s12" style="display:none;">
-      <app-account-followers></app-account-followers>
+      <app-account-followers [loginId]="account.loginId"></app-account-followers>
     </div>
   </div>
 </section>
