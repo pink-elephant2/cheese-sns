@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import { PhotoService } from './photo.service';
 import { Photo } from './photo';
 import { Account } from '../account';
+import { Comment } from './comment';
 
 /**
  * 写真サービス
@@ -22,6 +23,16 @@ export class PhotoMockService extends PhotoService {
       id: 2,
       loginId: 'ki_ri_mi'
     } as Account,
+    comments: [
+      {
+        comment: 'おいしそう😍',
+        createAt: new Date('2019/01/01 6:31'),
+        account: {
+          id: 2,
+          loginId: 'ki_ri_mi'
+        } as Account
+      } as Comment
+    ]
   } as Photo, {
     id: 2,
     cd: 'bbb',

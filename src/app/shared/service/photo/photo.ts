@@ -1,4 +1,5 @@
 import { Account } from 'shared/service/account';
+import { Comment } from './comment';
 
 /**
  * 写真
@@ -22,4 +23,7 @@ export class Photo {
 
   /** 投稿ユーザー */
   public account: Account;
+
+  /** コメント */
+  public comments: Comment[];
 }
