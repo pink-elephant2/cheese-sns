@@ -1,0 +1,42 @@
+.avatar img {
+  border: 1px solid rgba(0,0,0,.0975);
+}
+img {
+  vertical-align: bottom;
+}
+.photo-list {
+  width: 100%;
+  object-fit: cover;
+}
+.collection .collection-item:nth-child(2) {
+  padding: 0;
+}
+.comments {
+  .row {
+    margin-bottom: 0.5rem;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+/* M以上 */
+@media only screen and (min-width: 600px) {
+  .caption {
+    font-size: inherit;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .photo-list {
+    max-height: 150px;
+  }
+}
+
+/* S */
+@media only screen and (max-width: 600px) {
+  .section {
+    padding-top: 0;
+  }
+}

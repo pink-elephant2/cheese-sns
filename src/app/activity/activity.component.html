@@ -1,0 +1,20 @@
+<section class="section animated fadeIn">
+  <div class="row">
+    <div class="col s12">
+      <ul class="tabs">
+        <li class="tab col s3"><a href="activity#following">フォロー中</a></li>
+        <li class="tab col s3"><a href="activity#you">あなた</a></li>
+      </ul>
+    </div>
+
+    <!-- フォロー中 -->
+    <div id="following" class="col s12">
+      <app-activity-following></app-activity-following>
+    </div>
+
+    <!-- あなた -->
+    <div id="you" class="col s12" style="display:none;">
+      <app-activity-you></app-activity-you>
+    </div>
+  </div>
+</section>

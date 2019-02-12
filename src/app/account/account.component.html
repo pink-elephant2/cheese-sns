@@ -1,0 +1,44 @@
+<section class="section animated fadeIn">
+  <div class="row" *ngIf="account">
+    <div class="col s3">
+      <img src="assets/images/{{account.loginId}}.png" alt="{{account.loginId}}" class="avatar circle responsive-img">
+    </div>
+    <div class="col s9">
+      <h3 class="h5">{{account.name}}</h3>
+      <h2 class="h6 grey-text">@{{account.loginId}}</h2>
+      <a *ngIf="isMe" class="waves-effect waves-light btn-small right pink accent-2" routerLink="/setting/profile">プロフィール編集</a>
+      <p>
+        <a *ngIf="account.twitter" href="https://twitter.com/{{account.twitter}}" target="_blank">
+          <img src="https://www.google.com/s2/favicons?domain=twitter.com" alt="twitter" width="16" height="16">
+        </a>
+        <img src="https://www.google.com/s2/favicons?domain=www.facebook.com" alt="facebook" width="16" height="16">
+        <img src="https://www.google.com/s2/favicons?domain=www.instagram.com" alt="instagram" width="16" height="16">
+      </p>
+      <p>{{account.description}}</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col s12">
+      <ul class="tabs">
+        <li class="tab col s3"><a class="active" href="account#post" title="投稿(4)">投稿(4)</a></li>
+        <li class="tab col s3"><a href="account#following" title="フォロー(1)">フォロー(1)</a></li>
+        <li class="tab col s3 disabled"><a href="account#followers" title="フォローワー(0)">フォローワー(0)</a></li>
+      </ul>
+    </div>
+
+    <!-- 投稿 -->
+    <div id="post" class="col s12">
+      <app-account-post [loginId]="account.loginId"></app-account-post>
+    </div>
+
+    <!-- フォロー -->
+    <div id="following" class="col s12" style="display:none;">
+      <app-account-following [loginId]="account.loginId"></app-account-following>
+    </div>
+
+    <!-- フォローワー -->
+    <div id="followers" class="col s12" style="display:none;">
+      <app-account-followers [loginId]="account.loginId"></app-account-followers>
+    </div>
+  </div>
+</section>

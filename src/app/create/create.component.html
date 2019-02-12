@@ -1,0 +1,31 @@
+<section class="section animated fadeIn">
+  <form>
+    <p>TODO: カメラリンク押したら直接ダイアログを出す</p>
+
+    <div class="file-field input-field">
+      <div class="btn pink accent-2">
+        <span>参照</span>
+        <input type="file" name="upfile" accept="image/*" #fl (change)="onchange(fl.files)">
+      </div>
+      <div class="file-path-wrapper">
+        <input class="file-path validate" type="text">
+      </div>
+    </div>
+
+    <div class="row" *ngIf="blobUrl">
+      <img [src]="blobUrl" class="responsive-img">
+    </div>
+
+    <div class="row">
+      <div class="input-field">
+        <textarea name="caption" class="materialize-textarea" maxlength="120" data-length="120" placeholder="キャプションを入力してください"></textarea>
+      </div>
+    </div>
+
+    <div class="row">
+      <button class="btn waves-effect waves-light right pink accent-2" type="button">シェアする
+        <i class="material-icons right">send</i>
+      </button>
+    </div>
+  </form>
+</section>

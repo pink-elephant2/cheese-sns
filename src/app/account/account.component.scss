@@ -1,0 +1,32 @@
+.avatar {
+  border: 1px solid rgba(0,0,0,.0975);
+}
+
+/* profile card */
+#profile-card .card-image {
+  height: 150px;
+}
+
+#profile-card .card-profile-image {
+  width: 70px;
+  position: absolute;
+  top: 110px;
+  z-index: 1;
+  cursor: pointer;
+}
+
+#profile-card .btn-move-up {
+  position: relative;
+  top: -40px;
+  right: -18px;
+  margin-right: 10px !important;
+}
+
+#profile-card .card-content p {
+  margin: 10px 0 12px;
+  font-size: 1.2rem;
+}
+
+.card-move-up .move-up {
+  padding: 20px;
+}

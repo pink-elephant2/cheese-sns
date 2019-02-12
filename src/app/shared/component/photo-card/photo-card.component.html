@@ -1,0 +1,40 @@
+<ul class="collection" *ngIf="photo">
+  <li class="collection-item avatar row">
+    <a [routerLink]="['/', photo.account.loginId]"><img src="assets/images/{{photo.account.loginId}}.png" alt="" class="circle"></a>
+    <p class="title" *ngIf="hasInputComment">{{photo.account.loginId}}</p>
+    <p class="caption">{{photo.caption}}&nbsp;<span class="grey-text right">{{photo.createAt | pastDate}}</span></p>
+  </li>
+  <li class="collection-item center">
+    <img *ngIf="hasInputComment" src="{{photo.imgUrl}}" class="photo responsive-img">
+    <a *ngIf="!hasInputComment" [routerLink]="['/photo/', photo.cd]"><img src="{{photo.imgUrl}}" class="photo-list responsive-img"></a>
+  </li>
+  <li class="collection-item" *ngIf="hasInputComment">
+    <div>
+      <a class="pink-text" *ngIf="photo.isLike"><i class="material-icons">favorite</i></a>
+      <a class="pink-text" *ngIf="!photo.isLike"><i class="material-icons">favorite_border</i></a>
+      <a class="pink-text"><i class="material-icons">chat_bubble_outline</i></a>
+      <a class="pink-text"><i class="material-icons">share</i></a>
+      <a class="pink-text right"><i class="material-icons">bookmark_border</i></a>
+    </div>
+    <div *ngIf="photo.likeCount">いいね！{{photo.likeCount}}件</div>
+  </li>
+  <li class="collection-item row" *ngIf="hasInputComment">
+    <span class="col s7 m8 l9">
+      <input type="text" name="comment" placeholder="コメントする">
+    </span>
+    <span class="col s5 m4 l3">
+      <button class="btn waves-effect waves-light right pink accent-2" type="button">コメントする</button>
+    </span>
+  </li>
+  <li class="collection-item row" *ngIf="hasInputComment && photo.comments && photo.comments.length > 0">
+    <ul class="comments">
+      <li class="row" *ngFor="let comment of photo.comments"><span class="col"><a [routerLink]="['/', comment.account.loginId]">@{{comment.account.loginId}}</a></span><span
+          class="col">{{comment.comment}}</span>
+        <span class="col right">
+          <a class="pink-text" *ngIf="comment.isLike"><i class="material-icons">favorite</i></a>
+          <a class="pink-text" *ngIf="!comment.isLike"><i class="material-icons">favorite_border</i></a>
+        </span>
+      </li>
+    </ul>
+  </li>
+</ul>
