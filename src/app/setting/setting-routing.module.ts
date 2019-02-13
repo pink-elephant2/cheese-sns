@@ -7,7 +7,6 @@ import { SettingProfileComponent } from './setting-profile/setting-profile.compo
 const routes: Routes = [
   {
     path: '', component: SettingComponent,
-    // data: { title: 'HOME' },
     children: [
       { path: 'profile', component: SettingProfileComponent, data: { title: 'プロフィール編集' } }
     ]

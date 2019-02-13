@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { APP_TITLE } from 'shared/const';
 
 @Component({
   selector: 'app-footer',
@@ -6,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./footer.component.scss']
 })
 export class FooterComponent implements OnInit {
+
+  /** タイトル */
+  title = APP_TITLE;
 
   constructor() { }
 

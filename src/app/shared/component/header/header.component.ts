@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'shared/service/auth';
+import { APP_TITLE } from 'shared/const';
 
 @Component({
   selector: 'app-header',
@@ -7,6 +8,9 @@ import { AuthService } from 'shared/service/auth';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+
+  /** タイトル */
+  title = APP_TITLE;
 
   /** ログイン状態 */
   authenticated = false;

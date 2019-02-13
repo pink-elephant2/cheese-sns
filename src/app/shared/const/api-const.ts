@@ -3,7 +3,7 @@
  */
 export class ApiConst {
   /** エンドポイント */
-  public static PATH = {
+  public static readonly PATH = {
     /** ログイン */
     LOGIN: '/api/v1/login',
     /** ログアウト */

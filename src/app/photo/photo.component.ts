@@ -1,7 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
+
 import { Photo, PhotoService } from 'shared/service/photo';
 import { LoadingService } from 'shared/service/loading';
+import { APP_TITLE } from 'shared/const';
 
 @Component({
   selector: 'app-photo',
@@ -16,6 +19,7 @@ export class PhotoComponent implements OnInit, OnDestroy {
 
   constructor(
     private route: ActivatedRoute,
+    private titleService: Title,
     private photoService: PhotoService,
     private loadingService: LoadingService
   ) { }
@@ -31,6 +35,12 @@ export class PhotoComponent implements OnInit, OnDestroy {
         this.loadingService.setLoading(false);
 
         this.photo = photo;
+
+        // タイトル設定
+        const caption = this.photo.caption ? '「' + this.photo.caption + '」' : '';
+        const title = this.photo.account.name + 'さん(@' + this.photo.account.loginId + ')'
+          + caption + ' - ' + APP_TITLE;
+        this.titleService.setTitle(title);
       });
     });
   }

@@ -10,6 +10,6 @@ export const environment = {
   FollowService: { provide: FollowService, useClass: FollowMockService },
   PhotoService: { provide: PhotoService, useClass: PhotoMockService },
   analytics: {
-    id: ''
+    id: 'UA-134451760-1'
   }
 };

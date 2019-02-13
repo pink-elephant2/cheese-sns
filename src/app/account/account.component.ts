@@ -1,8 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
+
 import { Account, AccountService } from 'shared/service/account';
 import { AuthService } from 'shared/service/auth';
 import { LoadingService } from 'shared/service/loading';
+import { APP_TITLE } from 'shared/const';
 
 /**
  * アカウント画面
@@ -25,6 +28,7 @@ export class AccountComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
+    private titleService: Title,
     private accountService: AccountService,
     private authService: AuthService,
     private loadingService: LoadingService
@@ -48,6 +52,10 @@ export class AccountComponent implements OnInit, OnDestroy {
 
         this.account = account;
         this.isMe = this.account.loginId === this.authService.loginId;
+
+        // タイトル設定
+        const title = this.account.name + 'さん(@' + this.account.loginId + ') - ' + APP_TITLE;
+        this.titleService.setTitle(title);
 
         // タブ初期化
         const instance = window['M'].Tabs.init(document.querySelectorAll('.tabs'), {});

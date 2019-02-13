@@ -21,7 +21,8 @@ export class PhotoMockService extends PhotoService {
     createAt: new Date('2019/01/01 6:30'),
     account: {
       id: 2,
-      loginId: 'ki_ri_mi'
+      loginId: 'ki_ri_mi',
+      name: 'KIRIMIちゃん.'
     } as Account,
     likeCount: 1,
     isLike: true,
@@ -30,7 +31,8 @@ export class PhotoMockService extends PhotoService {
       createAt: new Date('2019/01/01 6:31'),
       account: {
         id: 2,
-        loginId: 'ki_ri_mi'
+        loginId: 'ki_ri_mi',
+        name: 'KIRIMIちゃん.'
       } as Account,
       isLike: true,
     } as Comment, {
@@ -38,7 +40,8 @@ export class PhotoMockService extends PhotoService {
       createAt: new Date('2019/01/01 6:32'),
       account: {
         id: 3,
-        loginId: 'gudetama'
+        loginId: 'gudetama',
+        name: 'ぐでたま'
       } as Account,
       isLike: false,
     } as Comment]
@@ -50,7 +53,8 @@ export class PhotoMockService extends PhotoService {
     createAt: new Date('2019/01/28 6:30'),
     account: {
       id: 2,
-      loginId: 'ki_ri_mi'
+      loginId: 'ki_ri_mi',
+      name: 'KIRIMIちゃん.'
     } as Account,
     likeCount: 0,
     isLike: true,
@@ -63,7 +67,8 @@ export class PhotoMockService extends PhotoService {
     createAt: new Date('2019/01/29 6:30'),
     account: {
       id: 2,
-      loginId: 'ki_ri_mi'
+      loginId: 'ki_ri_mi',
+      name: 'KIRIMIちゃん.'
     } as Account,
     likeCount: 0,
     isLike: true,
@@ -76,7 +81,8 @@ export class PhotoMockService extends PhotoService {
     createAt: new Date('2019/01/29 12:30'),
     account: {
       id: 2,
-      loginId: 'ki_ri_mi'
+      loginId: 'ki_ri_mi',
+      name: 'KIRIMIちゃん.'
     } as Account,
   } as Photo, {
     id: 5,
@@ -86,7 +92,8 @@ export class PhotoMockService extends PhotoService {
     createAt: new Date('2019/01/29 12:30'),
     account: {
       id: 2,
-      loginId: 'ki_ri_mi'
+      loginId: 'ki_ri_mi',
+      name: 'KIRIMIちゃん.'
     } as Account,
     likeCount: 0,
     isLike: false,
@@ -99,7 +106,8 @@ export class PhotoMockService extends PhotoService {
     createAt: new Date('2019/01/29 12:30'),
     account: {
       id: 1,
-      loginId: 'my_melody'
+      loginId: 'my_melody',
+      name: 'マイメロディ'
     } as Account,
     likeCount: 0,
     isLike: false,

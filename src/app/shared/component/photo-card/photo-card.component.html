@@ -5,8 +5,14 @@
     <p class="caption">{{photo.caption}}&nbsp;<span class="grey-text right">{{photo.createAt | pastDate}}</span></p>
   </li>
   <li class="collection-item center">
-    <img *ngIf="hasInputComment" src="{{photo.imgUrl}}" class="photo responsive-img">
-    <a *ngIf="!hasInputComment" [routerLink]="['/photo/', photo.cd]"><img src="{{photo.imgUrl}}" class="photo-list responsive-img"></a>
+    <ng-container *ngIf="hasInputComment">
+      <img src="{{photo.imgUrl}}" class="photo responsive-img">
+      <div class="cover"></div>
+    </ng-container>
+    <a *ngIf="!hasInputComment" [routerLink]="['/photo/', photo.cd]">
+      <img src="{{photo.imgUrl}}" class="photo-list responsive-img">
+      <span class="cover"></span>
+    </a>
   </li>
   <li class="collection-item" *ngIf="hasInputComment">
     <div>
