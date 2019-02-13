@@ -16,6 +16,11 @@ export class ContactComponent implements OnInit {
   /** 入力フォーム */
   form: FormGroup;
 
+  /** バリデーション失敗 */
+  isInValid: boolean;
+  /** APIエラー */
+  isError: boolean;
+
   constructor(
     private formBuilder: FormBuilder
   ) {
@@ -25,4 +30,17 @@ export class ContactComponent implements OnInit {
   ngOnInit() {
   }
 
+  /**
+   * 登録ボタン
+   * @param form 入力フォーム
+   * @param isValid 有効か
+   */
+  onSubmit(form: ContactForm, isValid: boolean) {
+    if (!isValid) {
+      return;
+    }
+    this.isInValid = false;
+    this.isError = false;
+
+  }
 }
