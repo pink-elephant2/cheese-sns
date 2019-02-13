@@ -15,6 +15,7 @@ import { ActivityModule } from './activity/activity.module';
 import { PhotoModule } from './photo/photo.module';
 import { PrivacyModule } from './privacy/privacy.module';
 import { TermsModule } from './terms/terms.module';
+import { ContactModule } from './contact/contact.module';
 import { HeaderModule, FooterModule, LoadingModule } from './shared/component';
 import { PastDateModule } from './shared/pipe';
 
@@ -36,6 +37,7 @@ import { PastDateModule } from './shared/pipe';
     PhotoModule,
     PrivacyModule,
     TermsModule,
+    ContactModule,
     HeaderModule,
     FooterModule,
     PastDateModule,

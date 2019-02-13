@@ -12,6 +12,7 @@ import { ActivityComponent } from './activity/activity.component';
 import { PhotoComponent } from './photo/photo.component';
 import { PrivacyComponent } from './privacy/privacy.component';
 import { TermsComponent } from './terms/terms.component';
+import { ContactComponent } from './contact/contact.component';
 
 const routes: Routes = [
   { path: '', component: TopComponent },
@@ -24,6 +25,7 @@ const routes: Routes = [
   { path: 'photo/:photoId', component: PhotoComponent },
   { path: 'privacy', component: PrivacyComponent },
   { path: 'terms', component: TermsComponent },
+  { path: 'contact', component: ContactComponent },
   { path: 'setting', loadChildren: './setting/setting.module#SettingModule', canActivate: [AuthGuard] },
   { path: ':loginId', component: AccountComponent }
 ];
