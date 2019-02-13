@@ -12,7 +12,10 @@ export const environment = {
   authService: { provide: AuthService, useClass: AuthMockService },
   AccountService: { provide: AccountService, useClass: AccountMockService },
   FollowService: { provide: FollowService, useClass: FollowMockService },
-  PhotoService: { provide: PhotoService, useClass: PhotoMockService }
+  PhotoService: { provide: PhotoService, useClass: PhotoMockService },
+  analytics: {
+    id: ''
+  }
 };
 
 /*
