@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { Observable, of } from 'rxjs';
 
 import { AccountService } from './account.service';
 import { Account } from './account';
@@ -39,6 +39,6 @@ export class AccountMockService extends AccountService {
     if (!loginId) {
       loginId = 'my_melody';
     }
-    return Observable.of(AccountMockService.accountList.find(account => account.loginId === loginId));
+    return of(AccountMockService.accountList.find(account => account.loginId === loginId));
   }
 }

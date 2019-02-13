@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { Observable, of } from 'rxjs';
 
 import { AuthService } from './auth.service';
-import { LoginForm } from 'app/login/login-form';
+import { LoginForm } from 'src/app/login/login-form';
 import { AccountMockService } from '../account';
 
 /**
@@ -18,13 +18,13 @@ export class AuthMockService extends AuthService {
   public login(form: LoginForm): Observable<boolean> {
     if (!AccountMockService.accountList.find(account => account.loginId === form.loginId)) {
       // ログイン失敗
-      return Observable.of(false);
+      return of(false);
     }
 
     // ログイン成功
     this.saveSession();
     this._loginId = form.loginId;
-    return Observable.of(true);
+    return of(true);
   }
 
   /**
@@ -32,7 +32,7 @@ export class AuthMockService extends AuthService {
    */
   public logout(): Observable<any> {
     this.removeSession();
-    return Observable.of(true);
+    return of(true);
   }
 
 }

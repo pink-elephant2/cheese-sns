@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { Observable, of } from 'rxjs';
 
 import { PhotoService } from './photo.service';
 import { Photo } from './photo';
@@ -111,14 +111,14 @@ export class PhotoMockService extends PhotoService {
    * 写真を取得する
    */
   public getPhoto(cd: string): Observable<Photo> {
-    return Observable.of(this.photoList.find(photo => photo.cd === cd));
+    return of(this.photoList.find(photo => photo.cd === cd));
   }
 
   /**
    * 写真を取得する
    */
   public getPhotoList(): Observable<Photo[]> {
-    return Observable.of(this.photoList);
+    return of(this.photoList);
   }
 
 }

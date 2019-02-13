@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { ApiService } from '../api.service';
 import { Account } from './account';
@@ -16,6 +17,6 @@ export class AccountService extends ApiService {
    */
   public getAccount(loginId?: string): Observable<Account> {
     const url = `${ApiConst.PATH.ACCOUNT}/${loginId}`;
-    return this.get(url).map(data => data as Account);
+    return this.get(url).pipe(map(data => data as Account));
   }
 }

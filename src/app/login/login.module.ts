@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { environment } from 'env/environment';
-import { AppRoutingModule } from 'app/app-routing.module';
+import { AppRoutingModule } from 'src/app/app-routing.module';
 import { LoginComponent } from './login.component';
 
 @NgModule({

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { ApiService } from '../api.service';
 import { Account } from '../account/account';
@@ -16,7 +17,7 @@ export class FollowService extends ApiService {
    */
   public getFollow(loginId: string): Observable<Account[]> {
     const url = `${ApiConst.PATH.ACCOUNT}/${loginId}/follow`;
-    return this.get(url).map(data => data as Account[]);
+    return this.get(url).pipe(map(data => data as Account[]));
   }
 
   /**
@@ -24,6 +25,6 @@ export class FollowService extends ApiService {
    */
   public getFollower(loginId: string): Observable<Account[]> {
     const url = `${ApiConst.PATH.ACCOUNT}/${loginId}/follower`;
-    return this.get(url).map(data => data as Account[]);
+    return this.get(url).pipe(map(data => data as Account[]));
   }
 }

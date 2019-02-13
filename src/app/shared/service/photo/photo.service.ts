@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { ApiService } from '../api.service';
 import { Photo } from './photo';
@@ -16,14 +17,14 @@ export class PhotoService extends ApiService {
    */
   public getPhoto(cd: string): Observable<Photo> {
     const url = `${ApiConst.PATH.PHOTO}/${cd}`;
-    return this.get(url).map(data => data as Photo);
+    return this.get(url).pipe(map(data => data as Photo));
   }
 
   /**
    * 写真を取得する
    */
   public getPhotoList(): Observable<Photo[]> {
-    return this.get(ApiConst.PATH.PHOTO).map(data => data as Photo[]);
+    return this.get(ApiConst.PATH.PHOTO).pipe(map(data => data as Photo[]));
   }
 
 }

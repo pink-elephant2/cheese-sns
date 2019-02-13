@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { Observable, of } from 'rxjs';
 
 import { FollowService } from './follow.service';
 import { Account } from '../account/account';
@@ -19,7 +19,7 @@ export class FollowMockService extends FollowService {
     if (!loginId) {
       loginId = 'my_melody';
     }
-    return Observable.of(AccountMockService.accountList.filter(account => account.loginId !== loginId));
+    return of(AccountMockService.accountList.filter(account => account.loginId !== loginId));
   }
 
   /**
@@ -29,6 +29,6 @@ export class FollowMockService extends FollowService {
     if (!loginId) {
       loginId = 'my_melody';
     }
-    return Observable.of(AccountMockService.accountList.filter(account => account.loginId !== loginId));
+    return of(AccountMockService.accountList.filter(account => account.loginId !== loginId));
   }
 }

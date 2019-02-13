@@ -1,16 +1,17 @@
 import { Injectable } from '@angular/core';
-import { Response, Http, Headers, URLSearchParams } from '@angular/http';
-import 'rxjs/Rx';
-import { Observable } from 'rxjs/Observable';
+import { HttpResponse, HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
 
 /**
  * APIサービス
+ * TODO https://qiita.com/ponday/items/1ec0e500cd801286845e
  */
 @Injectable()
 export abstract class ApiService {
 
   constructor(
-    public http: Http
+    public http: HttpClient
   ) { }
 
   /**
@@ -28,7 +29,7 @@ export abstract class ApiService {
    * HTTP POST処理
    */
   public post(url: string, params: Object = {}): Observable<any> {
-    const header = new Headers();
+    const header = new HttpHeaders();
     header.append('Content-Type', 'application/x-www-form-urlencoded');
 
     const requestParams = this.setParams(params);
@@ -44,7 +45,7 @@ export abstract class ApiService {
       const requestParams = this.setParams(params);
       url += `?${requestParams.toString()}`;
     }
-    return this.getObservable(this.http.delete(url)).map(data => data as T | T[]);
+    return this.getObservable(this.http.delete(url)).pipe(map(data => data as T | T[]));
   }
 
   /**
@@ -69,8 +70,8 @@ export abstract class ApiService {
    * レスポンス情報を処理する。
    * @param o レスポンス情報
    */
-  protected getObservable(o: Observable<Response>): Observable<Object> {
-    return o.map((res: Response) => {
+  protected getObservable(o: Observable<Object>): Observable<Object> {
+    return o.pipe(map((res: Response) => {
       let ret: any = {};
       if (res.status >= 200 && res.status < 300) {
         try {
@@ -81,9 +82,9 @@ export abstract class ApiService {
         }
       }
       return ret;
-    }).catch((e: any) => {
+    })).pipe(catchError((e: any) => {
       console.error(e);
       throw e;
-    });
+    }));
   }
 }

@@ -26,7 +26,7 @@
       <button class="btn waves-effect waves-light right pink accent-2" type="button">コメントする</button>
     </span>
   </li>
-  <li class="collection-item row" *ngIf="hasInputComment && photo.comments.length > 0">
+  <li class="collection-item row" *ngIf="hasInputComment && photo.comments && photo.comments.length > 0">
     <ul class="comments">
       <li class="row" *ngFor="let comment of photo.comments"><span class="col"><a [routerLink]="['/', comment.account.loginId]">@{{comment.account.loginId}}</a></span><span
           class="col">{{comment.comment}}</span>

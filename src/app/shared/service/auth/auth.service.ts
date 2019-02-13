@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { BehaviorSubject } from 'rxjs';
 
 import { ApiService } from '../api.service';
-import { LoginForm } from 'app/login/login-form';
+import { LoginForm } from 'src/app/login/login-form';
 import { ApiConst } from 'shared/const';
 
 /**
@@ -55,12 +56,12 @@ export class AuthService extends ApiService {
    * ログイン処理
    */
   public login(form: LoginForm): Observable<boolean> {
-    return this.get(ApiConst.PATH.LOGIN, form).map(ret => {
+    return this.get(ApiConst.PATH.LOGIN, form).pipe(map(ret => {
       // ログイン成功
       this.saveSession();
       this._loginId = form.loginId;
       return ret;
-    });
+    }));
   }
 
   /**
