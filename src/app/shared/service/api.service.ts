@@ -17,7 +17,7 @@ export abstract class ApiService {
   /**
    * HTTP GET処理
    */
-  public get(url: string, params?: Object): Observable<any> {
+  public get(url: string, params?: object): Observable<any> {
     if (params) {
       const requestParams = this.setParams(params);
       url += `?${requestParams.toString()}`;
@@ -28,19 +28,19 @@ export abstract class ApiService {
   /**
    * HTTP POST処理
    */
-  public post(url: string, params: Object = {}): Observable<any> {
+  public post(url: string, params: object = {}): Observable<any> {
     const header = new HttpHeaders();
     header.append('Content-Type', 'application/x-www-form-urlencoded');
 
     const requestParams = this.setParams(params);
 
-    return this.getObservable(this.http.post(url, requestParams.toString(), { 'headers': header }));
+    return this.getObservable(this.http.post(url, requestParams.toString(), { headers: header }));
   }
 
   /**
    * HTTP DELETE処理
    */
-  public delete<T>(url: string, params?: Object): Observable<T | T[]> {
+  public delete<T>(url: string, params?: object): Observable<T | T[]> {
     if (params) {
       const requestParams = this.setParams(params);
       url += `?${requestParams.toString()}`;
@@ -52,7 +52,7 @@ export abstract class ApiService {
    * パラメータ整形
    * @param params パラメータ
    */
-  private setParams(params: Object): URLSearchParams {
+  private setParams(params: object): URLSearchParams {
     const requestParams = new URLSearchParams();
     Object.entries(params).forEach(param => {
       if (param[1] instanceof Array) {
@@ -70,7 +70,7 @@ export abstract class ApiService {
    * レスポンス情報を処理する。
    * @param o レスポンス情報
    */
-  protected getObservable(o: Observable<Object>): Observable<Object> {
+  protected getObservable(o: Observable<object>): Observable<object> {
     return o.pipe(map((res: Response) => {
       let ret: any = {};
       if (res.status >= 200 && res.status < 300) {

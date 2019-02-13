@@ -15,7 +15,7 @@ export class PhotoCardComponent implements OnInit {
   @Input() photo: Photo;
 
   /** コメント入力フォームを表示するか */
-  @Input() hasInputComment: boolean = false;
+  @Input() hasInputComment = false;
 
   constructor() { }
 

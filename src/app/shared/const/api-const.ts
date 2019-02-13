@@ -1,16 +1,16 @@
 /**
  * API定数
  */
-export namespace ApiConst {
+export class ApiConst {
   /** エンドポイント */
-  export namespace PATH {
+  public static PATH = {
     /** ログイン */
-    export const LOGIN = '/api/v1/login';
+    LOGIN: '/api/v1/login',
     /** ログアウト */
-    export const LOGOUT = '/api/v1/logout';
+    LOGOUT: '/api/v1/logout',
     /** アカウント */
-    export const ACCOUNT = '/api/v1/account';
+    ACCOUNT: '/api/v1/account',
     /** 写真 */
-    export const PHOTO = '/api/v1/photo';
-  }
+    PHOTO: '/api/v1/photo'
+  };
 }
