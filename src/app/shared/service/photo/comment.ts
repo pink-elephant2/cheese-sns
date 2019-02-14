@@ -8,6 +8,9 @@ export class Comment {
   /** ID */
   public id: number;
 
+  /** コード */
+  public cd: string;
+
   /** コメント */
   public comment: string;
 

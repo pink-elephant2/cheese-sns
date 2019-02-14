@@ -39,12 +39,14 @@
   </li>
   <li class="collection-item row" *ngIf="hasInputComment && photo.comments && photo.comments.length > 0">
     <ul class="comments">
-      <li class="row" *ngFor="let comment of photo.comments"><span class="col"><a
+      <li class="row" *ngFor="let comment of photo.comments; let i = index"><span class="col"><a
             [routerLink]="['/', comment.account.loginId]">@{{comment.account.loginId}}</a></span><span
           class="col">{{comment.comment}}</span>
         <span class="col right">
-          <a class="pink-text" *ngIf="comment.isLike"><i class="material-icons">favorite</i></a>
-          <a class="pink-text" *ngIf="!comment.isLike"><i class="material-icons">favorite_border</i></a>
+          <a class="pink-text" href="javascript:void(0);" (click)="likeComment(i)">
+            <i *ngIf="comment.isLike" class="material-icons">favorite</i>
+            <i *ngIf="!comment.isLike" class="material-icons">favorite_border</i>
+          </a>
         </span>
       </li>
     </ul>

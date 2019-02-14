@@ -38,8 +38,24 @@ export class PhotoService extends ApiService {
   /**
    * 写真のいいねを解除する
    */
-  public dislikePhoto(cd: string) {
+  public dislikePhoto(cd: string): Observable<boolean> {
     const url = `${ApiConst.PATH.PHOTO}/${cd}/dislike`;
+    return this.post(url);
+  }
+
+  /**
+   * コメントにいいねをする
+   */
+  public likeComment(photoCd: string, commentCd: string): Observable<boolean> {
+    const url = `${ApiConst.PATH.PHOTO}/${photoCd}/comment/${commentCd}/like`;
+    return this.post(url);
+  }
+
+  /**
+   * コメントにいいねをする
+   */
+  public dislikeComment(photoCd: string, commentCd: string): Observable<boolean> {
+    const url = `${ApiConst.PATH.PHOTO}/${photoCd}/comment/${commentCd}/dislike`;
     return this.post(url);
   }
 }

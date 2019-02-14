@@ -27,6 +27,7 @@ export class PhotoMockService extends PhotoService {
     likeCount: 1,
     isLike: true,
     comments: [{
+      cd: 'aaa',
       comment: 'おいしそう😍',
       createAt: new Date('2019/01/01 6:31'),
       account: {
@@ -36,6 +37,7 @@ export class PhotoMockService extends PhotoService {
       } as Account,
       isLike: true,
     } as Comment, {
+      cd: 'bbb',
       comment: '作るのだるい',
       createAt: new Date('2019/01/01 6:32'),
       account: {
@@ -139,7 +141,21 @@ export class PhotoMockService extends PhotoService {
   /**
    * 写真のいいねを解除する
    */
-  public dislikePhoto(cd: string) {
+  public dislikePhoto(cd: string): Observable<boolean> {
+    return of(true);
+  }
+
+  /**
+   * コメントにいいねをする
+   */
+  public likeComment(photoCd: string, commentCd: string): Observable<boolean> {
+    return of(true);
+  }
+
+  /**
+   * コメントのいいねを解除する
+   */
+  public dislikeComment(photoCd: string, commentCd: string): Observable<boolean> {
     return of(true);
   }
 }

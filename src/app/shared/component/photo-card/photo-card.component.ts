@@ -39,4 +39,18 @@ export class PhotoCardComponent implements OnInit {
       this.photo.likeCount += this.photo.isLike ? 1 : -1;
     });
   }
+
+  /**
+   * コメントいいね
+   */
+  public likeComment(index: number): void {
+    this.photo.comments[index].isLike = !this.photo.comments[index].isLike;
+
+    // TODO 未ログイン処理
+
+    // いいねをする
+    const sub = (this.photo.comments[index].isLike)
+      ? this.photoService.likeComment(this.photo.cd, this.photo.comments[index].cd)
+      : this.photoService.dislikeComment(this.photo.cd, this.photo.comments[index].cd);
+  }
 }
