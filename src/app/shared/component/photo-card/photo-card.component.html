@@ -1,3 +1,4 @@
+<!-- 写真コンポーネント -->
 <ul class="collection" *ngIf="photo">
   <li class="collection-item avatar row">
     <a [routerLink]="['/', photo.account.loginId]"><img src="assets/images/{{photo.account.loginId}}.png" alt=""
@@ -23,9 +24,10 @@
         <i *ngIf="photo.isLike" class="material-icons">favorite</i>
         <i *ngIf="!photo.isLike" class="material-icons">favorite_border</i>
       </a>
-      <a class="pink-text" href="javascript:void(0);" (click)="focusComment()"><i
-          class="material-icons">chat_bubble_outline</i></a>
-      <a class="pink-text"><i class="material-icons">share</i></a>
+      <a class="pink-text" href="javascript:void(0);" (click)="focusComment()">
+        <i class="material-icons">chat_bubble_outline</i></a>
+      <a class="modal-trigger pink-text" href="javascript:void(0);" data-target="share-modal">
+        <i class="material-icons">share</i></a>
       <a class="pink-text right"><i class="material-icons">bookmark_border</i></a>
     </div>
     <div *ngIf="photo.likeCount">いいね！{{photo.likeCount}}件</div>
@@ -57,3 +59,6 @@
     </ul>
   </li>
 </ul>
+
+<!-- シェアモーダル -->
+<app-share-modal></app-share-modal>

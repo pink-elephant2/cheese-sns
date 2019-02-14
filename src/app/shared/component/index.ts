@@ -3,3 +3,4 @@ export * from './header/header.module';
 export * from './account-card/account-card.module';
 export * from './loading/loading.module';
 export * from './photo-card/photo-card.module';
+export * from './share-modal/share-modal.module';

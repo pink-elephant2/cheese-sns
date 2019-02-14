@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PhotoCardComponent } from './photo-card.component';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { PastDateModule } from 'shared/pipe';
+import { ShareModalModule } from '../share-modal/share-modal.module';
 
 @NgModule({
   imports: [
@@ -12,7 +13,8 @@ import { PastDateModule } from 'shared/pipe';
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
-    PastDateModule
+    PastDateModule,
+    ShareModalModule
   ],
   declarations: [PhotoCardComponent],
   exports: [PhotoCardComponent]
