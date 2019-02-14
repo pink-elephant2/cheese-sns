@@ -8,8 +8,12 @@ img {
   width: 100%;
   object-fit: cover;
 }
-.collection .collection-item:nth-child(2) {
-  padding: 0;
+.collection .collection-item {
+  position: relative;
+
+  &:nth-child(2) {
+    padding: 0;
+  }
 }
 .comments {
   .row {

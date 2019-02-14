@@ -19,15 +19,15 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent, data: { title: 'ログイン' } },
   { path: 'logout', component: LogoutComponent, data: { title: 'ログアウト' } },
   { path: 'signup', component: SignupComponent, data: { title: 'ユーザー登録' } },
-  { path: 'account', component: AccountComponent, canActivate: [AuthGuard] },
+  { path: 'account', component: AccountComponent, data: { title: 'マイページ' }, canActivate: [AuthGuard] },
   { path: 'create', component: CreateComponent, data: { title: '投稿' }, canActivate: [AuthGuard] },
-  { path: 'activity', component: ActivityComponent, canActivate: [AuthGuard] },
-  { path: 'photo/:photoId', component: PhotoComponent },
+  { path: 'activity', component: ActivityComponent, data: { title: 'アクティビティ' }, canActivate: [AuthGuard] },
+  { path: 'photo/:photoId', component: PhotoComponent, data: { title: '写真' } },
   { path: 'privacy', component: PrivacyComponent, data: { title: 'プライバシーポリシー' } },
   { path: 'terms', component: TermsComponent, data: { title: '利用規約' } },
   { path: 'contact', component: ContactComponent, data: { title: 'お問合せ' } },
   { path: 'setting', loadChildren: './setting/setting.module#SettingModule', canActivate: [AuthGuard] },
-  { path: ':loginId', component: AccountComponent }
+  { path: ':loginId', component: AccountComponent, data: { title: 'アカウント' } }
 ];
 
 @NgModule({
