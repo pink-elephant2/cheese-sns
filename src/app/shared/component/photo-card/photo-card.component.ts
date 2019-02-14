@@ -1,5 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Photo, PhotoService } from 'shared/service/photo';
+import { FormBuilder, FormGroup } from '@angular/forms';
+
+import { Photo, PhotoService, Comment } from 'shared/service/photo';
+import { CommentForm } from './comment-form';
+import { LoadingService } from 'shared/service/loading';
 
 /**
  * 写真カード
@@ -17,9 +21,16 @@ export class PhotoCardComponent implements OnInit {
   /** コメント入力フォームを表示するか */
   @Input() hasInputComment = false;
 
+  /** 入力フォーム */
+  form: FormGroup;
+
   constructor(
-    private photoService: PhotoService
-  ) { }
+    private formBuilder: FormBuilder,
+    private photoService: PhotoService,
+    private loadingService: LoadingService
+  ) {
+    this.form = this.formBuilder.group(CommentForm.validators);
+  }
 
   ngOnInit() {
   }
@@ -37,6 +48,33 @@ export class PhotoCardComponent implements OnInit {
     sub.subscribe((ret: boolean) => {
       // いいね件数
       this.photo.likeCount += this.photo.isLike ? 1 : -1;
+    });
+  }
+
+  /**
+   * コメントにフォーカスする
+   */
+  public focusComment(): void {
+    document.getElementById('comment').focus();
+  }
+
+  /**
+   * コメントする
+   */
+  public onSubmit(form: CommentForm, isValid: boolean): void {
+    if (!isValid) {
+      return;
+    }
+
+    // TODO 未ログイン処理
+
+    // コメントする
+    this.loadingService.setLoading(true);
+    this.photoService.comment(this.photo.cd, form.comment).subscribe((comment: Comment) => {
+      this.loadingService.setLoading(false);
+
+      // コメントに1行追加
+      this.photo.comments.push(comment);
     });
   }
 

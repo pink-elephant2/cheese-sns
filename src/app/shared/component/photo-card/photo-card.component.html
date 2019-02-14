@@ -23,19 +23,24 @@
         <i *ngIf="photo.isLike" class="material-icons">favorite</i>
         <i *ngIf="!photo.isLike" class="material-icons">favorite_border</i>
       </a>
-      <a class="pink-text"><i class="material-icons">chat_bubble_outline</i></a>
+      <a class="pink-text" href="javascript:void(0);" (click)="focusComment()"><i
+          class="material-icons">chat_bubble_outline</i></a>
       <a class="pink-text"><i class="material-icons">share</i></a>
       <a class="pink-text right"><i class="material-icons">bookmark_border</i></a>
     </div>
     <div *ngIf="photo.likeCount">いいね！{{photo.likeCount}}件</div>
   </li>
   <li class="collection-item row" *ngIf="hasInputComment">
-    <span class="col s7 m8 l9">
-      <input type="text" name="comment" placeholder="コメントする">
-    </span>
-    <span class="col s5 m4 l3">
-      <button class="btn waves-effect waves-light right pink accent-2" type="button">コメントする</button>
-    </span>
+    <form [formGroup]="form" (ngSubmit)="onSubmit(form.value, form.valid)">
+      <span class="col s7 m8 l9">
+        <input type="text" class="validate" id="comment" name="comment" placeholder="コメントする" formControlName="comment"
+          required maxlength="120" data-length="120">
+      </span>
+      <span class="col s5 m4 l3">
+        <button class="btn waves-effect waves-light right pink accent-2" type="submit"
+          [disabled]="!form.valid">コメントする</button>
+      </span>
+    </form>
   </li>
   <li class="collection-item row" *ngIf="hasInputComment && photo.comments && photo.comments.length > 0">
     <ul class="comments">
