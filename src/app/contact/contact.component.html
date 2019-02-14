@@ -2,6 +2,53 @@
   <h2 class="h4 red-text darken-1">お問合せ</h2>
 
   <form [formGroup]="form" (ngSubmit)="onSubmit(form.value, form.valid)">
+    <div class="row">
+      <div class="input-field">
+        <input id="name" type="text" class="validate" formControlName="name" required maxlength="50" data-length="50">
+        <label for="name">お名前</label>
+        <ng-container *ngIf="form.controls['name'].touched">
+          <span class="helper-text" *ngIf="form.controls['name'].hasError('required')" data-error="入力してください"></span>
+          <span class="helper-text" *ngIf="form.controls['name'].hasError('maxlength')"
+            data-error="50文字以内で入力してください"></span>
+        </ng-container>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field">
+        <input id="mail" type="email" class="validate" formControlName="mail" required maxlength="256"
+          data-length="256">
+        <label for="mail">メールアドレス</label>
+        <ng-container *ngIf="form.controls['mail'].touched">
+          <span class="helper-text" *ngIf="form.controls['mail'].hasError('required')" data-error="入力してください"></span>
+          <span class="helper-text" *ngIf="form.controls['mail'].hasError('email')" data-error="Eメール形式で入力してください"></span>
+          <span class="helper-text" *ngIf="form.controls['mail'].hasError('maxlength')"
+            data-error="256文字以内で入力してください"></span>
+        </ng-container>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field">
+        <textarea id="comment" type="text" class="validate materialize-textarea" formControlName="comment"
+          maxlength="1000" data-length="1000"></textarea>
+        <label for="comment">お問合せ内容</label>
+        <ng-container *ngIf="form.controls['comment'].touched">
+          <span class="helper-text" *ngIf="form.controls['comment'].hasError('required')" data-error="入力してください"></span>
+          <span class="helper-text" *ngIf="form.controls['comment'].hasError('maxlength')"
+            data-error="1000文字以内で入力してください"></span>
+        </ng-container>
+      </div>
+    </div>
+
+    <div class="row">
+      <button [disabled]="!form.valid || isError" class="btn waves-effect waves-light right pink accent-2"
+        type="submit">送信する</button>
+    </div>
+
+    <div class="row">
+      <p class="red-text" *ngIf="isInValid || isError">申し訳ございません。ただいま回線が込み合っています。しばらくお待ちください。</p>
+    </div>
   </form>
 
 </section>

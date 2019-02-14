@@ -5,6 +5,7 @@ import { Validators } from '@angular/forms';
  * 入力フォーム
  */
 export class LoginForm {
+
   /** ログインID */
   loginId: string;
   /** パスワード */

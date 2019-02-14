@@ -56,7 +56,7 @@ export class AuthService extends ApiService {
    * ログイン処理
    */
   public login(form: LoginForm): Observable<boolean> {
-    return this.get(ApiConst.PATH.LOGIN, form).pipe(map(ret => {
+    return this.post(ApiConst.PATH.LOGIN, form).pipe(map(ret => {
       // ログイン成功
       this.saveSession();
       this._loginId = form.loginId;
@@ -70,7 +70,7 @@ export class AuthService extends ApiService {
   public logout(): Observable<any> {
     this.removeSession();
 
-    return this.get(ApiConst.PATH.LOGOUT);
+    return this.post(ApiConst.PATH.LOGOUT);
   }
 
 }

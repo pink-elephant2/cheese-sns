@@ -11,6 +11,8 @@ export class ApiConst {
     /** アカウント */
     ACCOUNT: '/api/v1/account',
     /** 写真 */
-    PHOTO: '/api/v1/photo'
+    PHOTO: '/api/v1/photo',
+    /** お問合せ */
+    CONTACT: '/api/v1/contact',
   };
 }

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { ContactComponent } from './contact.component';
+import { environment } from 'env/environment';
 
 @NgModule({
   declarations: [ContactComponent],
@@ -13,6 +14,9 @@ import { ContactComponent } from './contact.component';
   ],
   exports: [
     ContactComponent
+  ],
+  providers: [
+    environment.ContactService
   ]
 })
 export class ContactModule { }
