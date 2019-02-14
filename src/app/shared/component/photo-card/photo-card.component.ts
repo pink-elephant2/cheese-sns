@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Photo } from 'shared/service/photo';
+import { Photo, PhotoService } from 'shared/service/photo';
 
 /**
  * 写真カード
@@ -17,9 +17,26 @@ export class PhotoCardComponent implements OnInit {
   /** コメント入力フォームを表示するか */
   @Input() hasInputComment = false;
 
-  constructor() { }
+  constructor(
+    private photoService: PhotoService
+  ) { }
 
   ngOnInit() {
   }
 
+  /**
+   * いいね
+   */
+  public like(): void {
+    this.photo.isLike = !this.photo.isLike;
+
+    // TODO 未ログイン処理
+
+    // いいねをする
+    const sub = (this.photo.isLike) ? this.photoService.likePhoto(this.photo.cd) : this.photoService.dislikePhoto(this.photo.cd);
+    sub.subscribe((ret: boolean) => {
+      // いいね件数
+      this.photo.likeCount += this.photo.isLike ? 1 : -1;
+    });
+  }
 }

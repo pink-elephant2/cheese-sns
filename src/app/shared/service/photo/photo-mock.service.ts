@@ -56,7 +56,7 @@ export class PhotoMockService extends PhotoService {
       loginId: 'ki_ri_mi',
       name: 'KIRIMIちゃん.'
     } as Account,
-    likeCount: 0,
+    likeCount: 1,
     isLike: true,
     comments: []
   } as Photo, {
@@ -70,7 +70,7 @@ export class PhotoMockService extends PhotoService {
       loginId: 'ki_ri_mi',
       name: 'KIRIMIちゃん.'
     } as Account,
-    likeCount: 0,
+    likeCount: 2,
     isLike: true,
     comments: []
   } as Photo, {
@@ -109,7 +109,7 @@ export class PhotoMockService extends PhotoService {
       loginId: 'my_melody',
       name: 'マイメロディ'
     } as Account,
-    likeCount: 0,
+    likeCount: 1000,
     isLike: false,
     comments: []
   } as Photo
@@ -129,4 +129,17 @@ export class PhotoMockService extends PhotoService {
     return of(this.photoList);
   }
 
+  /**
+   * 写真にいいねをする
+   */
+  public likePhoto(cd: string): Observable<boolean> {
+    return of(true);
+  }
+
+  /**
+   * 写真のいいねを解除する
+   */
+  public dislikePhoto(cd: string) {
+    return of(true);
+  }
 }

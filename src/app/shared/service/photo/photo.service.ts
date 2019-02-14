@@ -27,4 +27,19 @@ export class PhotoService extends ApiService {
     return this.get(ApiConst.PATH.PHOTO).pipe(map(data => data as Photo[]));
   }
 
+  /**
+   * 写真にいいねをする
+   */
+  public likePhoto(cd: string): Observable<boolean> {
+    const url = `${ApiConst.PATH.PHOTO}/${cd}/like`;
+    return this.post(url);
+  }
+
+  /**
+   * 写真のいいねを解除する
+   */
+  public dislikePhoto(cd: string) {
+    const url = `${ApiConst.PATH.PHOTO}/${cd}/dislike`;
+    return this.post(url);
+  }
 }
