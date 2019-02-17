@@ -13,5 +13,9 @@ export const environment = {
   PhotoService: { provide: PhotoService, useClass: PhotoMockService },
   analytics: {
     id: 'UA-134451760-1'
+  },
+  adsense: {
+    adClient: 'ca-pub-4398400415874126',
+    adSlot: 8863530136
   }
 };

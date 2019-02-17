@@ -3,13 +3,14 @@ import { CommonModule } from '@angular/common';
 import { environment } from 'env/environment';
 import { TopComponent } from './top.component';
 import { AppRoutingModule } from 'src/app/app-routing.module';
-import { PhotoCardModule } from 'shared/component';
+import { PhotoCardModule, MyAdsenseModule } from 'shared/component';
 
 @NgModule({
   imports: [
     CommonModule,
     AppRoutingModule,
-    PhotoCardModule
+    PhotoCardModule,
+    MyAdsenseModule
   ],
   declarations: [TopComponent],
   providers: [environment.PhotoService],

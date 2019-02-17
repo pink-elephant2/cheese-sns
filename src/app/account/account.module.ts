@@ -8,13 +8,14 @@ import { AccountPostComponent } from './account-post/account-post.component';
 import { AccountFollowingComponent } from './account-following/account-following.component';
 import { AccountFollowersComponent } from './account-followers/account-followers.component';
 import { AccountLikeComponent } from './account-like/account-like.component';
-import { AccountCardModule } from 'shared/component';
+import { AccountCardModule, MyAdsenseModule } from 'shared/component';
 
 @NgModule({
   imports: [
     CommonModule,
     AppRoutingModule,
-    AccountCardModule
+    AccountCardModule,
+    MyAdsenseModule
   ],
   declarations: [
     AccountComponent,

@@ -17,7 +17,8 @@ export const environment = {
   PhotoService: { provide: PhotoService, useClass: PhotoMockService },
   analytics: {
     id: ''
-  }
+  },
+  adsense: {}
 };
 
 /*
