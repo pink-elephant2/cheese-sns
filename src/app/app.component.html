@@ -2,5 +2,5 @@
 <main class="container">
   <router-outlet></router-outlet>
 </main>
-<app-footer></app-footer>
+<app-footer *ngIf="!isInfinityScroll"></app-footer>
 <app-loading></app-loading>

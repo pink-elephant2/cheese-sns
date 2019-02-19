@@ -15,7 +15,7 @@ import { TermsComponent } from './terms/terms.component';
 import { ContactComponent } from './contact/contact.component';
 
 const routes: Routes = [
-  { path: '', component: TopComponent },
+  { path: '', component: TopComponent, data: { infinityScroll: true } },
   { path: 'login', component: LoginComponent, data: { title: 'ログイン' } },
   { path: 'logout', component: LogoutComponent, data: { title: 'ログアウト' } },
   { path: 'signup', component: SignupComponent, data: { title: 'ユーザー登録' } },

@@ -12,6 +12,9 @@ import { APP_TITLE } from 'shared/const';
 })
 export class AppComponent implements OnInit {
 
+  /** 無限スクロールする画面か */
+  isInfinityScroll: boolean;
+
   constructor(
     private router: Router,
     private titleService: Title,
@@ -23,9 +26,13 @@ export class AppComponent implements OnInit {
       window.scrollTo(0, 0);
 
       // タイトル設定
-      const titles: Array<string> = this.getTitle(this.router.routerState, this.router.routerState.root);
+      const titles: Array<string> = this.getRouterData(this.router.routerState, this.router.routerState.root, 'title');
       const title = ((titles.length > 0) ? titles.pop() + ' - ' : '') + APP_TITLE;
       this.titleService.setTitle(title);
+
+      // 無限スクロールする画面か判定
+      const isInfinityScrolls = this.getRouterData(this.router.routerState, this.router.routerState.root, 'infinityScroll');
+      this.isInfinityScroll = Boolean(isInfinityScrolls.length > 0 && isInfinityScrolls.pop());
 
       // tracking
       this.gaService.sendPageView(params.url);
@@ -33,18 +40,18 @@ export class AppComponent implements OnInit {
   }
 
   /**
-   * Routerタイトルを取得する。
+   * Router設定値を取得する。
    * @param state 状態
    * @param parent 親
    */
-  private getTitle(state, parent): Array<string> {
+  private getRouterData(state, parent, key: string): Array<string> {
     const data: Array<string> = [];
-    if (parent && parent.snapshot.data && parent.snapshot.data.title) {
-      data.push(parent.snapshot.data.title);
+    if (parent && parent.snapshot.data && parent.snapshot.data[key]) {
+      data.push(parent.snapshot.data[key]);
     }
     if (state && parent) {
       // 再帰
-      data.push(... this.getTitle(state, state.firstChild(parent)));
+      data.push(... this.getRouterData(state, state.firstChild(parent), key));
     }
     return data;
   }
