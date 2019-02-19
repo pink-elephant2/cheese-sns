@@ -5,6 +5,7 @@ import { PhotoService } from './photo.service';
 import { Photo } from './photo';
 import { Account } from '../account';
 import { Comment } from './comment';
+import { Pageable } from 'shared/model';
 
 /**
  * 写真サービス
@@ -114,6 +115,20 @@ export class PhotoMockService extends PhotoService {
     likeCount: 1000,
     isLike: false,
     comments: []
+  } as Photo, {
+    id: 7,
+    cd: 'ggg',
+    caption: '',
+    imgUrl: 'assets/images/sample-7.jpg',
+    createAt: new Date('2019/01/29 12:30'),
+    account: {
+      id: 1,
+      loginId: 'my_melody',
+      name: 'マイメロディ'
+    } as Account,
+    likeCount: 1000,
+    isLike: false,
+    comments: []
   } as Photo
   ];
 
@@ -127,7 +142,12 @@ export class PhotoMockService extends PhotoService {
   /**
    * 写真を取得する
    */
-  public getPhotoList(): Observable<Photo[]> {
+  public getPhotoList(pageable?: Pageable): Observable<Photo[]> {
+    if (pageable) {
+      const start = (pageable.page || 0) * (pageable.size || 20);
+      const end = start + (pageable.size || 20);
+      return of(this.photoList.slice(start, end));
+    }
     return of(this.photoList);
   }
 

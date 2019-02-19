@@ -6,6 +6,7 @@ import { ApiService } from '../api.service';
 import { Photo } from './photo';
 import { Comment } from './comment';
 import { ApiConst } from 'shared/const';
+import { Pageable } from 'shared/model';
 
 /**
  * 写真サービス
@@ -24,8 +25,8 @@ export class PhotoService extends ApiService {
   /**
    * 写真を取得する
    */
-  public getPhotoList(): Observable<Photo[]> {
-    return this.get(ApiConst.PATH.PHOTO).pipe(map(data => data as Photo[]));
+  public getPhotoList(pageable?: Pageable): Observable<Photo[]> {
+    return this.get(ApiConst.PATH.PHOTO, pageable).pipe(map(data => data as Photo[]));
   }
 
   /**
