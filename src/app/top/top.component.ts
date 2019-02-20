@@ -12,6 +12,8 @@ import { Pageable } from 'shared/model';
 })
 export class TopComponent implements OnInit {
 
+  height: number = window.innerHeight;
+
   /** 写真リスト */
   photoList: Photo[];
 
