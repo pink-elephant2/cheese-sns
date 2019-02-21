@@ -1,5 +1,5 @@
 /** タイトル */
-export const APP_TITLE = 'チズル感';
+export const APP_TITLE = '撮ろっとチーズ';
 
 /**
  * 共通定数
