@@ -6,6 +6,7 @@ import { Photo } from './photo';
 import { Account } from '../account';
 import { Comment } from './comment';
 import { Pageable } from 'shared/model';
+import { CreateForm } from 'src/app/create/create-form';
 
 /**
  * 写真サービス
@@ -149,6 +150,14 @@ export class PhotoMockService extends PhotoService {
       return of(this.photoList.slice(start, end));
     }
     return of(this.photoList);
+  }
+
+  /**
+   * 写真を投稿する
+   */
+  public postPhoto(form: CreateForm, file: File): Observable<string> {
+    const photoCd = 'aaa';
+    return of(photoCd);
   }
 
   /**

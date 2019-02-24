@@ -7,6 +7,7 @@ import { Photo } from './photo';
 import { Comment } from './comment';
 import { ApiConst } from 'shared/const';
 import { Pageable } from 'shared/model';
+import { CreateForm } from 'src/app/create/create-form';
 
 /**
  * 写真サービス
@@ -27,6 +28,16 @@ export class PhotoService extends ApiService {
    */
   public getPhotoList(pageable?: Pageable): Observable<Photo[]> {
     return this.get(ApiConst.PATH.PHOTO, pageable).pipe(map(data => data as Photo[]));
+  }
+
+  /**
+   * 写真を投稿する
+   */
+  public postPhoto(form: CreateForm, file: File): Observable<string> {
+    const data = new FormData();
+    data.append('upfile', file, form.upfile);
+    data.append('caption', form.caption);
+    return this.post(ApiConst.PATH.PHOTO, data);
   }
 
   /**

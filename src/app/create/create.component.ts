@@ -1,6 +1,9 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { CreateForm } from './create-form';
+import { PhotoService } from 'shared/service/photo';
+import { LoadingService } from 'shared/service/loading';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create',
@@ -21,7 +24,10 @@ export class CreateComponent implements OnInit {
   isError: boolean;
 
   constructor(
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private photoService: PhotoService,
+    private loadingService: LoadingService,
   ) {
     this.form = this.formBuilder.group(CreateForm.validators);
   }
@@ -51,8 +57,30 @@ export class CreateComponent implements OnInit {
     if (!isValid) {
       return;
     }
-    // ファイル送信
-    const data = new FormData();
-    data.append('upfile', files[0], form.upfile);
+    this.isInValid = false;
+    this.isError = false;
+
+    // 写真を投稿する
+    this.loadingService.setLoading(true);
+    this.photoService.postPhoto(form, files[0]).subscribe((photoCd: string) => {
+      this.loadingService.setLoading(false);
+
+      if (photoCd) {
+        // TODO 完了モーダルを出してから
+        this.router.navigate(['/photo/' + photoCd]);
+      }
+    }, (error: Response) => {
+      this.loadingService.setLoading(false);
+
+      switch (error.status) {
+        case 403:
+          this.isInValid = true;
+          break;
+        case 500:
+        default:
+          this.isError = true;
+          break;
+      }
+    });
   }
 }
