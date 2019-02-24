@@ -1,29 +1,41 @@
 <section class="section animated fadeIn">
-  <form>
+  <form [formGroup]="form" (ngSubmit)="onSubmit(form.value, fl.files, form.valid)">
     <p>TODO: カメラリンク押したら直接ダイアログを出す</p>
 
-    <div class="file-field input-field">
-      <div class="btn pink accent-2">
-        <span>参照</span>
-        <input type="file" name="upfile" accept="image/*" #fl (change)="onchange(fl.files)">
-      </div>
-      <div class="file-path-wrapper">
-        <input class="file-path validate" type="text">
+    <div class="row">
+      <div class="file-field input-field">
+        <div class="btn pink accent-2">
+          <span>参照</span>
+          <input type="file" formControlName="upfile" accept="image/*" #fl (change)="onchange(fl.files)">
+        </div>
+        <div class="file-path-wrapper">
+          <input class="file-path validate" type="text">
+        </div>
       </div>
     </div>
 
     <div class="row" *ngIf="blobUrl">
       <img [src]="blobUrl" class="responsive-img">
+      <ng-container *ngIf="form.controls['upfile'].touched">
+        <span class="helper-text" *ngIf="form.controls['upfile'].hasError('required')" data-error="入力してください"></span>
+      </ng-container>
     </div>
 
     <div class="row">
       <div class="input-field">
-        <textarea name="caption" class="materialize-textarea" maxlength="120" data-length="120" placeholder="キャプションを入力してください"></textarea>
+        <textarea id="caption" type="text" class="validate materialize-textarea" formControlName="caption"
+          maxlength="120" data-length="120"></textarea>
+        <label for="caption">キャプション</label>
+        <ng-container *ngIf="form.controls['caption'].touched">
+          <span class="helper-text" *ngIf="form.controls['caption'].hasError('required')" data-error="入力してください"></span>
+          <span class="helper-text" *ngIf="form.controls['caption'].hasError('maxlength')"
+            data-error="120文字以内で入力してください"></span>
+        </ng-container>
       </div>
     </div>
 
     <div class="row">
-      <button class="btn waves-effect waves-light right pink accent-2" type="button">シェアする
+      <button class="btn waves-effect waves-light right pink accent-2" type="submit">シェアする
         <i class="material-icons right">send</i>
       </button>
     </div>
