@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Photo, PhotoService } from 'shared/service/photo';
 import { Pageable } from 'shared/model';
+import { LoadingService } from 'shared/service/loading';
 
 /**
  * TOP画面
@@ -12,10 +13,11 @@ import { Pageable } from 'shared/model';
 })
 export class TopComponent implements OnInit {
 
-  height: number = window.innerHeight;
+  height: number = window.innerHeight - (56 + 32); // ヘッダー+気持ち減らす
+  itemSize: 500;
 
   /** 写真リスト */
-  photoList: Photo[];
+  photoList: Photo[] = [];
 
   /** ページ情報 */
   pageable = {
@@ -23,13 +25,28 @@ export class TopComponent implements OnInit {
     size: 6
   } as Pageable;
 
-  constructor(private photoService: PhotoService) { }
+  constructor(
+    private photoService: PhotoService,
+    private loadingService: LoadingService
+  ) { }
 
   ngOnInit() {
+    this.getPhotoList();
+  }
+
+  getPhotoList() {
     // 写真を取得
+    this.loadingService.setLoading(true);
     this.photoService.getPhotoList(this.pageable).subscribe(photoList => {
-      this.photoList = photoList;
+      this.loadingService.setLoading(false);
+
+      this.photoList = this.photoList.concat(photoList);
     });
   }
 
+  /** 次のページを取得 */
+  next() {
+    this.pageable.page++;
+    this.getPhotoList();
+  }
 }
