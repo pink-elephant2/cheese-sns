@@ -23,6 +23,15 @@ export class AccountComponent implements OnInit, OnDestroy {
   /** 自分のアカウントを表示しているか */
   isMe = false;
 
+  /** 投稿数 */
+  postCount = 0;
+
+  /** フォロー数 */
+  followingCount = 0;
+
+  /** フォローワー数 */
+  followersCount = 0;
+
   private sub: any;
 
   constructor(

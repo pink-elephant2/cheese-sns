@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FollowService } from 'shared/service/follow';
 import { Account } from 'shared/service/account';
 
@@ -9,7 +9,11 @@ import { Account } from 'shared/service/account';
 })
 export class AccountFollowersComponent implements OnInit {
 
+  /** ログインID */
   @Input() loginId: string;
+
+  /** フォローワー数 */
+  @Output() followersCount: EventEmitter<number> = new EventEmitter<number>();
 
   accountList: Account[];
 
@@ -21,6 +25,11 @@ export class AccountFollowersComponent implements OnInit {
     // フォローワーを取得する
     this.followService.getFollower(this.loginId).subscribe(accountList => {
       this.accountList = accountList;
+
+      // 親にフォローワー数を渡す
+      setTimeout(() => {
+        this.followersCount.emit(this.accountList.length);
+      });
     });
   }
 

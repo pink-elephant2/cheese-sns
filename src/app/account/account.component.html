@@ -21,25 +21,32 @@
   <div class="row">
     <div class="col s12">
       <ul class="tabs">
-        <li class="tab col s3"><a class="active" href="account#post" title="投稿(4)">投稿(4)</a></li>
-        <li class="tab col s3"><a href="account#following" title="フォロー(1)">フォロー(1)</a></li>
-        <li class="tab col s3 disabled"><a href="account#followers" title="フォローワー(0)">フォローワー(0)</a></li>
+        <li class="tab col s3">
+          <a class="active" href="account#post" title="投稿({{postCount}})">投稿({{postCount}})</a>
+        </li>
+        <li class="tab col s3" [ngClass]="{disabled: (followingCount === 0)}">
+          <a href="account#following" title="フォロー({{followingCount}})">フォロー({{followingCount}})</a>
+        </li>
+        <li class="tab col s3" [ngClass]="{disabled: (followersCount === 0)}">
+          <a href="account#followers" title="フォローワー({{followersCount}})">フォローワー({{followersCount}})</a></li>
       </ul>
     </div>
 
     <!-- 投稿 -->
     <div id="post" class="col s12">
-      <app-account-post [loginId]="account.loginId"></app-account-post>
+      <app-account-post [loginId]="account.loginId" (postCount)="postCount=$event"></app-account-post>
     </div>
 
     <!-- フォロー -->
     <div id="following" class="col s12" style="display:none;">
-      <app-account-following [loginId]="account.loginId"></app-account-following>
+      <app-account-following [loginId]="account.loginId" (followingCount)="followingCount=$event">
+      </app-account-following>
     </div>
 
     <!-- フォローワー -->
     <div id="followers" class="col s12" style="display:none;">
-      <app-account-followers [loginId]="account.loginId"></app-account-followers>
+      <app-account-followers [loginId]="account.loginId" (followersCount)="followersCount=$event">
+      </app-account-followers>
     </div>
   </div>
 </section>

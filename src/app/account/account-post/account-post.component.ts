@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-account-post',
@@ -9,11 +9,18 @@ export class AccountPostComponent implements OnInit {
 
   @Input() loginId: string;
 
+  /** 投稿数 */
+  @Output() postCount: EventEmitter<number> = new EventEmitter<number>();
+
   accountList: Account[];
 
   constructor() { }
 
   ngOnInit() {
+    // 親に投稿数を渡す
+    setTimeout(() => {
+      this.postCount.emit(4);
+    });
   }
 
 }
