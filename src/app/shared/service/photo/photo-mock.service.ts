@@ -143,13 +143,17 @@ export class PhotoMockService extends PhotoService {
   /**
    * 写真を取得する
    */
-  public getPhotoList(pageable?: Pageable): Observable<Photo[]> {
+  public getPhotoList(loginId?: string, pageable?: Pageable): Observable<Photo[]> {
+    let photoList = this.photoList;
+    if (loginId) {
+      photoList = photoList.filter(photo => photo.account.loginId === loginId);
+    }
     if (pageable) {
       const start = (pageable.page || 0) * (pageable.size || 20);
       const end = start + (pageable.size || 20);
-      return of(this.photoList.slice(start, end));
+      photoList = photoList.slice(start, end);
     }
-    return of(this.photoList);
+    return of(photoList);
   }
 
   /**

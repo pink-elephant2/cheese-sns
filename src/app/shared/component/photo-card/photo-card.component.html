@@ -8,12 +8,12 @@
   </li>
   <li class="collection-item center">
     <ng-container *ngIf="hasInputComment">
-      <img src="{{photo.imgUrl}}" class="photo responsive-img">
+      <img src="{{photo.imgUrl}}" class="photo responsive-img" alt="{{photo.caption}}">
       <div class="cover"></div>
     </ng-container>
     <ng-container *ngIf="!hasInputComment">
       <a [routerLink]="['/photo/', photo.cd]">
-        <img src="{{photo.imgUrl}}" class="photo-list responsive-img">
+        <img src="{{photo.imgUrl}}" class="photo-list responsive-img" alt="{{photo.caption}}">
         <span class="cover"></span>
       </a>
     </ng-container>

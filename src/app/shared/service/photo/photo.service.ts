@@ -26,8 +26,10 @@ export class PhotoService extends ApiService {
   /**
    * 写真を取得する
    */
-  public getPhotoList(pageable?: Pageable): Observable<Photo[]> {
-    return this.get(ApiConst.PATH.PHOTO, pageable).pipe(map(data => data as Photo[]));
+  public getPhotoList(loginId?: string, pageable?: Pageable): Observable<Photo[]> {
+    const params: {} = pageable;
+    params['loginId'] = loginId;
+    return this.get(ApiConst.PATH.PHOTO, params).pipe(map(data => data as Photo[]));
   }
 
   /**

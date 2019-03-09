@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { PhotoService, Photo } from 'shared/service/photo';
 
 @Component({
   selector: 'app-account-post',
@@ -12,14 +13,20 @@ export class AccountPostComponent implements OnInit {
   /** 投稿数 */
   @Output() postCount: EventEmitter<number> = new EventEmitter<number>();
 
-  accountList: Account[];
+  photoList: Photo[];
 
-  constructor() { }
+  constructor(private photoService: PhotoService) { }
 
   ngOnInit() {
-    // 親に投稿数を渡す
-    setTimeout(() => {
-      this.postCount.emit(4);
+    this.photoService.getPhotoList(this.loginId).subscribe(photoList => {
+      this.photoList = photoList;
+
+      console.log(this.photoList);
+
+      // 親に投稿数を渡す
+      setTimeout(() => {
+        this.postCount.emit(this.photoList.length);
+      });
     });
   }
 
