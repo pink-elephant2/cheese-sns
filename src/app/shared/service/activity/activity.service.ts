@@ -23,6 +23,6 @@ export class ActivityService extends ApiService {
    * 自分に対するアクティビティを取得する
    */
   public getMe(): Observable<Activity[]> {
-    return this.get(ApiConst.PATH.ACTIVITY_FOLLOWING).pipe(map(data => data as Activity[]));
+    return this.get(ApiConst.PATH.ACTIVITY_ME).pipe(map(data => data as Activity[]));
   }
 }

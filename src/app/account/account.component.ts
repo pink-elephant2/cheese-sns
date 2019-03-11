@@ -17,7 +17,7 @@ import { APP_TITLE } from 'shared/const';
 })
 export class AccountComponent implements OnInit, OnDestroy {
 
-  /** アカウントID */
+  /** アカウント */
   account: Account;
 
   /** 自分のアカウントを表示しているか */

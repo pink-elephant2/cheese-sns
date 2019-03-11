@@ -1,25 +1,17 @@
 <ul class="collection">
-  <li class="collection-item avatar row">
-    <a routerLink="/ki_ri_mi"><img src="assets/images/ki_ri_mi.png" alt="" class="circle"></a>
+  <li class="collection-item avatar row" *ngFor="let activity of activityList">
+    <a [routerLink]="['/', activity.account.loginId]"><img src="assets/images/{{activity.account.loginId}}.png"
+        alt="{{activity.account.loginId}}" class="circle"></a>
 
-    <p class="col s8">ki_ri_miさんがあなたの投稿に「コメント」しました。<span class="grey-text">2分前</span></p>
-    <a routerLink="/photo/bbb" class="col s4"><img src="assets/images/sample-2.jpg" class="responsive-img photo right"></a>
-  </li>
-  <li class="collection-item avatar row">
-    <a routerLink="/ki_ri_mi"><img src="assets/images/ki_ri_mi.png" alt="" class="circle"></a>
-
-    <p class="col s8">ki_ri_miさんがあなたの投稿に「いいね！」しました。<span class="grey-text">3分前</span></p>
-    <a routerLink="/photo/bbb" class="col s4"><img src="assets/images/sample-2.jpg" class="responsive-img photo right"></a>
-  </li>
-  <li class="collection-item avatar row">
-    <a routerLink="/ki_ri_mi"><img src="assets/images/ki_ri_mi.png" alt="" class="circle"></a>
-
-    <p class="col s8">ki_ri_miさんがあなたを「フォロー」しました。<span class="grey-text">1日前</span></p>
-  </li>
-  <li class="collection-item avatar row">
-    <a routerLink="/ki_ri_mi"><img src="assets/images/ki_ri_mi.png" alt="" class="circle"></a>
-
-    <p class="col s8">ki_ri_miさんが新しい投稿をしました。<span class="grey-text">1週間前</span></p>
-    <a routerLink="/photo/aaa" class="col s4"><img src="assets/images/sample-1.jpg" class="responsive-img photo right"></a>
+    <p class="col s8">
+      <ng-container *ngIf="activity.activityType === 1">{{activity.account.loginId}}さんがあなたの投稿に「コメント」しました。</ng-container>
+      <ng-container *ngIf="activity.activityType === 2">{{activity.account.loginId}}さんがあなたの投稿に「いいね！」しました。</ng-container>
+      <ng-container *ngIf="activity.activityType === 3">{{activity.account.loginId}}さんがあなたを「フォロー」しました。</ng-container>
+      <ng-container *ngIf="activity.activityType === 4">{{activity.account.loginId}}さんが新しい投稿をしました。</ng-container>
+      <span class="grey-text">{{activity.createAt | pastDate}}</span>
+    </p>
+    <a *ngIf="activity.photo" [routerLink]="['/photo/', activity.photo.cd]" class="col s4"><img
+        src="{{activity.photo.imgUrl}}" class="responsive-img photo right" alt="{{activity.photo.caption}}">
+    </a>
   </li>
 </ul>

@@ -15,7 +15,7 @@ import { CreateForm } from 'src/app/create/create-form';
 @Injectable()
 export class PhotoMockService extends PhotoService {
 
-  private photoList: Photo[] = [{
+  public static photoList: Photo[] = [{
     id: 1,
     cd: 'aaa',
     caption: '【フォンデュ＆ラクレット】 とろ～り、びよーん♪のおいしいチーズ料理',
@@ -84,9 +84,9 @@ export class PhotoMockService extends PhotoService {
     imgUrl: 'assets/images/sample-4.jpg',
     createAt: new Date('2019/01/29 12:30'),
     account: {
-      id: 2,
-      loginId: 'ki_ri_mi',
-      name: 'KIRIMIちゃん.'
+      id: 1,
+      loginId: 'my_melody',
+      name: 'マイメロディ'
     } as Account,
   } as Photo, {
     id: 5,
@@ -137,14 +137,14 @@ export class PhotoMockService extends PhotoService {
    * 写真を取得する
    */
   public getPhoto(photoCd: string): Observable<Photo> {
-    return of(this.photoList.find(photo => photo.cd === photoCd));
+    return of(PhotoMockService.photoList.find(photo => photo.cd === photoCd));
   }
 
   /**
    * 写真を取得する
    */
   public getPhotoList(loginId?: string, pageable?: Pageable): Observable<Photo[]> {
-    let photoList = this.photoList;
+    let photoList = PhotoMockService.photoList;
     if (loginId) {
       photoList = photoList.filter(photo => photo.account.loginId === loginId);
     }

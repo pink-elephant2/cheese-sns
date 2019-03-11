@@ -1,4 +1,5 @@
 import { Photo } from '../photo';
+import { Account } from '../account';
 import { ActivityType } from './activity-type.enum';
 
 /**

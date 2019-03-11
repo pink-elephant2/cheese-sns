@@ -6,11 +6,13 @@ import { ActivityComponent } from './activity.component';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { ActivityFollowingComponent } from './activity-following/activity-following.component';
 import { ActivityYouComponent } from './activity-you/activity-you.component';
+import { PastDateModule } from 'shared/pipe';
 
 @NgModule({
   imports: [
     CommonModule,
-    AppRoutingModule
+    AppRoutingModule,
+    PastDateModule
   ],
   declarations: [
     ActivityComponent,
