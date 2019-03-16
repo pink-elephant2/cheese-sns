@@ -7,7 +7,6 @@ import { AccountComponent } from './account.component';
 import { AccountPostComponent } from './account-post/account-post.component';
 import { AccountFollowingComponent } from './account-following/account-following.component';
 import { AccountFollowersComponent } from './account-followers/account-followers.component';
-import { AccountLikeComponent } from './account-like/account-like.component';
 import { AccountCardModule, MyAdsenseModule } from 'shared/component';
 
 @NgModule({
@@ -21,8 +20,7 @@ import { AccountCardModule, MyAdsenseModule } from 'shared/component';
     AccountComponent,
     AccountPostComponent,
     AccountFollowingComponent,
-    AccountFollowersComponent,
-    AccountLikeComponent
+    AccountFollowersComponent
   ],
   exports: [AccountComponent],
   providers: [
