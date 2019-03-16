@@ -3,6 +3,7 @@ import { Observable, of } from 'rxjs';
 
 import { AccountService } from './account.service';
 import { Account } from './account';
+import { ProfileForm } from 'src/app/setting/setting-profile/profile-form';
 
 /**
  * アカウントサービス
@@ -40,5 +41,12 @@ export class AccountMockService extends AccountService {
       loginId = 'my_melody';
     }
     return of(AccountMockService.accountList.find(account => account.loginId === loginId));
+  }
+
+  /**
+   * プロフィールを更新する
+   */
+  public putProfile(form: ProfileForm): Observable<boolean> {
+    return of(true);
   }
 }

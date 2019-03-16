@@ -10,6 +10,8 @@ export class ApiConst {
     LOGOUT: '/api/v1/logout',
     /** アカウント */
     ACCOUNT: '/api/v1/account',
+    /** アカウント.プロフィール */
+    ACCOUNT_PROFILE: '/api/v1/account/profile',
     /** アクティビティ.フォロー中 */
     ACTIVITY_FOLLOWING: '/api/v1/activity/following',
     /** アクティビティ.自分 */

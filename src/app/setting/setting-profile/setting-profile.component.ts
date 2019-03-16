@@ -4,6 +4,9 @@ import { AccountService, Account } from 'shared/service/account';
 import { LoadingService } from 'shared/service/loading';
 import { ProfileForm } from './profile-form';
 
+/**
+ * プロフィール編集画面
+ */
 @Component({
   selector: 'app-setting-profile',
   templateUrl: './setting-profile.component.html',
@@ -72,6 +75,27 @@ export class SettingProfileComponent implements OnInit {
     this.isInValid = false;
     this.isError = false;
 
-    // TODO アカウント更新API
+    // アカウント更新
+    this.loadingService.setLoading(true);
+    this.accountService.putProfile(form).subscribe(ret => {
+      this.loadingService.setLoading(false);
+      if (ret) {
+        window['M'].toast({ html: 'プロフィールを保存しました。' });
+      } else {
+        this.isInValid = true;
+      }
+    }, (error: Response) => {
+      this.loadingService.setLoading(false);
+
+      switch (error.status) {
+        case 403:
+          this.isInValid = true;
+          break;
+        case 500:
+        default:
+          this.isError = true;
+          break;
+      }
+    });
   }
 }
