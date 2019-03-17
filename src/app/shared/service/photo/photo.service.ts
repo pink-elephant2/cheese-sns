@@ -20,7 +20,7 @@ export class PhotoService extends ApiService {
    */
   public getPhoto(photoCd: string): Observable<Photo> {
     const url = `${ApiConst.PATH.PHOTO}/${photoCd}`;
-    return this.get(url).pipe(map(data => data as Photo));
+    return this.get<Photo>(url);
   }
 
   /**
@@ -29,7 +29,7 @@ export class PhotoService extends ApiService {
   public getPhotoList(loginId?: string, pageable?: Pageable): Observable<Photo[]> {
     const params: {} = pageable;
     params['loginId'] = loginId;
-    return this.get(ApiConst.PATH.PHOTO, params).pipe(map(data => data as Photo[]));
+    return this.get<Photo[]>(ApiConst.PATH.PHOTO, params);
   }
 
   /**

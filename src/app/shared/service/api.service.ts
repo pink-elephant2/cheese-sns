@@ -17,12 +17,12 @@ export abstract class ApiService {
   /**
    * HTTP GET処理
    */
-  public get(url: string, params?: object): Observable<any> {
+  public get<T>(url: string, params?: object): Observable<any> {
     if (params) {
       const requestParams = this.setParams(params);
       url += `?${requestParams.toString()}`;
     }
-    return this.getObservable(this.http.get(url));
+    return this.http.get<T>(url);
   }
 
   /**
