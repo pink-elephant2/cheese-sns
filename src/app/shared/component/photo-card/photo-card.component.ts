@@ -39,13 +39,13 @@ export class PhotoCardComponent implements OnInit {
    * いいね
    */
   public like(): void {
-    this.photo.isLike = !this.photo.isLike;
-
     // TODO 未ログイン処理
 
     // いいねをする
-    const sub = (this.photo.isLike) ? this.photoService.likePhoto(this.photo.cd) : this.photoService.dislikePhoto(this.photo.cd);
+    const sub = (!this.photo.isLike) ? this.photoService.likePhoto(this.photo.cd) : this.photoService.dislikePhoto(this.photo.cd);
     sub.subscribe((ret: boolean) => {
+      this.photo.isLike = !this.photo.isLike;
+
       // いいね件数
       this.photo.likeCount += this.photo.isLike ? 1 : -1;
     });
@@ -82,13 +82,15 @@ export class PhotoCardComponent implements OnInit {
    * コメントいいね
    */
   public likeComment(index: number): void {
-    this.photo.comments[index].isLike = !this.photo.comments[index].isLike;
-
     // TODO 未ログイン処理
 
     // いいねをする
-    const sub = (this.photo.comments[index].isLike)
+    const sub = (!this.photo.comments[index].isLike)
       ? this.photoService.likeComment(this.photo.cd, this.photo.comments[index].cd)
       : this.photoService.dislikeComment(this.photo.cd, this.photo.comments[index].cd);
+
+    sub.subscribe((ret: boolean) => {
+      this.photo.comments[index].isLike = !this.photo.comments[index].isLike;
+    });
   }
 }

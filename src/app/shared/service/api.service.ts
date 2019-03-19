@@ -28,13 +28,12 @@ export abstract class ApiService {
   /**
    * HTTP POST処理
    */
-  public post(url: string, params: object = {}): Observable<any> {
+  public post<T>(url: string, params: object = {}): Observable<any> {
     const header = new HttpHeaders();
     header.append('Content-Type', 'application/x-www-form-urlencoded');
+    // header.append('Content-Type', 'multipart/form-data');
 
-    const requestParams = this.setParams(params);
-
-    return this.getObservable(this.http.post(url, requestParams.toString(), { headers: header }));
+    return this.http.post<T>(url, params, { headers: header });
   }
 
   /**

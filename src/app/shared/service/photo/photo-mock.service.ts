@@ -158,10 +158,11 @@ export class PhotoMockService extends PhotoService {
 
   /**
    * 写真を投稿する
+   *
+   * @returns 写真情報
    */
-  public postPhoto(form: CreateForm, file: File): Observable<string> {
-    const photoCd = 'aaa';
-    return of(photoCd);
+  public postPhoto(form: CreateForm, file: File): Observable<Photo> {
+    return of(PhotoMockService.photoList[0]);
   }
 
   /**
@@ -180,6 +181,8 @@ export class PhotoMockService extends PhotoService {
 
   /**
    * 写真にコメントをする
+   *
+   * @returns コメント情報
    */
   public comment(photoCd: string, comment: string): Observable<Comment> {
     return of({

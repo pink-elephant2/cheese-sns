@@ -1,7 +1,9 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { HttpErrorResponse } from '@angular/common/http';
+
 import { CreateForm } from './create-form';
-import { PhotoService } from 'shared/service/photo';
+import { PhotoService, Photo } from 'shared/service/photo';
 import { LoadingService } from 'shared/service/loading';
 import { Router } from '@angular/router';
 
@@ -62,15 +64,16 @@ export class CreateComponent implements OnInit {
 
     // 写真を投稿する
     this.loadingService.setLoading(true);
-    this.photoService.postPhoto(form, files[0]).subscribe((photoCd: string) => {
+    this.photoService.postPhoto(form, files[0]).subscribe((photo: Photo) => {
       this.loadingService.setLoading(false);
 
-      if (photoCd) {
+      if (photo.cd) {
         // TODO 完了モーダルを出してから
-        this.router.navigate(['/photo/' + photoCd]);
+        this.router.navigate(['/photo/' + photo.cd]);
       }
-    }, (error: Response) => {
+    }, (error: HttpErrorResponse) => {
       this.loadingService.setLoading(false);
+      console.error(error);
 
       switch (error.status) {
         case 403:

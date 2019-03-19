@@ -27,19 +27,22 @@ export class PhotoService extends ApiService {
    * 写真を取得する
    */
   public getPhotoList(loginId?: string, pageable?: Pageable): Observable<Photo[]> {
-    const params: {} = pageable;
-    params['loginId'] = loginId;
-    return this.get<Photo[]>(ApiConst.PATH.PHOTO, params);
+    const params = {
+      loginId: loginId
+    };
+    return this.get<Photo[]>(ApiConst.PATH.PHOTO, Object.assign(params, pageable));
   }
 
   /**
    * 写真を投稿する
+   *
+   * @returns 写真情報
    */
-  public postPhoto(form: CreateForm, file: File): Observable<string> {
+  public postPhoto(form: CreateForm, file: File): Observable<Photo> {
     const data = new FormData();
     data.append('upfile', file, form.upfile);
     data.append('caption', form.caption);
-    return this.post(ApiConst.PATH.PHOTO, data);
+    return this.post<Photo>(ApiConst.PATH.PHOTO, data);
   }
 
   /**
@@ -60,13 +63,15 @@ export class PhotoService extends ApiService {
 
   /**
    * 写真にコメントをする
+   *
+   * @returns コメント情報
    */
   public comment(photoCd: string, comment: string): Observable<Comment> {
     const url = `${ApiConst.PATH.PHOTO}/${photoCd}/comment`;
     const params = {
       comment: comment
     };
-    return this.post(url, params).pipe(map(data => data as Comment));
+    return this.post<Comment>(url, params);
   }
 
   /**
