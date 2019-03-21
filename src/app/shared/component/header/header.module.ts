@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header.component';
 import { AppRoutingModule } from '../../../app-routing.module';
-import { environment } from 'env/environment.prod';
+import { environment } from 'env/environment';
 
 @NgModule({
   imports: [

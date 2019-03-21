@@ -36,7 +36,7 @@ export class AccountMockService extends AccountService {
   /**
    * アカウントを取得する
    */
-  public getAccount(loginId?: string): Observable<Account> {
+  public getAccount(loginId: string): Observable<Account> {
     if (!loginId) {
       loginId = 'my_melody';
     }

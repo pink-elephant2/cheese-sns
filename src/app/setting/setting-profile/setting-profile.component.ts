@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { AuthService } from 'shared/service/auth';
 import { AccountService, Account } from 'shared/service/account';
 import { LoadingService } from 'shared/service/loading';
 import { ProfileForm } from './profile-form';
@@ -27,6 +28,7 @@ export class SettingProfileComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
+    private authService: AuthService,
     private accountService: AccountService,
     private loadingService: LoadingService
   ) {
@@ -41,7 +43,7 @@ export class SettingProfileComponent implements OnInit {
 
     // アカウント取得
     this.loadingService.setLoading(true);
-    this.accountService.getAccount().subscribe((account: Account) => {
+    this.accountService.getAccount(this.authService.loginId).subscribe((account: Account) => {
       this.loadingService.setLoading(false);
 
       Object.entries(account).forEach(a => {

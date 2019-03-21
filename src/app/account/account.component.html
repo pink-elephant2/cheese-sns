@@ -34,18 +34,18 @@
 
     <!-- 投稿 -->
     <div id="post" class="col s12">
-      <app-account-post [loginId]="account.loginId" (postCount)="postCount=$event"></app-account-post>
+      <app-account-post *ngIf="account" [loginId]="account.loginId" (postCount)="postCount=$event"></app-account-post>
     </div>
 
     <!-- フォロー -->
     <div id="following" class="col s12" style="display:none;">
-      <app-account-following [loginId]="account.loginId" (followingCount)="followingCount=$event">
+      <app-account-following *ngIf="account" [loginId]="account.loginId" (followingCount)="followingCount=$event">
       </app-account-following>
     </div>
 
     <!-- フォローワー -->
     <div id="followers" class="col s12" style="display:none;">
-      <app-account-followers [loginId]="account.loginId" (followersCount)="followersCount=$event">
+      <app-account-followers *ngIf="account" [loginId]="account.loginId" (followersCount)="followersCount=$event">
       </app-account-followers>
     </div>
   </div>

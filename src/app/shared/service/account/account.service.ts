@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 
 import { ApiService } from '../api.service';
 import { Account } from './account';
@@ -16,17 +15,15 @@ export class AccountService extends ApiService {
   /**
    * アカウントを取得する
    */
-  public getAccount(loginId?: string): Observable<Account> {
+  public getAccount(loginId: string): Observable<Account> {
     const url = `${ApiConst.PATH.ACCOUNT}/${loginId}`;
-    return this.get(url).pipe(map(data => data as Account));
+    return this.get<Account>(url);
   }
 
   /**
    * プロフィールを更新する
    */
   public putProfile(form: ProfileForm): Observable<boolean> {
-    return this.post(ApiConst.PATH.ACCOUNT_PROFILE, form).pipe(map(ret => {
-      return Boolean(ret);
-    }));
+    return this.post<boolean>(ApiConst.PATH.ACCOUNT_PROFILE, form);
   }
 }
