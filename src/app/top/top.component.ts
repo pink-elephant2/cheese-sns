@@ -22,7 +22,7 @@ export class TopComponent implements OnInit {
   /** ページ情報 */
   pageable = {
     page: 0,
-    size: 6
+    size: 9
   } as Pageable;
 
   constructor(

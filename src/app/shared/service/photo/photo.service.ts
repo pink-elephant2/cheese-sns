@@ -27,9 +27,9 @@ export class PhotoService extends ApiService {
    * 写真を取得する
    */
   public getPhotoList(loginId?: string, pageable?: Pageable): Observable<Page<Photo>> {
-    const params = {
+    const params = loginId ? {
       loginId: loginId
-    };
+    } : {};
     return this.get<Photo[]>(ApiConst.PATH.PHOTO, Object.assign(params, pageable));
   }
 
