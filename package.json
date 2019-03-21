@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --prod --proxy-config proxy.conf.json --ssl true",
-    "start:local": "ng serve --prod --proxy-config proxy.conf.local.json",
+    "start:local": "ng serve --configuration=stg --proxy-config proxy.conf.local.json",
     "build": "ng build --prod --aot=true --base-href=/cheese-sns/",
     "build:gh": "ng build --prod --aot=true --base-href=/cheese-sns/ && angular-cli-ghpages -d dist/cheese-sns",
     "test": "ng test",
