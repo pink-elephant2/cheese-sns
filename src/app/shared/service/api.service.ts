@@ -17,24 +17,23 @@ export abstract class ApiService {
   /**
    * HTTP GET処理
    */
-  public get(url: string, params?: object): Observable<any> {
+  public get<T>(url: string, params?: object): Observable<any> {
     if (params) {
       const requestParams = this.setParams(params);
       url += `?${requestParams.toString()}`;
     }
-    return this.getObservable(this.http.get(url));
+    return this.http.get<T>(url);
   }
 
   /**
    * HTTP POST処理
    */
-  public post(url: string, params: object = {}): Observable<any> {
+  public post<T>(url: string, params: object = {}): Observable<any> {
     const header = new HttpHeaders();
     header.append('Content-Type', 'application/x-www-form-urlencoded');
+    // header.append('Content-Type', 'multipart/form-data');
 
-    const requestParams = this.setParams(params);
-
-    return this.getObservable(this.http.post(url, requestParams.toString(), { headers: header }));
+    return this.http.post<T>(url, params, { headers: header });
   }
 
   /**

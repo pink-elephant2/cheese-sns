@@ -33,4 +33,12 @@ export class SignupComponent implements OnInit {
     this.router.navigate(['/login']);
   }
 
+  /**
+   * 登録ボタン
+   * @param form 入力フォーム
+   * @param isValid 有効か
+   */
+  onSubmit(form: LoginForm, isValid: boolean) {
+  }
+
 }

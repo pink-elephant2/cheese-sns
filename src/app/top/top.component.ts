@@ -22,7 +22,7 @@ export class TopComponent implements OnInit {
   /** ページ情報 */
   pageable = {
     page: 0,
-    size: 6
+    size: 9
   } as Pageable;
 
   constructor(
@@ -37,10 +37,10 @@ export class TopComponent implements OnInit {
   getPhotoList() {
     // 写真を取得
     this.loadingService.setLoading(true);
-    this.photoService.getPhotoList(null, this.pageable).subscribe(photoList => {
+    this.photoService.getPhotoList(null, this.pageable).subscribe(photoPage => {
       this.loadingService.setLoading(false);
 
-      this.photoList = this.photoList.concat(photoList);
+      this.photoList = this.photoList.concat(photoPage.content);
     });
   }
 

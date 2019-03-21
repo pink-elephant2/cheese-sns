@@ -6,7 +6,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class PastDatePipe implements PipeTransform {
 
   transform(value: Date, args?: any): string {
-    const diff = Date.now() - value.getTime();
+    const diff = Date.now() - new Date(value).getTime();
     const diffYear = Math.floor(diff / 1000 / 60 / 60 / 24 / 30 / 12);
     const diffMonth = Math.floor(diff / 1000 / 60 / 60 / 24 / 30);
     const diffDay = Math.floor(diff / 1000 / 60 / 60 / 24);

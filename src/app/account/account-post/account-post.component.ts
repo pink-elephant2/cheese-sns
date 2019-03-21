@@ -18,10 +18,8 @@ export class AccountPostComponent implements OnInit {
   constructor(private photoService: PhotoService) { }
 
   ngOnInit() {
-    this.photoService.getPhotoList(this.loginId).subscribe(photoList => {
-      this.photoList = photoList;
-
-      console.log(this.photoList);
+    this.photoService.getPhotoList(this.loginId).subscribe(photoPage => {
+      this.photoList = photoPage.content;
 
       // 親に投稿数を渡す
       setTimeout(() => {

@@ -6,6 +6,7 @@ import { Photo } from './photo';
 import { Account } from '../account';
 import { Comment } from './comment';
 import { Pageable } from 'shared/model';
+import { Page } from 'shared/model/page';
 import { CreateForm } from 'src/app/create/create-form';
 
 /**
@@ -143,7 +144,7 @@ export class PhotoMockService extends PhotoService {
   /**
    * 写真を取得する
    */
-  public getPhotoList(loginId?: string, pageable?: Pageable): Observable<Photo[]> {
+  public getPhotoList(loginId?: string, pageable?: Pageable): Observable<Page<Photo>> {
     let photoList = PhotoMockService.photoList;
     if (loginId) {
       photoList = photoList.filter(photo => photo.account.loginId === loginId);
@@ -153,15 +154,18 @@ export class PhotoMockService extends PhotoService {
       const end = start + (pageable.size || 20);
       photoList = photoList.slice(start, end);
     }
-    return of(photoList);
+    return of({
+      content: photoList
+    } as Page<Photo>);
   }
 
   /**
    * 写真を投稿する
+   *
+   * @returns 写真情報
    */
-  public postPhoto(form: CreateForm, file: File): Observable<string> {
-    const photoCd = 'aaa';
-    return of(photoCd);
+  public postPhoto(form: CreateForm, file: File): Observable<Photo> {
+    return of(PhotoMockService.photoList[0]);
   }
 
   /**
@@ -180,6 +184,8 @@ export class PhotoMockService extends PhotoService {
 
   /**
    * 写真にコメントをする
+   *
+   * @returns コメント情報
    */
   public comment(photoCd: string, comment: string): Observable<Comment> {
     return of({

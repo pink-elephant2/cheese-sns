@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 
 import { ApiService } from '../api.service';
 import { Photo } from './photo';
 import { Comment } from './comment';
 import { ApiConst } from 'shared/const';
 import { Pageable } from 'shared/model';
+import { Page } from 'shared/model/page';
 import { CreateForm } from 'src/app/create/create-form';
 
 /**
@@ -20,26 +20,29 @@ export class PhotoService extends ApiService {
    */
   public getPhoto(photoCd: string): Observable<Photo> {
     const url = `${ApiConst.PATH.PHOTO}/${photoCd}`;
-    return this.get(url).pipe(map(data => data as Photo));
+    return this.get<Photo>(url);
   }
 
   /**
    * 写真を取得する
    */
-  public getPhotoList(loginId?: string, pageable?: Pageable): Observable<Photo[]> {
-    const params: {} = pageable;
-    params['loginId'] = loginId;
-    return this.get(ApiConst.PATH.PHOTO, params).pipe(map(data => data as Photo[]));
+  public getPhotoList(loginId?: string, pageable?: Pageable): Observable<Page<Photo>> {
+    const params = loginId ? {
+      loginId: loginId
+    } : {};
+    return this.get<Photo[]>(ApiConst.PATH.PHOTO, Object.assign(params, pageable));
   }
 
   /**
    * 写真を投稿する
+   *
+   * @returns 写真情報
    */
-  public postPhoto(form: CreateForm, file: File): Observable<string> {
+  public postPhoto(form: CreateForm, file: File): Observable<Photo> {
     const data = new FormData();
     data.append('upfile', file, form.upfile);
     data.append('caption', form.caption);
-    return this.post(ApiConst.PATH.PHOTO, data);
+    return this.post<Photo>(ApiConst.PATH.PHOTO, data);
   }
 
   /**
@@ -60,13 +63,15 @@ export class PhotoService extends ApiService {
 
   /**
    * 写真にコメントをする
+   *
+   * @returns コメント情報
    */
   public comment(photoCd: string, comment: string): Observable<Comment> {
     const url = `${ApiConst.PATH.PHOTO}/${photoCd}/comment`;
     const params = {
       comment: comment
     };
-    return this.post(url, params).pipe(map(data => data as Comment));
+    return this.post<Comment>(url, params);
   }
 
   /**
