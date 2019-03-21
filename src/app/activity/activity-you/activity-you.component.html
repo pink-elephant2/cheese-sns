@@ -1,7 +1,7 @@
 <ul class="collection">
   <li class="collection-item avatar row" *ngFor="let activity of activityList">
-    <a [routerLink]="['/', activity.account.loginId]"><img src="assets/images/{{activity.account.loginId}}.png"
-        alt="{{activity.account.loginId}}" class="circle"></a>
+    <a [routerLink]="['/', activity.account.loginId]"><img [src]="activity.account.imgUrl"
+        [alt]="activity.account.loginId" class="circle"></a>
 
     <p class="col s8">
       <ng-container *ngIf="activity.activityType === 1">{{activity.account.loginId}}さんがあなたの投稿に「コメント」しました。</ng-container>

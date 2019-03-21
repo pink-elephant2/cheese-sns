@@ -50,7 +50,7 @@ export class PhotoService extends ApiService {
    */
   public likePhoto(photoCd: string): Observable<boolean> {
     const url = `${ApiConst.PATH.PHOTO}/${photoCd}/like`;
-    return this.post(url);
+    return this.post<boolean>(url);
   }
 
   /**
@@ -58,7 +58,7 @@ export class PhotoService extends ApiService {
    */
   public dislikePhoto(photoCd: string): Observable<boolean> {
     const url = `${ApiConst.PATH.PHOTO}/${photoCd}/dislike`;
-    return this.post(url);
+    return this.post<boolean>(url);
   }
 
   /**
@@ -79,7 +79,7 @@ export class PhotoService extends ApiService {
    */
   public likeComment(photoCd: string, commentCd: string): Observable<boolean> {
     const url = `${ApiConst.PATH.PHOTO}/${photoCd}/comment/${commentCd}/like`;
-    return this.post(url);
+    return this.post<boolean>(url);
   }
 
   /**
@@ -87,6 +87,6 @@ export class PhotoService extends ApiService {
    */
   public dislikeComment(photoCd: string, commentCd: string): Observable<boolean> {
     const url = `${ApiConst.PATH.PHOTO}/${photoCd}/comment/${commentCd}/dislike`;
-    return this.post(url);
+    return this.post<boolean>(url);
   }
 }

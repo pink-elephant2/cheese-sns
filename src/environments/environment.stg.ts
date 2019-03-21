@@ -8,7 +8,7 @@ import { FollowService, FollowMockService } from 'shared/service/follow';
 export const environment = {
   production: false,
   authService: { provide: AuthService, useClass: AuthMockService },
-  AccountService: { provide: AccountService, useClass: AccountMockService },
+  AccountService: AccountService,
   ActivityService: { provide: ActivityService, useClass: ActivityMockService },
   ContactService: { provide: ContactService, useClass: ContactMockService },
   FollowService: { provide: FollowService, useClass: FollowMockService },

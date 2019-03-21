@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { AuthService } from 'shared/service/auth';
 import { AccountService, Account } from 'shared/service/account';
 import { LoadingService } from 'shared/service/loading';
 import { ProfileForm } from './profile-form';
@@ -14,6 +15,9 @@ import { ProfileForm } from './profile-form';
 })
 export class SettingProfileComponent implements OnInit {
 
+  /** アカウント情報 */
+  account: Account;
+
   /** プレビュー画像パス */
   blobUrl: string;
 
@@ -27,6 +31,7 @@ export class SettingProfileComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
+    private authService: AuthService,
     private accountService: AccountService,
     private loadingService: LoadingService
   ) {
@@ -41,8 +46,10 @@ export class SettingProfileComponent implements OnInit {
 
     // アカウント取得
     this.loadingService.setLoading(true);
-    this.accountService.getAccount().subscribe((account: Account) => {
+    this.accountService.getAccount(this.authService.loginId).subscribe((account: Account) => {
       this.loadingService.setLoading(false);
+
+      this.account = account;
 
       Object.entries(account).forEach(a => {
         if (this.form.contains(a[0])) {
@@ -68,7 +75,7 @@ export class SettingProfileComponent implements OnInit {
    * @param form 入力フォーム
    * @param isValid 有効か
    */
-  onSubmit(form: ProfileForm, isValid: boolean) {
+  onSubmit(form: ProfileForm, files: FileList, isValid: boolean) {
     if (!isValid) {
       return;
     }
@@ -77,7 +84,7 @@ export class SettingProfileComponent implements OnInit {
 
     // アカウント更新
     this.loadingService.setLoading(true);
-    this.accountService.putProfile(form).subscribe(ret => {
+    this.accountService.putProfile(form, files[0]).subscribe(ret => {
       this.loadingService.setLoading(false);
       if (ret) {
         window['M'].toast({ html: 'プロフィールを保存しました。' });

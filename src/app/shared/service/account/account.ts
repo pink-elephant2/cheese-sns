@@ -15,6 +15,8 @@ export class Account {
   name: string;
   /** 自己紹介 */
   description: string;
+  /** 画像パス */
+  imgUrl: string;
   /** 場所 */
   place: string;
   /** ウェブサイト */
