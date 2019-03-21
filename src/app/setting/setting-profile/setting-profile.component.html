@@ -1,9 +1,10 @@
 <section class="section animated fadeIn">
   <div class="card-panel">
-    <form [formGroup]="form" (ngSubmit)="onSubmit(form.value, form.valid)">
+    <form [formGroup]="form" (ngSubmit)="onSubmit(form.value, fl.files, form.valid)">
       <div class="row">
         <div class="col s3">
-          <img *ngIf="!blobUrl" src="assets/images/my_melody.png" alt="my_melody" class="avatar circle responsive-img">
+          <img *ngIf="!blobUrl && account" [src]="account.imgUrl" [alt]="account.loginId"
+            class="avatar circle responsive-img">
           <img *ngIf="blobUrl" [src]="blobUrl" class="avatar circle responsive-img">
         </div>
         <div class="file-field input-field col s9">
@@ -24,7 +25,8 @@
           <label for="name" [ngClass]="{active: form.controls['name'].value}">名前</label>
           <ng-container *ngIf="form.controls['name'].touched">
             <span class="helper-text" *ngIf="form.controls['name'].hasError('required')" data-error="入力してください"></span>
-            <span class="helper-text" *ngIf="form.controls['name'].hasError('maxlength')" data-error="30文字以内で入力してください"></span>
+            <span class="helper-text" *ngIf="form.controls['name'].hasError('maxlength')"
+              data-error="30文字以内で入力してください"></span>
           </ng-container>
         </div>
       </div>
@@ -35,7 +37,8 @@
             maxlength="120" data-length="120"></textarea>
           <label for="description" [ngClass]="{active: form.controls['description'].value}">自己紹介</label>
           <ng-container *ngIf="form.controls['description'].touched">
-            <span class="helper-text" *ngIf="form.controls['description'].hasError('maxlength')" data-error="120文字以内で入力してください"></span>
+            <span class="helper-text" *ngIf="form.controls['description'].hasError('maxlength')"
+              data-error="120文字以内で入力してください"></span>
           </ng-container>
         </div>
       </div>
@@ -45,7 +48,8 @@
           <input id="place" type="text" class="validate" formControlName="place" maxlength="30" data-length="30">
           <label for="place" [ngClass]="{active: form.controls['place'].value}">場所</label>
           <ng-container *ngIf="form.controls['place'].touched">
-            <span class="helper-text" *ngIf="form.controls['place'].hasError('maxlength')" data-error="30文字以内で入力してください"></span>
+            <span class="helper-text" *ngIf="form.controls['place'].hasError('maxlength')"
+              data-error="30文字以内で入力してください"></span>
           </ng-container>
         </div>
       </div>
@@ -55,13 +59,15 @@
           <input id="url" type="url" class="validate" formControlName="url" maxlength="100" data-length="100">
           <label for="url" [ngClass]="{active: form.controls['url'].value}">ウェブサイト</label>
           <ng-container *ngIf="form.controls['url'].touched">
-            <span class="helper-text" *ngIf="form.controls['url'].hasError('maxlength')" data-error="100文字以内で入力してください"></span>
+            <span class="helper-text" *ngIf="form.controls['url'].hasError('maxlength')"
+              data-error="100文字以内で入力してください"></span>
           </ng-container>
         </div>
       </div>
 
       <div class="row">
-        <button [disabled]="!form.valid || isError" class="btn waves-effect waves-light right pink accent-2" type="submit">保存する</button>
+        <button [disabled]="!form.valid || isError" class="btn waves-effect waves-light right pink accent-2"
+          type="submit">保存する</button>
       </div>
 
       <div class="row">

@@ -15,6 +15,9 @@ import { ProfileForm } from './profile-form';
 })
 export class SettingProfileComponent implements OnInit {
 
+  /** アカウント情報 */
+  account: Account;
+
   /** プレビュー画像パス */
   blobUrl: string;
 
@@ -46,6 +49,8 @@ export class SettingProfileComponent implements OnInit {
     this.accountService.getAccount(this.authService.loginId).subscribe((account: Account) => {
       this.loadingService.setLoading(false);
 
+      this.account = account;
+
       Object.entries(account).forEach(a => {
         if (this.form.contains(a[0])) {
           this.form.controls[a[0]].setValue(a[1]);
@@ -70,7 +75,7 @@ export class SettingProfileComponent implements OnInit {
    * @param form 入力フォーム
    * @param isValid 有効か
    */
-  onSubmit(form: ProfileForm, isValid: boolean) {
+  onSubmit(form: ProfileForm, files: FileList, isValid: boolean) {
     if (!isValid) {
       return;
     }
@@ -79,7 +84,7 @@ export class SettingProfileComponent implements OnInit {
 
     // アカウント更新
     this.loadingService.setLoading(true);
-    this.accountService.putProfile(form).subscribe(ret => {
+    this.accountService.putProfile(form, files[0]).subscribe(ret => {
       this.loadingService.setLoading(false);
       if (ret) {
         window['M'].toast({ html: 'プロフィールを保存しました。' });

@@ -23,7 +23,13 @@ export class AccountService extends ApiService {
   /**
    * プロフィールを更新する
    */
-  public putProfile(form: ProfileForm): Observable<boolean> {
-    return this.post<boolean>(ApiConst.PATH.ACCOUNT_PROFILE, form);
+  public putProfile(form: ProfileForm, file: File): Observable<boolean> {
+    const data = new FormData();
+    data.append('upfile', file, form.upfile);
+    data.append('name', form.name);
+    data.append('description', form.description);
+    data.append('place', form.place);
+    data.append('url', form.url);
+    return this.post<boolean>(ApiConst.PATH.ACCOUNT_PROFILE, data);
   }
 }

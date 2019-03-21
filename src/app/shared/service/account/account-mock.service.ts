@@ -17,18 +17,21 @@ export class AccountMockService extends AccountService {
     loginId: 'my_melody',
     name: 'マイメロディ',
     description: 'おはよう♪　あさごはん　ちゃんとたべた〜？　いっしゅうかん　がんばろうね♪',
+    imgUrl: 'assets/images/my_melody.png',
     twitter: 'Melody_Mariland',
   } as Account, {
     id: 2,
     loginId: 'ki_ri_mi',
     name: 'KIRIMIちゃん.',
     description: 'ラブ！サーモン！>°))))◁',
+    imgUrl: 'assets/images/ki_ri_mi.png',
     twitter: 'kirimi_sanrio'
   } as Account, {
     id: 3,
     loginId: 'gudetama',
     name: 'ぐでたま',
     description: 'だるい',
+    imgUrl: 'assets/images/gudetama.png',
     twitter: 'gudetama_sanrio'
   } as Account
   ];
@@ -46,7 +49,7 @@ export class AccountMockService extends AccountService {
   /**
    * プロフィールを更新する
    */
-  public putProfile(form: ProfileForm): Observable<boolean> {
+  public putProfile(form: ProfileForm, file: File): Observable<boolean> {
     return of(true);
   }
 }
