@@ -12,7 +12,7 @@ export const environment = {
   ActivityService: { provide: ActivityService, useClass: ActivityMockService },
   ContactService: { provide: ContactService, useClass: ContactMockService },
   FollowService: { provide: FollowService, useClass: FollowMockService },
-  PhotoService: PhotoService,
+  PhotoService: { provide: PhotoService, useClass: PhotoMockService },
   analytics: {
     id: 'UA-134451760-1'
   },
