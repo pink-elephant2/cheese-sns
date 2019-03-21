@@ -37,10 +37,10 @@ export class TopComponent implements OnInit {
   getPhotoList() {
     // 写真を取得
     this.loadingService.setLoading(true);
-    this.photoService.getPhotoList(null, this.pageable).subscribe(photoList => {
+    this.photoService.getPhotoList(null, this.pageable).subscribe(photoPage => {
       this.loadingService.setLoading(false);
 
-      this.photoList = this.photoList.concat(photoList);
+      this.photoList = this.photoList.concat(photoPage.content);
     });
   }
 

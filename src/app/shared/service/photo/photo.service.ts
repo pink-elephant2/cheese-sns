@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 
 import { ApiService } from '../api.service';
 import { Photo } from './photo';
 import { Comment } from './comment';
 import { ApiConst } from 'shared/const';
 import { Pageable } from 'shared/model';
+import { Page } from 'shared/model/page';
 import { CreateForm } from 'src/app/create/create-form';
 
 /**
@@ -26,7 +26,7 @@ export class PhotoService extends ApiService {
   /**
    * 写真を取得する
    */
-  public getPhotoList(loginId?: string, pageable?: Pageable): Observable<Photo[]> {
+  public getPhotoList(loginId?: string, pageable?: Pageable): Observable<Page<Photo>> {
     const params = {
       loginId: loginId
     };
