@@ -23,8 +23,8 @@ export class AccountFollowingComponent implements OnInit {
 
   ngOnInit() {
     // フォローを取得する
-    this.followService.getFollow(this.loginId).subscribe(accountList => {
-      this.accountList = accountList;
+    this.followService.getFollow(this.loginId).subscribe(accountPage => {
+      this.accountList = accountPage.content;
 
       // 親にフォロー数を渡す
       setTimeout(() => {

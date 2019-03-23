@@ -11,7 +11,7 @@ export const environment = {
   AccountService: AccountService,
   ActivityService: { provide: ActivityService, useClass: ActivityMockService },
   ContactService: { provide: ContactService, useClass: ContactMockService },
-  FollowService: { provide: FollowService, useClass: FollowMockService },
+  FollowService: FollowService,
   PhotoService: PhotoService,
   analytics: {
     id: ''

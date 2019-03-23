@@ -30,7 +30,7 @@ export class PhotoService extends ApiService {
     const params = loginId ? {
       loginId: loginId
     } : {};
-    return this.get<Photo[]>(ApiConst.PATH.PHOTO, Object.assign(params, pageable));
+    return this.get<Page<Photo>>(ApiConst.PATH.PHOTO, Object.assign(params, pageable));
   }
 
   /**

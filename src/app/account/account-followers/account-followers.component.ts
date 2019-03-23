@@ -23,8 +23,8 @@ export class AccountFollowersComponent implements OnInit {
 
   ngOnInit() {
     // フォローワーを取得する
-    this.followService.getFollower(this.loginId).subscribe(accountList => {
-      this.accountList = accountList;
+    this.followService.getFollower(this.loginId).subscribe(accountPage => {
+      this.accountList = accountPage.content;
 
       // 親にフォローワー数を渡す
       setTimeout(() => {
