@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { Account, AccountService } from 'shared/service/account';
 import { AuthService } from 'shared/service/auth';
+import { FollowService } from 'shared/service/follow';
 import { LoadingService } from 'shared/service/loading';
 import { APP_TITLE } from 'shared/const';
 
@@ -39,6 +40,7 @@ export class AccountComponent implements OnInit, OnDestroy {
     private router: Router,
     private titleService: Title,
     private accountService: AccountService,
+    private followService: FollowService,
     private authService: AuthService,
     private loadingService: LoadingService
   ) { }
@@ -76,5 +78,33 @@ export class AccountComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.sub.unsubscribe();
+  }
+
+  /**
+   * フォローする
+   */
+  follow(): void {
+    // TODO 未ログイン処理
+
+    // フォローする
+    this.followService.follow(this.account.loginId).subscribe((ret: boolean) => {
+      if (ret) {
+        this.account.isFollow = true;
+      }
+    });
+  }
+
+  /**
+   * フォローを解除する
+   */
+  unfollow(): void {
+    // TODO 未ログイン処理
+
+    // フォローを解除する
+    this.followService.unfollow(this.account.loginId).subscribe((ret: boolean) => {
+      if (ret) {
+        this.account.isFollow = false;
+      }
+    });
   }
 }

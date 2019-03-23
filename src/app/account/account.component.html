@@ -4,7 +4,15 @@
       <img [src]="account.imgUrl" [alt]="account.loginId" class="avatar circle responsive-img">
     </div>
     <div class="col s9">
-      <h3 class="h5">{{account.name}}</h3>
+      <h3 class="h5 left">{{account.name}}</h3>
+      <ng-container *ngIf="!isMe">
+        <button *ngIf="account.isFollow" class="btn follow-btn waves-effect waves-light left pink accent-2"
+          (click)="unfollow()">フォロー中</button>
+        <button *ngIf="!account.isFollow" class="btn follow-btn waves-effect waves-light left pink accent-2"
+          (click)="follow()">フォローする</button>
+      </ng-container>
+    </div>
+    <div class="col s9">
       <h2 class="h6 grey-text">@{{account.loginId}}</h2>
       <a *ngIf="isMe" class="waves-effect waves-light btn-small right pink accent-2"
         routerLink="/setting/profile">プロフィール編集</a>

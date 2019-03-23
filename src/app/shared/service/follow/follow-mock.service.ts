@@ -36,4 +36,22 @@ export class FollowMockService extends FollowService {
       content: AccountMockService.accountList.filter(account => account.loginId !== loginId)
     } as Page<Account>);
   }
+
+  /**
+   * フォローする
+   *
+   * @param loginId フォロー対象
+   */
+  public follow(loginId: String): Observable<boolean> {
+    return of(true);
+  }
+
+  /**
+   * フォローを解除する
+   *
+   * @param loginId フォロー対象
+   */
+  public unfollow(loginId: String): Observable<boolean> {
+    return of(true);
+  }
 }

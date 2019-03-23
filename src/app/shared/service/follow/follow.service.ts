@@ -27,4 +27,30 @@ export class FollowService extends ApiService {
     const url = `${ApiConst.PATH.ACCOUNT}/${loginId}/follower`;
     return this.get<Page<Account>>(url);
   }
+
+  /**
+   * フォローする
+   *
+   * @param loginId フォロー対象
+   */
+  public follow(loginId: String): Observable<boolean> {
+    const url = `${ApiConst.PATH.ACCOUNT}/follow`;
+    const params = {
+      loginId: loginId
+    };
+    return this.post<boolean>(url, params);
+  }
+
+  /**
+   * フォローを解除する
+   *
+   * @param loginId フォロー対象
+   */
+  public unfollow(loginId: String): Observable<boolean> {
+    const url = `${ApiConst.PATH.ACCOUNT}/unfollow`;
+    const params = {
+      loginId: loginId
+    };
+    return this.post<boolean>(url, params);
+  }
 }

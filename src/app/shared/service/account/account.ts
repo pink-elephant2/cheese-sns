@@ -26,4 +26,7 @@ export class Account {
   twitter: string;
   /** Instagramアカウント */
   instagram: string;
+
+  /** ログイン状態の場合、フォローしているかどうか */
+  isFollow: boolean;
 }

@@ -2,6 +2,14 @@
   border: 1px solid rgba(0,0,0,.0975);
 }
 
+h3.h5 {
+  display: inline-block;
+}
+
+.follow-btn {
+  margin: calc(1.0933333333rem / 2) 0 .656rem 1.64rem
+}
+
 /* profile card */
 #profile-card .card-image {
   height: 150px;
