@@ -10,7 +10,7 @@ export const environment = {
   authService: { provide: AuthService, useClass: AuthMockService },
   AccountService: AccountService,
   ActivityService: { provide: ActivityService, useClass: ActivityMockService },
-  ContactService: { provide: ContactService, useClass: ContactMockService },
+  ContactService: ContactService,
   FollowService: FollowService,
   PhotoService: PhotoService,
   analytics: {

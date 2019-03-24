@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { ContactForm } from './contact-form';
 import { ContactService } from 'shared/service/contact';
 import { LoadingService } from 'shared/service/loading';
+import { GaService } from 'shared/service/ga';
 
 /**
  * お問合せ画面
@@ -26,7 +27,8 @@ export class ContactComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private contactService: ContactService,
-    private loadingService: LoadingService
+    private loadingService: LoadingService,
+    private gaService: GaService
   ) {
     this.form = this.formBuilder.group(ContactForm.validators);
   }
@@ -54,7 +56,8 @@ export class ContactComponent implements OnInit {
       this.loadingService.setLoading(false);
 
       if (ret) {
-        // TODO tracking
+        // tracking
+        this.gaService.sendEvent('contact', 'link', 'click', 'contact');
 
         // TODO モーダルにしたほうが良さそう
         window['M'].toast({ html: 'お問合せありがとうございます。内容を確認後、担当者よりメール差し上げます。' });
