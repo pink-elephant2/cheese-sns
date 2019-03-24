@@ -46,6 +46,9 @@ export class AccountComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
+    // モーダル
+    window['$']('.modal').modal();
+
     this.sub = this.route.params.subscribe(params => {
       const loginId = params['loginId'] || this.authService.loginId;
 
@@ -104,6 +107,9 @@ export class AccountComponent implements OnInit, OnDestroy {
     this.followService.unfollow(this.account.loginId).subscribe((ret: boolean) => {
       if (ret) {
         this.account.isFollow = false;
+
+        var instance = window['M'].Modal.getInstance(document.getElementById('unfollow-modal'));
+        instance.close();
       }
     });
   }
