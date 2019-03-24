@@ -1,4 +1,4 @@
-<section class="section animated fadeIn">
+<section class="section animated fadeIn" *ngIf="!isCompleted">
   <h2 class="h4 red-text darken-1">お問合せ</h2>
 
   <form [formGroup]="form" (ngSubmit)="onSubmit(form.value, form.valid)">
@@ -51,4 +51,19 @@
     </div>
   </form>
 
+</section>
+
+<!-- お問合せ完了メッセージ -->
+<!-- /* 本当は心理学．終末効果をふんだんに取り入れたい!! */ -->
+<section class="section animated fadeIn" *ngIf="isCompleted">
+  <h2 class="h4 red-text darken-1">お問合せの受付を完了しました</h2>
+
+  <br>
+
+  <div class="row">
+    <p class="h6">お問合せありがとうございます。</p>
+    <p class="h6">内容を確認後、担当者よりメール差し上げます。</p>
+  </div>
+
+  <br>
 </section>

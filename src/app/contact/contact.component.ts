@@ -23,6 +23,8 @@ export class ContactComponent implements OnInit {
   isInValid: boolean;
   /** APIエラー */
   isError: boolean;
+  /** 送信完了 */
+  isCompleted: boolean;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -59,8 +61,8 @@ export class ContactComponent implements OnInit {
         // tracking
         this.gaService.sendEvent('contact', 'link', 'click', 'contact');
 
-        // TODO モーダルにしたほうが良さそう
-        window['M'].toast({ html: 'お問合せありがとうございます。内容を確認後、担当者よりメール差し上げます。' });
+        // 送信完了
+        this.isCompleted = true;
       } else {
         this.isInValid = true;
       }
