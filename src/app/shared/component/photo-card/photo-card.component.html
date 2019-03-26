@@ -32,7 +32,7 @@
     </div>
     <div *ngIf="photo.likeCount">いいね！{{photo.likeCount}}件</div>
   </li>
-  <li class="collection-item row" *ngIf="hasInputComment">
+  <li class="collection-item row" *ngIf="hasInputComment && authenticated">
     <form [formGroup]="form" (ngSubmit)="onSubmit(form.value, form.valid)">
       <span class="col s7 m8 l9">
         <input type="text" class="validate" id="comment" name="comment" placeholder="コメントする" formControlName="comment"

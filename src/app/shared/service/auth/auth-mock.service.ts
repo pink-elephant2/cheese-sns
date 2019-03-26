@@ -32,6 +32,7 @@ export class AuthMockService extends AuthService {
    */
   public logout(): Observable<any> {
     this.removeSession();
+    this._loginId = undefined;
     return of(true);
   }
 

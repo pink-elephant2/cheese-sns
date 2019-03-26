@@ -8,6 +8,7 @@ import { AccountPostComponent } from './account-post/account-post.component';
 import { AccountFollowingComponent } from './account-following/account-following.component';
 import { AccountFollowersComponent } from './account-followers/account-followers.component';
 import { AccountCardModule, MyAdsenseModule } from 'shared/component';
+import { NavigateService } from 'shared/service/navigate';
 
 @NgModule({
   imports: [
@@ -25,7 +26,9 @@ import { AccountCardModule, MyAdsenseModule } from 'shared/component';
   exports: [AccountComponent],
   providers: [
     environment.AccountService,
-    environment.FollowService
+    environment.authService,
+    environment.FollowService,
+    NavigateService
   ]
 })
 export class AccountModule { }

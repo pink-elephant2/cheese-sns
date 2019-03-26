@@ -1,9 +1,12 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { Photo, PhotoService, Comment } from 'shared/service/photo';
 import { CommentForm } from './comment-form';
+import { AuthService } from 'shared/service/auth';
 import { LoadingService } from 'shared/service/loading';
+import { NavigateService } from 'shared/service/navigate';
 
 /**
  * 写真カード
@@ -24,22 +27,41 @@ export class PhotoCardComponent implements OnInit {
   /** 入力フォーム */
   form: FormGroup;
 
+  /** ログイン状態か */
+  authenticated = false;
+
   constructor(
     private formBuilder: FormBuilder,
+    private router: Router,
     private photoService: PhotoService,
-    private loadingService: LoadingService
+    private authService: AuthService,
+    private loadingService: LoadingService,
+    private navigateService: NavigateService
   ) {
     this.form = this.formBuilder.group(CommentForm.validators);
   }
 
   ngOnInit() {
+    // ログイン前に行う予定だった処理を実行する
+    if (this.hasInputComment && this.navigateService.getAfterLoginUrl() === ('/photo/' + this.photo.cd)
+      && this.navigateService.getAfterLoginCallback() !== undefined) {
+      this[this.navigateService.getAfterLoginCallback()]();
+      this.navigateService.clearAfterLogin();
+    }
+    this.authenticated = this.authService.authenticated;
   }
 
   /**
    * いいね
    */
   public like(): void {
-    // TODO 未ログイン処理
+    // 未ログイン処理
+    if (!this.authService.authenticated) {
+      // ログイン後に行う処理を設定
+      this.navigateService.setAfterLogin('/photo/' + this.photo.cd, 'like');
+      this.router.navigate(['/login']);
+      return;
+    }
 
     // いいねをする
     const sub = (!this.photo.isLike) ? this.photoService.likePhoto(this.photo.cd) : this.photoService.dislikePhoto(this.photo.cd);
@@ -55,7 +77,18 @@ export class PhotoCardComponent implements OnInit {
    * コメントにフォーカスする
    */
   public focusComment(): void {
-    document.getElementById('comment').focus();
+    // 未ログイン処理
+    if (!this.authService.authenticated) {
+      // ログイン後に行う処理を設定
+      this.navigateService.setAfterLogin('/photo/' + this.photo.cd, 'focusComment');
+      this.router.navigate(['/login']);
+      return;
+    }
+
+    const comment = document.getElementById('comment');
+    if (comment !== null) {
+      comment.focus();
+    }
   }
 
   /**
@@ -66,7 +99,13 @@ export class PhotoCardComponent implements OnInit {
       return;
     }
 
-    // TODO 未ログイン処理
+    // 未ログイン処理
+    if (!this.authService.authenticated) {
+      // ログイン後に行う処理を設定
+      this.navigateService.setAfterLogin('/photo/' + this.photo.cd, 'onSubmit');
+      this.router.navigate(['/login']);
+      return;
+    }
 
     // コメントする
     this.loadingService.setLoading(true);
@@ -82,7 +121,17 @@ export class PhotoCardComponent implements OnInit {
    * コメントいいね
    */
   public likeComment(index: number): void {
-    // TODO 未ログイン処理
+    // 未ログイン処理
+    if (!this.authService.authenticated) {
+      // ログイン後に行う処理を設定
+      this.navigateService.setAfterLogin('/photo/' + this.photo.cd, 'likeComment');
+      this.router.navigate(['/login']);
+      return;
+    }
+
+    if (index === undefined) {
+      return;
+    }
 
     // いいねをする
     const sub = (!this.photo.comments[index].isLike)

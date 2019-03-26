@@ -6,6 +6,7 @@ import { Account, AccountService } from 'shared/service/account';
 import { AuthService } from 'shared/service/auth';
 import { FollowService } from 'shared/service/follow';
 import { LoadingService } from 'shared/service/loading';
+import { NavigateService } from 'shared/service/navigate';
 import { APP_TITLE } from 'shared/const';
 
 /**
@@ -42,7 +43,8 @@ export class AccountComponent implements OnInit, OnDestroy {
     private accountService: AccountService,
     private followService: FollowService,
     private authService: AuthService,
-    private loadingService: LoadingService
+    private loadingService: LoadingService,
+    private navigateService: NavigateService
   ) { }
 
   ngOnInit() {
@@ -73,6 +75,13 @@ export class AccountComponent implements OnInit, OnDestroy {
 
         // タブ初期化
         const instance = window['M'].Tabs.init(document.querySelectorAll('.tabs'), {});
+
+        // ログイン前に行う予定だった処理を実行する
+        if (this.navigateService.getAfterLoginUrl() === ('/' + this.account.loginId)
+          && this.navigateService.getAfterLoginCallback() !== undefined) {
+          this[this.navigateService.getAfterLoginCallback()]();
+          this.navigateService.clearAfterLogin();
+        }
       });
     }, (error: Response) => {
 
@@ -87,7 +96,13 @@ export class AccountComponent implements OnInit, OnDestroy {
    * フォローする
    */
   follow(): void {
-    // TODO 未ログイン処理
+    // 未ログイン処理
+    if (!this.authService.authenticated) {
+      // ログイン後に行う処理を設定
+      this.navigateService.setAfterLogin('/' + this.account.loginId, 'follow');
+      this.router.navigate(['/login']);
+      return;
+    }
 
     // フォローする
     this.followService.follow(this.account.loginId).subscribe((ret: boolean) => {
@@ -101,7 +116,13 @@ export class AccountComponent implements OnInit, OnDestroy {
    * フォローを解除する
    */
   unfollow(): void {
-    // TODO 未ログイン処理
+    // 未ログイン処理
+    if (!this.authService.authenticated) {
+      // ログイン後に行う処理を設定
+      this.navigateService.setAfterLogin('/' + this.account.loginId, 'unfollow');
+      this.router.navigate(['/login']);
+      return;
+    }
 
     // フォローを解除する
     this.followService.unfollow(this.account.loginId).subscribe((ret: boolean) => {

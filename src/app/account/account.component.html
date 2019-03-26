@@ -62,7 +62,7 @@
 
 <!-- フォロー解除確認モーダル -->
 <div id="unfollow-modal" class="modal">
-  <div class="modal-content">
+  <div class="modal-content" *ngIf="account">
     <h4 class="h6">@{{account.loginId}}さんのフォローをやめますか？</h4>
     <div class="row">
       <div class="col offset-s4 s3">

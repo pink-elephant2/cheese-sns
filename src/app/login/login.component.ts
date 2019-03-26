@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { LoginForm } from './login-form';
 import { AuthService } from 'shared/service/auth';
 import { LoadingService } from 'shared/service/loading';
+import { NavigateService } from 'shared/service/navigate';
 
 /**
  * ログイン画面
@@ -28,7 +29,8 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router,
     private authService: AuthService,
-    private loadingService: LoadingService
+    private loadingService: LoadingService,
+    private navigateService: NavigateService
   ) {
     this.form = this.formBuilder.group(LoginForm.validators);
   }
@@ -54,8 +56,14 @@ export class LoginComponent implements OnInit {
       this.loadingService.setLoading(false);
 
       if (ret) {
-        // マイページへ
-        this.router.navigate(['/account']);
+        let nextUrl = '/account';
+        this.navigateService.isLoggedIn = true;
+        if (this.navigateService.getAfterLoginUrl() !== undefined) {
+          nextUrl = this.navigateService.getAfterLoginUrl();
+        }
+
+        // 次ページへ
+        this.router.navigate([nextUrl]);
       } else {
         this.isInValid = true;
       }

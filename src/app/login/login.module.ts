@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { environment } from 'env/environment';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { LoginComponent } from './login.component';
+import { NavigateService } from 'shared/service/navigate';
 
 @NgModule({
   imports: [
@@ -16,7 +17,8 @@ import { LoginComponent } from './login.component';
   declarations: [LoginComponent],
   exports: [LoginComponent],
   providers: [
-    environment.authService
+    environment.authService,
+    NavigateService
   ]
 })
 export class LoginModule { }

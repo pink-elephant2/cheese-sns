@@ -69,6 +69,7 @@ export class AuthService extends ApiService {
    */
   public logout(): Observable<any> {
     this.removeSession();
+    this._loginId = undefined;
 
     return this.post(ApiConst.PATH.LOGOUT);
   }
