@@ -5,6 +5,7 @@ import { ActivityService } from './activity.service';
 import { Activity } from '.';
 import { ActivityType } from './activity-type.enum';
 import { PhotoMockService } from '../photo';
+import { Page } from 'shared/model/page';
 
 /**
  * アクティビティサービス
@@ -20,7 +21,7 @@ export class ActivityMockService extends ActivityService {
     account: PhotoMockService.photoList[0].account,
     createAt: new Date('2019/03/12 6:30')
   } as Activity, {
-    activityType: ActivityType.flow,
+    activityType: ActivityType.follow,
     account: PhotoMockService.photoList[1].account,
     createAt: new Date('2019/03/12 0:00')
   } as Activity, {
@@ -39,14 +40,18 @@ export class ActivityMockService extends ActivityService {
   /**
    * フォロー中のアクティビティを取得する
    */
-  public getFollowing(): Observable<Activity[]> {
-    return of(ActivityMockService.activityList);
+  public getFollowing(): Observable<Page<Activity>> {
+    return of({
+      content: ActivityMockService.activityList
+    } as Page<Activity>);
   }
 
   /**
    * 自分に対するアクティビティを取得する
    */
-  public getMe(): Observable<Activity[]> {
-    return of(ActivityMockService.activityList);
+  public getMe(): Observable<Page<Activity>> {
+    return of({
+      content: ActivityMockService.activityList
+    } as Page<Activity>);
   }
 }

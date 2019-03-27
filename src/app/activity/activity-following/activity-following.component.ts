@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivityService, Activity } from 'shared/service/activity';
+import { Page } from 'shared/model/page';
 
 @Component({
   selector: 'app-activity-following',
@@ -15,8 +16,8 @@ export class ActivityFollowingComponent implements OnInit {
 
   ngOnInit() {
     // アクティビティ取得
-    this.activityService.getFollowing().subscribe((activityList: Activity[]) => {
-      this.activityList = activityList;
+    this.activityService.getFollowing().subscribe((activityPage: Page<Activity>) => {
+      this.activityList = activityPage.content;
     });
   }
 

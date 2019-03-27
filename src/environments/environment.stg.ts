@@ -9,7 +9,7 @@ export const environment = {
   production: false,
   authService: { provide: AuthService, useClass: AuthMockService },
   AccountService: AccountService,
-  ActivityService: { provide: ActivityService, useClass: ActivityMockService },
+  ActivityService: ActivityService,
   ContactService: ContactService,
   FollowService: FollowService,
   PhotoService: PhotoService,
