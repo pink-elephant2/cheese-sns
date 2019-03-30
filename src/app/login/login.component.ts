@@ -25,6 +25,9 @@ export class LoginComponent implements OnInit {
   /** APIエラー */
   isError: boolean;
 
+  /** ログイン後の画面 */
+  nextUrl: string;
+
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
@@ -36,6 +39,13 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  ngOnDestroy() {
+    if (this.nextUrl === undefined) {
+      // ログイン成功せず別画面に遷移する場合、アクション予約を解除する
+      this.navigateService.clearAfterLogin();
+    }
   }
 
   /**
@@ -56,14 +66,14 @@ export class LoginComponent implements OnInit {
       this.loadingService.setLoading(false);
 
       if (ret) {
-        let nextUrl = '/account';
+        this.nextUrl = '/account';
         this.navigateService.isLoggedIn = true;
         if (this.navigateService.getAfterLoginUrl() !== undefined) {
-          nextUrl = this.navigateService.getAfterLoginUrl();
+          this.nextUrl = this.navigateService.getAfterLoginUrl();
         }
 
         // 次ページへ
-        this.router.navigate([nextUrl]);
+        this.router.navigate([this.nextUrl]);
       } else {
         this.isInValid = true;
       }
