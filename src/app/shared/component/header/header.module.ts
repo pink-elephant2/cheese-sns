@@ -12,7 +12,8 @@ import { environment } from 'env/environment';
   declarations: [HeaderComponent],
   exports: [HeaderComponent],
   providers: [
-    environment.authService
+    environment.authService,
+    environment.AccountService
   ]
 })
 export class HeaderModule { }

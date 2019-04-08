@@ -5,12 +5,20 @@ import { ApiService } from '../api.service';
 import { Account } from './account';
 import { ApiConst } from 'shared/const';
 import { ProfileForm } from 'src/app/setting/setting-profile/profile-form';
+import { SignupForm } from 'src/app/signup/signup-form';
 
 /**
  * アカウントサービス
  */
 @Injectable()
 export class AccountService extends ApiService {
+
+  /**
+   * アカウントを作成する
+   */
+  public createAccount(form: SignupForm): Observable<boolean> {
+    return this.post<boolean>(ApiConst.PATH.ACCOUNT, form);
+  }
 
   /**
    * アカウントを取得する
