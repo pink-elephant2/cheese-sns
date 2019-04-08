@@ -4,6 +4,7 @@ import { Observable, of } from 'rxjs';
 import { AccountService } from './account.service';
 import { Account } from './account';
 import { ProfileForm } from 'src/app/setting/setting-profile/profile-form';
+import { SignupForm } from 'src/app/signup/signup-form';
 
 /**
  * アカウントサービス
@@ -35,6 +36,13 @@ export class AccountMockService extends AccountService {
     twitter: 'gudetama_sanrio'
   } as Account
   ];
+
+  /**
+   * アカウントを作成する
+   */
+  public createAccount(form: SignupForm): Observable<boolean> {
+    return of(true);
+  }
 
   /**
    * アカウントを取得する

@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
-import { LoginForm } from '../login/login-form';
+import { SignupForm } from './signup-form';
+import { AccountService } from 'shared/service/account';
+import { LoadingService } from 'shared/service/loading';
+import { AuthService } from 'shared/service/auth';
 
 /**
  * アカウント作成画面
@@ -23,14 +26,15 @@ export class SignupComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private router: Router
+    private router: Router,
+    private accountService: AccountService,
+    private authService: AuthService,
+    private loadingService: LoadingService
   ) {
-    this.form = this.formBuilder.group(LoginForm.validators);
+    this.form = this.formBuilder.group(SignupForm.validators);
   }
 
   ngOnInit() {
-    // TODO 未作成のため暫定でログイン画面へ
-    this.router.navigate(['/login']);
   }
 
   /**
@@ -38,7 +42,43 @@ export class SignupComponent implements OnInit {
    * @param form 入力フォーム
    * @param isValid 有効か
    */
-  onSubmit(form: LoginForm, isValid: boolean) {
+  onSubmit(form: SignupForm, isValid: boolean) {
+    if (!isValid) {
+      return;
+    }
+    this.isInValid = false;
+    this.isError = false;
+
+    // アカウント作成
+    this.loadingService.setLoading(true);
+    this.accountService.createAccount(this.form.value).subscribe((ret: boolean) => {
+      this.loadingService.setLoading(false);
+
+      // TODO ようこそページ
+      // TODO プロフィール設定促進
+
+      if (ret) {
+        // ログイン認証
+        this.authService.login(this.form.value).subscribe((ret: boolean) => {
+          // 次ページへ
+          this.router.navigate(['/account']);
+          return;
+        });
+      }
+      this.isInValid = true;
+    }, (error: Response) => {
+      this.loadingService.setLoading(false);
+
+      switch (error.status) {
+        case 403:
+          this.isInValid = true;
+          break;
+        case 500:
+        default:
+          this.isError = true;
+          break;
+      }
+    });
   }
 
 }
