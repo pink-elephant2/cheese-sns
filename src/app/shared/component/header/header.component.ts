@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from 'shared/service/auth';
+
 import { APP_TITLE } from 'shared/const';
+import { AuthService } from 'shared/service/auth';
+import { AccountService, Account } from 'shared/service/account';
 
 @Component({
   selector: 'app-header',
@@ -15,14 +17,28 @@ export class HeaderComponent implements OnInit {
   /** ログイン状態 */
   authenticated = false;
 
+  /** アカウント */
+  account: Account;
+
   constructor(
-    private authService: AuthService
+    private authService: AuthService,
+    private accountService: AccountService
   ) { }
 
   ngOnInit() {
     // ログイン検知
     this.authService.isAuthenticated.subscribe(ret => {
       this.authenticated = Boolean(ret);
+
+      // ログイン後
+      if (this.authenticated) {
+        // アカウント取得
+        this.accountService.getAccount(this.authService.loginId).subscribe(account => {
+          this.account = account;
+        });
+      } else {
+        this.account = undefined;
+      }
     });
 
     // ドロップダウン初期化
