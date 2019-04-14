@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TopComponent } from './top.component';
+import { PhotoCardModule } from 'shared/component';
 
 describe('TopComponent', () => {
   let component: TopComponent;
@@ -8,9 +9,12 @@ describe('TopComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TopComponent ]
+      imports: [
+        PhotoCardModule
+      ],
+      declarations: [TopComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

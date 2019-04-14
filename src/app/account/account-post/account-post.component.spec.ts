@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientModule } from '@angular/common/http';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { AccountPostComponent } from './account-post.component';
+import { PhotoService, PhotoMockService } from 'shared/service/photo';
 
 describe('AccountPostComponent', () => {
   let component: AccountPostComponent;
@@ -8,9 +11,16 @@ describe('AccountPostComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AccountPostComponent ]
+      imports: [
+        HttpClientModule,
+        RouterTestingModule
+      ],
+      declarations: [AccountPostComponent],
+      providers: [
+        { provide: PhotoService, useClass: PhotoMockService }
+      ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
