@@ -1,6 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { CreateComponent } from './create.component';
+import { PhotoService, PhotoMockService } from 'shared/service/photo';
+import { LoadingService } from 'shared/service/loading';
 
 describe('CreateComponent', () => {
   let component: CreateComponent;
@@ -8,9 +13,19 @@ describe('CreateComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CreateComponent ]
+      imports: [
+        FormsModule,
+        ReactiveFormsModule,
+        HttpClientModule,
+        RouterTestingModule
+      ],
+      declarations: [CreateComponent],
+      providers: [
+        { provide: PhotoService, useClass: PhotoMockService },
+        LoadingService
+      ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

@@ -1,6 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientModule } from '@angular/common/http';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { ActivityYouComponent } from './activity-you.component';
+import { PastDateModule } from 'shared/pipe';
+import { ActivityService, ActivityMockService } from 'shared/service/activity';
 
 describe('ActivityYouComponent', () => {
   let component: ActivityYouComponent;
@@ -8,9 +12,17 @@ describe('ActivityYouComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ActivityYouComponent ]
+      imports: [
+        HttpClientModule,
+        RouterTestingModule,
+        PastDateModule
+      ],
+      declarations: [ActivityYouComponent],
+      providers: [
+        { provide: ActivityService, useClass: ActivityMockService }
+      ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

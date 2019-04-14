@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HeaderComponent } from './header.component';
+import { AuthService, AuthMockService } from 'shared/service/auth';
+import { HttpClientModule } from '@angular/common/http';
+import { AccountService, AccountMockService } from 'shared/service/account';
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
@@ -8,9 +11,16 @@ describe('HeaderComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ HeaderComponent ]
+      imports: [
+        HttpClientModule
+      ],
+      declarations: [HeaderComponent],
+      providers: [
+        { provide: AuthService, useClass: AuthMockService },
+        { provide: AccountService, useClass: AccountMockService }
+      ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
