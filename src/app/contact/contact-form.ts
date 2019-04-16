@@ -13,7 +13,7 @@ export class ContactForm {
   mail: string;
 
   /** 内容 */
-  comment: string;
+  content: string;
 
   static validators = {
     /** 名前 */
@@ -21,7 +21,7 @@ export class ContactForm {
     /** メールアドレス */
     mail: ['', Validators.compose([Validators.required, Validators.email, Validators.maxLength(256)])],
     /** 内容 */
-    comment: ['', Validators.compose([Validators.required, Validators.maxLength(1000)])]
+    content: ['', Validators.compose([Validators.required, Validators.maxLength(1000)])]
   };
 
 }

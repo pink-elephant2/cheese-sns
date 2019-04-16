@@ -35,7 +35,7 @@
   <li class="collection-item row" *ngIf="hasInputComment && authenticated">
     <form [formGroup]="form" (ngSubmit)="onSubmit(form.value, form.valid)">
       <span class="col s7 m8 l9">
-        <input type="text" class="validate" id="comment" name="comment" placeholder="コメントする" formControlName="comment"
+        <input type="text" class="validate" id="content" name="content" placeholder="コメントする" formControlName="content"
           required maxlength="120" data-length="120">
       </span>
       <span class="col s5 m4 l3">

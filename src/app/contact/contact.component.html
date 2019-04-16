@@ -30,12 +30,12 @@
 
     <div class="row">
       <div class="input-field">
-        <textarea id="comment" type="text" class="validate materialize-textarea" formControlName="comment"
+        <textarea id="content" type="text" class="validate materialize-textarea" formControlName="content"
           maxlength="1000" data-length="1000"></textarea>
-        <label for="comment">お問合せ内容</label>
-        <ng-container *ngIf="form.controls['comment'].touched">
-          <span class="helper-text" *ngIf="form.controls['comment'].hasError('required')" data-error="入力してください"></span>
-          <span class="helper-text" *ngIf="form.controls['comment'].hasError('maxlength')"
+        <label for="content">お問合せ内容</label>
+        <ng-container *ngIf="form.controls['content'].touched">
+          <span class="helper-text" *ngIf="form.controls['content'].hasError('required')" data-error="入力してください"></span>
+          <span class="helper-text" *ngIf="form.controls['content'].hasError('maxlength')"
             data-error="1000文字以内で入力してください"></span>
         </ng-container>
       </div>

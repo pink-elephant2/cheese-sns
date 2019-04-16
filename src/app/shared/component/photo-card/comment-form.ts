@@ -7,11 +7,11 @@ import { Validators } from '@angular/forms';
 export class CommentForm {
 
   /** コメント */
-  comment: string;
+  content: string;
 
   static validators = {
     /** コメント */
-    comment: ['', Validators.compose([Validators.required, Validators.maxLength(120)])]
+    content: ['', Validators.compose([Validators.required, Validators.maxLength(120)])]
   };
 
 }
