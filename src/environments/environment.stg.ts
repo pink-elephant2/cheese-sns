@@ -1,18 +1,18 @@
 import { AuthService, AuthMockService } from 'shared/service/auth';
-import { AccountService, AccountMockService } from 'shared/service/account';
-import { ActivityService, ActivityMockService } from 'shared/service/activity';
-import { ContactService, ContactMockService } from 'shared/service/contact';
-import { PhotoService, PhotoMockService } from 'shared/service/photo';
-import { FollowService, FollowMockService } from 'shared/service/follow';
+import { AccountService } from 'shared/service/account';
+import { ActivityService } from 'shared/service/activity';
+import { ContactService } from 'shared/service/contact';
+import { PhotoService } from 'shared/service/photo';
+import { FollowService } from 'shared/service/follow';
 
 export const environment = {
   production: false,
   authService: { provide: AuthService, useClass: AuthMockService },
-  AccountService: AccountService,
-  ActivityService: ActivityService,
-  ContactService: ContactService,
-  FollowService: FollowService,
-  PhotoService: PhotoService,
+  accountService: AccountService,
+  activityService: ActivityService,
+  contactService: ContactService,
+  followService: FollowService,
+  photoService: PhotoService,
   analytics: {
     id: ''
   },

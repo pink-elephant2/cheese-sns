@@ -129,7 +129,7 @@ export class AccountComponent implements OnInit, OnDestroy {
       if (ret) {
         this.account.isFollow = false;
 
-        var instance = window['M'].Modal.getInstance(document.getElementById('unfollow-modal'));
+        const instance = window['M'].Modal.getInstance(document.getElementById('unfollow-modal'));
         instance.close();
       }
     });

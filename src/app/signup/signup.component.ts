@@ -51,15 +51,15 @@ export class SignupComponent implements OnInit {
 
     // アカウント作成
     this.loadingService.setLoading(true);
-    this.accountService.createAccount(this.form.value).subscribe((ret: boolean) => {
+    this.accountService.createAccount(this.form.value).subscribe((isCreated: boolean) => {
       this.loadingService.setLoading(false);
 
       // TODO ようこそページ
       // TODO プロフィール設定促進
 
-      if (ret) {
+      if (isCreated) {
         // ログイン認証
-        this.authService.login(this.form.value).subscribe((ret: boolean) => {
+        this.authService.login(this.form.value).subscribe((isLogin: boolean) => {
           // 次ページへ
           this.router.navigate(['/account']);
           return;

@@ -28,7 +28,7 @@ export class PhotoService extends ApiService {
    */
   public getPhotoList(loginId?: string, pageable?: Pageable): Observable<Page<Photo>> {
     const params = loginId ? {
-      loginId: loginId
+      'loginId': loginId
     } : {};
     return this.get<Page<Photo>>(ApiConst.PATH.PHOTO, Object.assign(params, pageable));
   }
@@ -69,7 +69,7 @@ export class PhotoService extends ApiService {
   public comment(photoCd: string, comment: string): Observable<Comment> {
     const url = `${ApiConst.PATH.PHOTO}/${photoCd}/comment`;
     const params = {
-      comment: comment
+      'comment': comment
     };
     return this.post<Comment>(url, params);
   }

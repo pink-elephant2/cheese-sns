@@ -25,9 +25,9 @@ import { NavigateService } from 'shared/service/navigate';
   ],
   exports: [AccountComponent],
   providers: [
-    environment.AccountService,
+    environment.accountService,
     environment.authService,
-    environment.FollowService,
+    environment.followService,
     NavigateService
   ]
 })

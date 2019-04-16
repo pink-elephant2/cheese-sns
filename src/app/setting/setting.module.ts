@@ -23,7 +23,7 @@ import { SettingProfileComponent } from './setting-profile/setting-profile.compo
     SettingProfileComponent
   ],
   providers: [
-    environment.AccountService
+    environment.accountService
   ]
 })
 export class SettingModule { }

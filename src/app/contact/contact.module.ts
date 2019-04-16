@@ -16,7 +16,7 @@ import { environment } from 'env/environment';
     ContactComponent
   ],
   providers: [
-    environment.ContactService
+    environment.contactService
   ]
 })
 export class ContactModule { }

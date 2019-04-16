@@ -21,9 +21,9 @@ export class NavigateService {
 
   /**
    * ログイン後に行う処理を設定する
-   * 
-   * @param url
-   * @param callbackFunctionName
+   *
+   * @param url URL
+   * @param callbackFunctionName ログイン後に行う処理
    */
   public setAfterLogin(url: string, callbackFunctionName: string): void {
     this.url = url;
