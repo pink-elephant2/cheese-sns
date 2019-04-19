@@ -1,15 +1,43 @@
 import { TestBed, async } from '@angular/core/testing';
+import { HttpClientModule } from '@angular/common/http';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
-import { HeaderModule, FooterModule } from 'shared/component';
+import { HeaderModule, FooterModule, LoadingModule, MyAdsenseModule } from 'shared/component';
+import { TopModule } from './top/top.module';
+import { LoginModule } from './login/login.module';
+import { LogoutModule } from './logout/logout.module';
+import { SignupModule } from './signup/signup.module';
+import { AccountModule } from './account/account.module';
+import { CreateModule } from './create/create.module';
+import { ActivityModule } from './activity/activity.module';
+import { PhotoModule } from './photo/photo.module';
+import { PrivacyModule } from './privacy/privacy.module';
+import { TermsModule } from './terms/terms.module';
+import { ContactModule } from './contact/contact.module';
+import { PastDateModule } from 'shared/pipe';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
+        HttpClientModule,
         RouterTestingModule,
         HeaderModule,
-        FooterModule
+        FooterModule,
+        TopModule,
+        LoginModule,
+        LogoutModule,
+        SignupModule,
+        AccountModule,
+        CreateModule,
+        ActivityModule,
+        PhotoModule,
+        PrivacyModule,
+        TermsModule,
+        ContactModule,
+        PastDateModule,
+        LoadingModule,
+        MyAdsenseModule
       ],
       declarations: [
         AppComponent

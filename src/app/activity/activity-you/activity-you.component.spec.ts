@@ -5,6 +5,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { ActivityYouComponent } from './activity-you.component';
 import { PastDateModule } from 'shared/pipe';
 import { ActivityService, ActivityMockService } from 'shared/service/activity';
+import { AccountImageModule } from 'shared/directive';
 
 describe('ActivityYouComponent', () => {
   let component: ActivityYouComponent;
@@ -15,7 +16,8 @@ describe('ActivityYouComponent', () => {
       imports: [
         HttpClientModule,
         RouterTestingModule,
-        PastDateModule
+        PastDateModule,
+        AccountImageModule
       ],
       declarations: [ActivityYouComponent],
       providers: [
