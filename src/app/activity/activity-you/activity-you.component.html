@@ -1,6 +1,6 @@
 <ul class="collection">
   <li class="collection-item avatar row" *ngFor="let activity of activityList">
-    <a [routerLink]="['/', activity.account.loginId]"><img [src]="activity.account.imgUrl"
+    <a [routerLink]="['/', activity.account.loginId]"><img appAccountImage [src]="activity.account.imgUrl"
         [alt]="activity.account.loginId" class="circle"></a>
 
     <p class="col s8">

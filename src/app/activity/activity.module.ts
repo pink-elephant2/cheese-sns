@@ -7,12 +7,14 @@ import { AppRoutingModule } from 'src/app/app-routing.module';
 import { ActivityFollowingComponent } from './activity-following/activity-following.component';
 import { ActivityYouComponent } from './activity-you/activity-you.component';
 import { PastDateModule } from 'shared/pipe';
+import { AccountImageModule } from 'shared/directive';
 
 @NgModule({
   imports: [
     CommonModule,
     AppRoutingModule,
-    PastDateModule
+    PastDateModule,
+    AccountImageModule
   ],
   declarations: [
     ActivityComponent,
