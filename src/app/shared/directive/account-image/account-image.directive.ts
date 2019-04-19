@@ -1,4 +1,4 @@
-import { Directive, HostListener, Renderer2, ElementRef, Input, Attribute, HostBinding, OnInit } from '@angular/core';
+import { Directive, HostListener, Renderer2, ElementRef, Input, HostBinding, OnInit } from '@angular/core';
 
 /**
  * アカウント画像ディレクティブ
@@ -21,14 +21,6 @@ export class AccountImageDirective implements OnInit {
       // デフォルト画像セット
       this.src = '/assets/images/account.png';
     }
-  }
-
-  @HostListener('load') onLoad() {
-    console.group('load');
-    console.log(this.src);
-    console.log(this.el.nativeElement);
-    console.groupEnd();
-    // this.renderer.setAttribute(this.el.nativeElement, 'src', this.el.nativeElement.src);
   }
 
   @HostListener('error') onError() {

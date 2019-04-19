@@ -2,6 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { SettingComponent } from './setting.component';
+import { AccountImageModule } from 'shared/directive';
 
 describe('SettingComponent', () => {
   let component: SettingComponent;
@@ -10,7 +11,8 @@ describe('SettingComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule
+        RouterTestingModule,
+        AccountImageModule
       ],
       declarations: [SettingComponent]
     })
