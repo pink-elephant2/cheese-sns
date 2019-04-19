@@ -119,7 +119,7 @@ export class PhotoMockService extends PhotoService {
       photoList = photoList.slice(start, end);
     }
     return of({
-      content: photoList
+      'content': photoList
     } as Page<Photo>);
   }
 
@@ -157,7 +157,7 @@ export class PhotoMockService extends PhotoService {
         loginId: 'my_melody'
       },
       cd: 'zzz',
-      comment: comment,
+      'comment': comment,
       createAt: new Date
     } as Comment);
   }

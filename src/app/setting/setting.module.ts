@@ -6,13 +6,15 @@ import { environment } from 'env/environment';
 import { SettingComponent } from './setting.component';
 import { SettingRoutingModule } from './setting-routing.module';
 import { SettingProfileComponent } from './setting-profile/setting-profile.component';
+import { AccountImageModule } from 'shared/directive';
 
 @NgModule({
   imports: [
     CommonModule,
     SettingRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AccountImageModule
   ],
   declarations: [
     SettingComponent,
@@ -23,7 +25,7 @@ import { SettingProfileComponent } from './setting-profile/setting-profile.compo
     SettingProfileComponent
   ],
   providers: [
-    environment.AccountService
+    environment.accountService
   ]
 })
 export class SettingModule { }

@@ -3,7 +3,7 @@
     <form [formGroup]="form" (ngSubmit)="onSubmit(form.value, fl.files, form.valid)">
       <div class="row">
         <div class="col s3">
-          <img *ngIf="!blobUrl && account" [src]="account.imgUrl" [alt]="account.loginId"
+          <img appAccountImage *ngIf="!blobUrl && account" [src]="account.imgUrl" [alt]="account.loginId"
             class="avatar circle responsive-img">
           <img *ngIf="blobUrl" [src]="blobUrl" class="avatar circle responsive-img">
         </div>

@@ -1,8 +1,8 @@
 <!-- 写真コンポーネント -->
 <ul class="collection" *ngIf="photo">
   <li class="collection-item avatar row">
-    <a [routerLink]="['/', photo.account.loginId]"><img [src]="photo.account.imgUrl" [alt]="photo.account.loginId"
-        class="circle"></a>
+    <a [routerLink]="['/', photo.account.loginId]"><img appAccountImage [src]="photo.account.imgUrl"
+        [alt]="photo.account.loginId" class="circle"></a>
     <p class="title" *ngIf="hasInputComment">{{photo.account.loginId}}</p>
     <p class="caption">{{photo.caption}}&nbsp;<span class="grey-text right">{{photo.createAt | pastDate}}</span></p>
   </li>
@@ -35,7 +35,7 @@
   <li class="collection-item row" *ngIf="hasInputComment && authenticated">
     <form [formGroup]="form" (ngSubmit)="onSubmit(form.value, form.valid)">
       <span class="col s7 m8 l9">
-        <input type="text" class="validate" id="comment" name="comment" placeholder="コメントする" formControlName="comment"
+        <input type="text" class="validate" id="content" name="content" placeholder="コメントする" formControlName="content"
           required maxlength="120" data-length="120">
       </span>
       <span class="col s5 m4 l3">

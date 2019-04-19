@@ -13,7 +13,7 @@ import { environment } from 'env/environment';
   exports: [HeaderComponent],
   providers: [
     environment.authService,
-    environment.AccountService
+    environment.accountService
   ]
 })
 export class HeaderModule { }

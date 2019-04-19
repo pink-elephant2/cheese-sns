@@ -109,7 +109,7 @@ export class PhotoCardComponent implements OnInit {
 
     // コメントする
     this.loadingService.setLoading(true);
-    this.photoService.comment(this.photo.cd, form.comment).subscribe((comment: Comment) => {
+    this.photoService.comment(this.photo.cd, form.content).subscribe((comment: Comment) => {
       this.loadingService.setLoading(false);
 
       // コメントに1行追加

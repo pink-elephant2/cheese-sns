@@ -16,7 +16,7 @@ import { SignupComponent } from './signup.component';
   declarations: [SignupComponent],
   exports: [SignupComponent],
   providers: [
-    environment.AccountService
+    environment.accountService
   ]
 })
 export class SignupModule { }

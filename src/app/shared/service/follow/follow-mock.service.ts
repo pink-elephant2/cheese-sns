@@ -42,7 +42,7 @@ export class FollowMockService extends FollowService {
    *
    * @param loginId フォロー対象
    */
-  public follow(loginId: String): Observable<boolean> {
+  public follow(loginId: string): Observable<boolean> {
     return of(true);
   }
 
@@ -51,7 +51,7 @@ export class FollowMockService extends FollowService {
    *
    * @param loginId フォロー対象
    */
-  public unfollow(loginId: String): Observable<boolean> {
+  public unfollow(loginId: string): Observable<boolean> {
     return of(true);
   }
 }

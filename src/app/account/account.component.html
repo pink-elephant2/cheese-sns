@@ -1,7 +1,7 @@
 <section class="section animated fadeIn">
   <div class="row" *ngIf="account">
     <div class="col s3">
-      <img [src]="account.imgUrl" [alt]="account.loginId" class="avatar circle responsive-img">
+      <img appAccountImage [src]="account.imgUrl" [alt]="account.loginId" class="avatar circle responsive-img">
     </div>
     <div class="col s9">
       <h3 class="h5 left">{{account.name}}</h3>

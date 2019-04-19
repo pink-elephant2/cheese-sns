@@ -12,11 +12,11 @@ import { FollowService, FollowMockService } from 'shared/service/follow';
 export const environment = {
   production: false,
   authService: { provide: AuthService, useClass: AuthMockService },
-  AccountService: { provide: AccountService, useClass: AccountMockService },
-  ActivityService: { provide: ActivityService, useClass: ActivityMockService },
-  ContactService: { provide: ContactService, useClass: ContactMockService },
-  FollowService: { provide: FollowService, useClass: FollowMockService },
-  PhotoService: { provide: PhotoService, useClass: PhotoMockService },
+  accountService: { provide: AccountService, useClass: AccountMockService },
+  activityService: { provide: ActivityService, useClass: ActivityMockService },
+  contactService: { provide: ContactService, useClass: ContactMockService },
+  followService: { provide: FollowService, useClass: FollowMockService },
+  photoService: { provide: PhotoService, useClass: PhotoMockService },
   analytics: {
     id: ''
   },

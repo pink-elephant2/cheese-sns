@@ -21,7 +21,7 @@ import { PastDateModule } from 'shared/pipe';
   ],
   exports: [ActivityComponent],
   providers: [
-    environment.ActivityService
+    environment.activityService
   ]
 })
 export class ActivityModule { }

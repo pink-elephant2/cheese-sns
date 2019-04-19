@@ -33,10 +33,10 @@ export class FollowService extends ApiService {
    *
    * @param loginId フォロー対象
    */
-  public follow(loginId: String): Observable<boolean> {
+  public follow(loginId: string): Observable<boolean> {
     const url = `${ApiConst.PATH.ACCOUNT}/follow`;
     const params = {
-      loginId: loginId
+      'loginId': loginId
     };
     return this.post<boolean>(url, params);
   }
@@ -46,10 +46,10 @@ export class FollowService extends ApiService {
    *
    * @param loginId フォロー対象
    */
-  public unfollow(loginId: String): Observable<boolean> {
+  public unfollow(loginId: string): Observable<boolean> {
     const url = `${ApiConst.PATH.ACCOUNT}/unfollow`;
     const params = {
-      loginId: loginId
+      'loginId': loginId
     };
     return this.post<boolean>(url, params);
   }

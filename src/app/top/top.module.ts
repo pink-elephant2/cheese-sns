@@ -15,7 +15,7 @@ import { PhotoCardModule, MyAdsenseModule } from 'shared/component';
     ScrollingModule
   ],
   declarations: [TopComponent],
-  providers: [environment.PhotoService],
+  providers: [environment.photoService],
   exports: [TopComponent]
 })
 export class TopModule { }
