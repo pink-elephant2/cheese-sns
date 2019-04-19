@@ -1,6 +1,6 @@
 <div id="profile-card" class="card" *ngIf="account">
   <div class="card-image waves-effect waves-block waves-light">
-    <img class="activator" [src]="account.imgUrl" alt="user bg">
+    <img appAccountImage class="activator" [src]="account.imgUrl" alt="user bg">
   </div>
   <div class="card-content">
     <img [src]="account.imgUrl" [alt]="account.loginId"

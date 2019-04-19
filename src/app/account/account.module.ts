@@ -9,13 +9,15 @@ import { AccountFollowingComponent } from './account-following/account-following
 import { AccountFollowersComponent } from './account-followers/account-followers.component';
 import { AccountCardModule, MyAdsenseModule } from 'shared/component';
 import { NavigateService } from 'shared/service/navigate';
+import { AccountImageModule } from 'shared/directive';
 
 @NgModule({
   imports: [
     CommonModule,
     AppRoutingModule,
     AccountCardModule,
-    MyAdsenseModule
+    MyAdsenseModule,
+    AccountImageModule
   ],
   declarations: [
     AccountComponent,
