@@ -22,8 +22,8 @@ export class AuthMockService extends AuthService {
     }
 
     // ログイン成功
-    this.saveSession();
     this._loginId = form.loginId;
+    this.saveSession();
     return of(true);
   }
 
