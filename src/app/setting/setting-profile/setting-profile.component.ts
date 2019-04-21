@@ -4,6 +4,7 @@ import { AuthService } from 'shared/service/auth';
 import { AccountService, Account } from 'shared/service/account';
 import { LoadingService } from 'shared/service/loading';
 import { ProfileForm } from './profile-form';
+import { ImageForm } from './image-form';
 
 /**
  * プロフィール編集画面
@@ -23,6 +24,7 @@ export class SettingProfileComponent implements OnInit {
 
   /** 入力フォーム */
   form: FormGroup;
+  imageForm: FormGroup;
 
   /** ログイン失敗 */
   isInValid: boolean;
@@ -36,13 +38,14 @@ export class SettingProfileComponent implements OnInit {
     private loadingService: LoadingService
   ) {
     this.form = this.formBuilder.group(ProfileForm.validators);
+    this.imageForm = this.formBuilder.group(ImageForm.validators);
   }
 
   ngOnInit() {
     // テキストボックス事前入力
     window['M'].updateTextFields();
     // 文字数カウント
-    window['$']('input, textarea').characterCounter();
+    window['$']('#profileForm').find('input, textarea').characterCounter();
 
     // アカウント取得
     this.loadingService.setLoading(true);
@@ -59,6 +62,9 @@ export class SettingProfileComponent implements OnInit {
     });
   }
 
+  /**
+   * 画像プレビュー
+   */
   onchange(files: FileList): void {
     if (files.length <= 0) {
       return;
@@ -66,6 +72,15 @@ export class SettingProfileComponent implements OnInit {
     const reader = new FileReader();
     reader.addEventListener('load', () => {
       this.blobUrl = reader.result.toString();
+
+      // 画像更新
+      this.accountService.putImage(this.imageForm.value, files[0]).subscribe(ret => {
+        if (ret) {
+          window['M'].toast({ html: '画像を更新しました。' });
+        } else {
+          this.isInValid = true;
+        }
+      });
     }, false);
     reader.readAsDataURL(files[0]);
   }
@@ -75,7 +90,7 @@ export class SettingProfileComponent implements OnInit {
    * @param form 入力フォーム
    * @param isValid 有効か
    */
-  onSubmit(form: ProfileForm, files: FileList, isValid: boolean) {
+  onSubmit(form: ProfileForm, isValid: boolean) {
     if (!isValid) {
       return;
     }
@@ -84,7 +99,7 @@ export class SettingProfileComponent implements OnInit {
 
     // アカウント更新
     this.loadingService.setLoading(true);
-    this.accountService.putProfile(form, files[0]).subscribe(ret => {
+    this.accountService.putProfile(form).subscribe(ret => {
       this.loadingService.setLoading(false);
       if (ret) {
         window['M'].toast({ html: 'プロフィールを保存しました。' });

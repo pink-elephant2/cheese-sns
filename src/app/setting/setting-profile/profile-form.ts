@@ -5,8 +5,6 @@ import { Validators } from '@angular/forms';
  * 入力フォーム
  */
 export class ProfileForm {
-  /** 画像ファイル */
-  upfile: string;
   /** アカウント名 */
   name: string;
   /** 自己紹介 */
@@ -17,8 +15,6 @@ export class ProfileForm {
   url: string;
 
   static validators = {
-    /** 画像ファイル */
-    upfile: ['', Validators.compose([])],
     /** アカウント名 */
     name: ['', Validators.compose([Validators.required, Validators.maxLength(30)])],
     /** 自己紹介 */
