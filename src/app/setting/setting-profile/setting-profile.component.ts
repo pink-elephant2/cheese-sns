@@ -74,11 +74,25 @@ export class SettingProfileComponent implements OnInit {
       this.blobUrl = reader.result.toString();
 
       // 画像更新
+      this.loadingService.setLoading(true);
       this.accountService.putImage(this.imageForm.value, files[0]).subscribe(ret => {
+        this.loadingService.setLoading(false);
         if (ret) {
           window['M'].toast({ html: '画像を更新しました。' });
         } else {
           this.isInValid = true;
+        }
+      }, (error: Response) => {
+        this.loadingService.setLoading(false);
+
+        switch (error.status) {
+          case 403:
+            this.isInValid = true;
+            break;
+          case 500:
+          default:
+            this.isError = true;
+            break;
         }
       });
     }, false);
