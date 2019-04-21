@@ -12,6 +12,8 @@ export class ApiConst {
     ACCOUNT: '/api/v1/account',
     /** アカウント.プロフィール */
     ACCOUNT_PROFILE: '/api/v1/account/profile',
+    /** アカウント.画像 */
+    ACCOUNT_IMAGE: '/api/v1/account/image',
     /** アクティビティ.フォロー中 */
     ACTIVITY_FOLLOWING: '/api/v1/activity/following',
     /** アクティビティ.自分 */

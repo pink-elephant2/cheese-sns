@@ -58,8 +58,8 @@ export class AuthService extends ApiService {
   public login(form: LoginForm): Observable<boolean> {
     return this.post(ApiConst.PATH.LOGIN, form).pipe(map(ret => {
       // ログイン成功
-      this.saveSession();
       this._loginId = form.loginId;
+      this.saveSession();
       return ret;
     }));
   }

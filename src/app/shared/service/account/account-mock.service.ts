@@ -5,6 +5,7 @@ import { AccountService } from './account.service';
 import { Account } from './account';
 import { ProfileForm } from 'src/app/setting/setting-profile/profile-form';
 import { SignupForm } from 'src/app/signup/signup-form';
+import { ImageForm } from 'src/app/setting/setting-profile/image-form';
 
 /**
  * アカウントサービス
@@ -57,7 +58,14 @@ export class AccountMockService extends AccountService {
   /**
    * プロフィールを更新する
    */
-  public putProfile(form: ProfileForm, file: File): Observable<boolean> {
+  public putProfile(form: ProfileForm): Observable<boolean> {
+    return of(true);
+  }
+
+  /**
+   * 画像を更新する
+   */
+  public putImage(form: ImageForm, file: File): Observable<boolean> {
     return of(true);
   }
 }
