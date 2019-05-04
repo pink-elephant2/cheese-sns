@@ -45,7 +45,7 @@ export class HeaderComponent implements OnInit {
     const option = {
       constrainWidth: false
     };
-    window['M'].Dropdown.init(document.querySelectorAll('.dropdown-trigger'), option);
+    M.Dropdown.init(document.querySelectorAll('.dropdown-trigger'), option);
   }
 
 }

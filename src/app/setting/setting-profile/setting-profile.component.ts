@@ -43,9 +43,9 @@ export class SettingProfileComponent implements OnInit {
 
   ngOnInit() {
     // テキストボックス事前入力
-    window['M'].updateTextFields();
+    M.updateTextFields();
     // 文字数カウント
-    window['$']('#profileForm').find('input, textarea').characterCounter();
+    $('#profileForm').find('input, textarea').characterCounter();
 
     // アカウント取得
     this.loadingService.setLoading(true);
@@ -78,7 +78,7 @@ export class SettingProfileComponent implements OnInit {
       this.accountService.putImage(this.account.loginId, this.imageForm.value, files[0]).subscribe(ret => {
         this.loadingService.setLoading(false);
         if (ret) {
-          window['M'].toast({ html: '画像を更新しました。' });
+          M.toast({ html: '画像を更新しました。' });
         } else {
           this.isInValid = true;
         }
@@ -116,7 +116,7 @@ export class SettingProfileComponent implements OnInit {
     this.accountService.putProfile(this.account.loginId, form).subscribe(ret => {
       this.loadingService.setLoading(false);
       if (ret) {
-        window['M'].toast({ html: 'プロフィールを保存しました。' });
+        M.toast({ html: 'プロフィールを保存しました。' });
       } else {
         this.isInValid = true;
       }

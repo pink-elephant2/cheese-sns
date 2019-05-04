@@ -38,7 +38,7 @@ export class CreateComponent implements OnInit {
 
   ngOnInit() {
     // テキストエリア文字数カウント
-    window['$']('textarea').characterCounter();
+    $('textarea').characterCounter();
   }
 
   onchange(files: FileList): void {

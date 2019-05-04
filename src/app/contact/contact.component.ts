@@ -37,7 +37,7 @@ export class ContactComponent implements OnInit {
 
   ngOnInit() {
     // 文字数カウント
-    window['$']('input, textarea').characterCounter();
+    $('input, textarea').characterCounter();
   }
 
   /**
