@@ -48,7 +48,7 @@
     <ul class="comments">
       <li class="row" *ngFor="let comment of photo.comments; let i = index"><span class="col"><a
             [routerLink]="['/', comment.account.loginId]">@{{comment.account.loginId}}</a></span><span
-          class="col">{{comment.comment}}</span>
+          class="col">{{comment.content}}</span>
         <span class="col right">
           <a class="pink-text" href="javascript:void(0);" (click)="likeComment(i)">
             <i *ngIf="comment.isLike" class="material-icons">favorite</i>

@@ -27,13 +27,13 @@ export class PhotoMockService extends PhotoService {
     isLike: true,
     comments: [{
       cd: 'aaa',
-      comment: 'おいしそう😍',
+      content: 'おいしそう😍',
       createdAt: new Date('2019/01/01 6:31'),
       account: AccountMockService.accountList[1],
       isLike: true,
     } as Comment, {
       cd: 'bbb',
-      comment: '作るのだるい',
+      content: '作るのだるい',
       createdAt: new Date('2019/01/01 6:32'),
       account: AccountMockService.accountList[2],
       isLike: false,
@@ -157,7 +157,7 @@ export class PhotoMockService extends PhotoService {
         loginId: 'my_melody'
       },
       cd: 'zzz',
-      'comment': comment,
+      content: comment,
       createdAt: new Date
     } as Comment);
   }

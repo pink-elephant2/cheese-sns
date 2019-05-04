@@ -12,7 +12,7 @@ export class Comment {
   public cd: string;
 
   /** コメント */
-  public comment: string;
+  public content: string;
 
   /** コメント日時 */
   public createdAt: Date;
