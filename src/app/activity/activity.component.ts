@@ -44,7 +44,7 @@ export class ActivityComponent implements OnInit {
       this.setTitle(account.name, loginId);
 
       // タブ初期化
-      const instance = M.Tabs.init(document.querySelectorAll('.tabs'), {});
+      const instance = window['M'].Tabs.init(document.querySelectorAll('.tabs'), {});
     });
   }
 

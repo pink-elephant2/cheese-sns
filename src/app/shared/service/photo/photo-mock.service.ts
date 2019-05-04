@@ -119,7 +119,7 @@ export class PhotoMockService extends PhotoService {
       photoList = photoList.slice(start, end);
     }
     return of({
-      content: photoList
+      'content': photoList
     } as Page<Photo>);
   }
 
@@ -158,7 +158,7 @@ export class PhotoMockService extends PhotoService {
       },
       cd: 'zzz',
       content: comment,
-      createdAt: new Date()
+      createdAt: new Date
     } as Comment);
   }
 

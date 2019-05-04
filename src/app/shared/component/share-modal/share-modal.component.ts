@@ -17,7 +17,7 @@ export class ShareModalComponent implements OnInit {
 
   ngOnInit() {
     // モーダル
-    $('.modal').modal();
+    window['$']('.modal').modal();
   }
 
   /**
@@ -84,7 +84,7 @@ export class ShareModalComponent implements OnInit {
     }, { once: true });
     document.execCommand('copy');
 
-    M.toast({ html: 'リンクがクリップボードにコピーされました。' });
-    M.Modal.getInstance(document.getElementById('share-modal')).close(); // TODO インスタンスを@Inputしたほうが良い？
+    window['M'].toast({ html: 'リンクがクリップボードにコピーされました。' });
+    window['M'].Modal.getInstance(document.getElementById('share-modal')).close(); // TODO インスタンスを@Inputしたほうが良い？
   }
 }

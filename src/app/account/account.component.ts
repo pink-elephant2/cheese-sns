@@ -49,10 +49,10 @@ export class AccountComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     // モーダル
-    $('.modal').modal();
+    window['$']('.modal').modal();
 
-    this.sub = this.route.params.subscribe((params: { loginId: string }) => {
-      const loginId = params.loginId || this.authService.loginId;
+    this.sub = this.route.params.subscribe(params => {
+      const loginId = params['loginId'] || this.authService.loginId;
 
       // アカウント取得
       this.loadingService.setLoading(true);
@@ -74,7 +74,7 @@ export class AccountComponent implements OnInit, OnDestroy {
         this.titleService.setTitle(title);
 
         // タブ初期化
-        const instance = M.Tabs.init(document.querySelectorAll('.tabs'), {});
+        const instance = window['M'].Tabs.init(document.querySelectorAll('.tabs'), {});
 
         // ログイン前に行う予定だった処理を実行する
         if (this.navigateService.getAfterLoginUrl() === ('/' + this.account.loginId)
@@ -129,7 +129,7 @@ export class AccountComponent implements OnInit, OnDestroy {
       if (ret) {
         this.account.isFollow = false;
 
-        const instance = M.Modal.getInstance(document.getElementById('unfollow-modal'));
+        const instance = window['M'].Modal.getInstance(document.getElementById('unfollow-modal'));
         instance.close();
       }
     });
