@@ -26,8 +26,8 @@ export class PhotoComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
 
-    this.sub = this.route.params.subscribe(params => {
-      const photoId = params['photoId'];
+    this.sub = this.route.params.subscribe((params: { photoId: string }) => {
+      const photoId = params.photoId;
 
       // 写真を取得
       this.loadingService.setLoading(true);

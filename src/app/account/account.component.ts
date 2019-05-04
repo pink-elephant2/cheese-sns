@@ -51,8 +51,8 @@ export class AccountComponent implements OnInit, OnDestroy {
     // モーダル
     window['$']('.modal').modal();
 
-    this.sub = this.route.params.subscribe(params => {
-      const loginId = params['loginId'] || this.authService.loginId;
+    this.sub = this.route.params.subscribe((params: { loginId: string }) => {
+      const loginId = params.loginId || this.authService.loginId;
 
       // アカウント取得
       this.loadingService.setLoading(true);
