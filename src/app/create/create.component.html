@@ -35,7 +35,8 @@
     </div>
 
     <div class="row">
-      <button class="btn waves-effect waves-light right pink accent-2" type="submit">シェアする
+      <button [disabled]="!form.valid || isError" class="btn waves-effect waves-light right pink accent-2"
+        type="submit">シェアする
         <i class="material-icons right">send</i>
       </button>
     </div>

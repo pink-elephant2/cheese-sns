@@ -1,11 +1,12 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 import { CreateForm } from './create-form';
+import { AuthService } from 'shared/service/auth';
 import { PhotoService, Photo } from 'shared/service/photo';
 import { LoadingService } from 'shared/service/loading';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create',
@@ -28,6 +29,7 @@ export class CreateComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
+    private authService: AuthService,
     private photoService: PhotoService,
     private loadingService: LoadingService,
   ) {
@@ -64,7 +66,7 @@ export class CreateComponent implements OnInit {
 
     // 写真を投稿する
     this.loadingService.setLoading(true);
-    this.photoService.postPhoto(form, files[0]).subscribe((photo: Photo) => {
+    this.photoService.postPhoto(this.authService.loginId, form, files[0]).subscribe((photo: Photo) => {
       this.loadingService.setLoading(false);
 
       if (photo.cd) {

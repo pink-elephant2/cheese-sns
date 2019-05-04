@@ -58,14 +58,14 @@ export class AccountMockService extends AccountService {
   /**
    * プロフィールを更新する
    */
-  public putProfile(form: ProfileForm): Observable<boolean> {
+  public putProfile(loginId: string, form: ProfileForm): Observable<boolean> {
     return of(true);
   }
 
   /**
    * 画像を更新する
    */
-  public putImage(form: ImageForm, file: File): Observable<boolean> {
+  public putImage(loginId: string, form: ImageForm, file: File): Observable<boolean> {
     return of(true);
   }
 }

@@ -40,18 +40,20 @@ export class FollowMockService extends FollowService {
   /**
    * フォローする
    *
-   * @param loginId フォロー対象
+   * @param loginId 自分
+   * @param followLoginId フォロー対象
    */
-  public follow(loginId: string): Observable<boolean> {
+  public follow(loginId: string, followLoginId: string): Observable<boolean> {
     return of(true);
   }
 
   /**
    * フォローを解除する
    *
-   * @param loginId フォロー対象
+   * @param loginId 自分
+   * @param followLoginId フォロー対象
    */
-  public unfollow(loginId: string): Observable<boolean> {
+  public unfollow(loginId: string, followLoginId: string): Observable<boolean> {
     return of(true);
   }
 }

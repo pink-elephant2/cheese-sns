@@ -128,21 +128,21 @@ export class PhotoMockService extends PhotoService {
    *
    * @returns 写真情報
    */
-  public postPhoto(form: CreateForm, file: File): Observable<Photo> {
+  public postPhoto(loginId: string, form: CreateForm, file: File): Observable<Photo> {
     return of(PhotoMockService.photoList[0]);
   }
 
   /**
    * 写真にいいねをする
    */
-  public likePhoto(photoCd: string): Observable<boolean> {
+  public likePhoto(loginId: string, photoCd: string): Observable<boolean> {
     return of(true);
   }
 
   /**
    * 写真のいいねを解除する
    */
-  public dislikePhoto(photoCd: string): Observable<boolean> {
+  public dislikePhoto(loginId: string, photoCd: string): Observable<boolean> {
     return of(true);
   }
 
@@ -151,7 +151,7 @@ export class PhotoMockService extends PhotoService {
    *
    * @returns コメント情報
    */
-  public comment(photoCd: string, comment: string): Observable<Comment> {
+  public comment(loginId: string, photoCd: string, comment: string): Observable<Comment> {
     return of({
       account: {
         loginId: 'my_melody'
@@ -165,14 +165,14 @@ export class PhotoMockService extends PhotoService {
   /**
    * コメントにいいねをする
    */
-  public likeComment(photoCd: string, commentCd: string): Observable<boolean> {
+  public likeComment(loginId: string, photoCd: string, commentCd: string): Observable<boolean> {
     return of(true);
   }
 
   /**
    * コメントのいいねを解除する
    */
-  public dislikeComment(photoCd: string, commentCd: string): Observable<boolean> {
+  public dislikeComment(loginId: string, photoCd: string, commentCd: string): Observable<boolean> {
     return of(true);
   }
 }

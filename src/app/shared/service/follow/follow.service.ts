@@ -31,12 +31,13 @@ export class FollowService extends ApiService {
   /**
    * フォローする
    *
-   * @param loginId フォロー対象
+   * @param loginId 自分
+   * @param followLoginId フォロー対象
    */
-  public follow(loginId: string): Observable<boolean> {
-    const url = `${ApiConst.PATH.ACCOUNT}/follow`;
+  public follow(loginId: string, followLoginId: string): Observable<boolean> {
+    const url = `${ApiConst.PATH.USER}/${loginId}/${ApiConst.PATH.ACCOUNT_FOLLOW}`;
     const params = {
-      'loginId': loginId
+      'loginId': followLoginId
     };
     return this.post<boolean>(url, params);
   }
@@ -44,12 +45,13 @@ export class FollowService extends ApiService {
   /**
    * フォローを解除する
    *
-   * @param loginId フォロー対象
+   * @param loginId 自分
+   * @param followLoginId フォロー対象
    */
-  public unfollow(loginId: string): Observable<boolean> {
-    const url = `${ApiConst.PATH.ACCOUNT}/unfollow`;
+  public unfollow(loginId: string, followLoginId: string): Observable<boolean> {
+    const url = `${ApiConst.PATH.USER}/${loginId}/${ApiConst.PATH.ACCOUNT_UNFOLLOW}`;
     const params = {
-      'loginId': loginId
+      'loginId': followLoginId
     };
     return this.post<boolean>(url, params);
   }

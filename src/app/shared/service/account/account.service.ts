@@ -32,16 +32,18 @@ export class AccountService extends ApiService {
   /**
    * プロフィールを更新する
    */
-  public putProfile(form: ProfileForm): Observable<boolean> {
-    return this.post<boolean>(ApiConst.PATH.ACCOUNT_PROFILE, form);
+  public putProfile(loginId: string, form: ProfileForm): Observable<boolean> {
+    const url = `${ApiConst.PATH.USER}/${loginId}/${ApiConst.PATH.ACCOUNT_PROFILE}`;
+    return this.post<boolean>(url, form);
   }
 
   /**
    * 画像を更新する
    */
-  public putImage(form: ImageForm, file: File): Observable<boolean> {
+  public putImage(loginId: string, form: ImageForm, file: File): Observable<boolean> {
+    const url = `${ApiConst.PATH.USER}/${loginId}/${ApiConst.PATH.ACCOUNT_IMAGE}`;
     const data = new FormData();
     data.append('upfile', file, form.upfile);
-    return this.post<boolean>(ApiConst.PATH.ACCOUNT_IMAGE, data);
+    return this.post<boolean>(url, data);
   }
 }

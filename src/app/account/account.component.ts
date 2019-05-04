@@ -105,7 +105,7 @@ export class AccountComponent implements OnInit, OnDestroy {
     }
 
     // フォローする
-    this.followService.follow(this.account.loginId).subscribe((ret: boolean) => {
+    this.followService.follow(this.authService.loginId, this.account.loginId).subscribe((ret: boolean) => {
       if (ret) {
         this.account.isFollow = true;
       }
@@ -125,7 +125,7 @@ export class AccountComponent implements OnInit, OnDestroy {
     }
 
     // フォローを解除する
-    this.followService.unfollow(this.account.loginId).subscribe((ret: boolean) => {
+    this.followService.unfollow(this.authService.loginId, this.account.loginId).subscribe((ret: boolean) => {
       if (ret) {
         this.account.isFollow = false;
 

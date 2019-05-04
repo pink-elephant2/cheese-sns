@@ -75,7 +75,7 @@ export class SettingProfileComponent implements OnInit {
 
       // 画像更新
       this.loadingService.setLoading(true);
-      this.accountService.putImage(this.imageForm.value, files[0]).subscribe(ret => {
+      this.accountService.putImage(this.account.loginId, this.imageForm.value, files[0]).subscribe(ret => {
         this.loadingService.setLoading(false);
         if (ret) {
           window['M'].toast({ html: '画像を更新しました。' });
@@ -113,7 +113,7 @@ export class SettingProfileComponent implements OnInit {
 
     // アカウント更新
     this.loadingService.setLoading(true);
-    this.accountService.putProfile(form).subscribe(ret => {
+    this.accountService.putProfile(this.account.loginId, form).subscribe(ret => {
       this.loadingService.setLoading(false);
       if (ret) {
         window['M'].toast({ html: 'プロフィールを保存しました。' });

@@ -64,7 +64,9 @@ export class PhotoCardComponent implements OnInit {
     }
 
     // いいねをする
-    const sub = (!this.photo.isLike) ? this.photoService.likePhoto(this.photo.cd) : this.photoService.dislikePhoto(this.photo.cd);
+    const sub = (!this.photo.isLike)
+      ? this.photoService.likePhoto(this.authService.loginId, this.photo.cd)
+      : this.photoService.dislikePhoto(this.authService.loginId, this.photo.cd);
     sub.subscribe((ret: boolean) => {
       this.photo.isLike = !this.photo.isLike;
 
@@ -85,7 +87,7 @@ export class PhotoCardComponent implements OnInit {
       return;
     }
 
-    const comment = document.getElementById('comment');
+    const comment = document.getElementById('content');
     if (comment !== null) {
       comment.focus();
     }
@@ -109,10 +111,13 @@ export class PhotoCardComponent implements OnInit {
 
     // コメントする
     this.loadingService.setLoading(true);
-    this.photoService.comment(this.photo.cd, form.content).subscribe((comment: Comment) => {
+    this.photoService.comment(this.authService.loginId, this.photo.cd, form.content).subscribe((comment: Comment) => {
       this.loadingService.setLoading(false);
 
       // コメントに1行追加
+      if (this.photo.comments === null) {
+        this.photo.comments = [];
+      }
       this.photo.comments.push(comment);
     });
   }
@@ -135,8 +140,8 @@ export class PhotoCardComponent implements OnInit {
 
     // いいねをする
     const sub = (!this.photo.comments[index].isLike)
-      ? this.photoService.likeComment(this.photo.cd, this.photo.comments[index].cd)
-      : this.photoService.dislikeComment(this.photo.cd, this.photo.comments[index].cd);
+      ? this.photoService.likeComment(this.authService.loginId, this.photo.cd, this.photo.comments[index].cd)
+      : this.photoService.dislikeComment(this.authService.loginId, this.photo.cd, this.photo.comments[index].cd);
 
     sub.subscribe((ret: boolean) => {
       this.photo.comments[index].isLike = !this.photo.comments[index].isLike;

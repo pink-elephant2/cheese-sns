@@ -38,26 +38,27 @@ export class PhotoService extends ApiService {
    *
    * @returns 写真情報
    */
-  public postPhoto(form: CreateForm, file: File): Observable<Photo> {
+  public postPhoto(loginId: string, form: CreateForm, file: File): Observable<Photo> {
+    const url = `${ApiConst.PATH.USER}/${loginId}/${ApiConst.PATH.PHOTO_CREATE}`;
     const data = new FormData();
     data.append('upfile', file, form.upfile);
     data.append('caption', form.caption);
-    return this.post<Photo>(ApiConst.PATH.PHOTO, data);
+    return this.post<Photo>(url, data);
   }
 
   /**
    * 写真にいいねをする
    */
-  public likePhoto(photoCd: string): Observable<boolean> {
-    const url = `${ApiConst.PATH.PHOTO}/${photoCd}/like`;
+  public likePhoto(loginId: string, photoCd: string): Observable<boolean> {
+    const url = `${ApiConst.PATH.USER}/${loginId}/${ApiConst.PATH.PHOTO_CREATE}/${photoCd}/${ApiConst.PATH.PHOTO_LIKE}`;
     return this.post<boolean>(url);
   }
 
   /**
    * 写真のいいねを解除する
    */
-  public dislikePhoto(photoCd: string): Observable<boolean> {
-    const url = `${ApiConst.PATH.PHOTO}/${photoCd}/dislike`;
+  public dislikePhoto(loginId: string, photoCd: string): Observable<boolean> {
+    const url = `${ApiConst.PATH.USER}/${loginId}/${ApiConst.PATH.PHOTO_CREATE}/${photoCd}/${ApiConst.PATH.PHOTO_DISLIKE}`;
     return this.post<boolean>(url);
   }
 
@@ -66,8 +67,8 @@ export class PhotoService extends ApiService {
    *
    * @returns コメント情報
    */
-  public comment(photoCd: string, comment: string): Observable<Comment> {
-    const url = `${ApiConst.PATH.PHOTO}/${photoCd}/comment`;
+  public comment(loginId: string, photoCd: string, comment: string): Observable<Comment> {
+    const url = `${ApiConst.PATH.USER}/${loginId}/${ApiConst.PATH.PHOTO_CREATE}/${photoCd}/${ApiConst.PATH.PHOTO_COMMENT}`;
     const params = {
       'comment': comment
     };
@@ -77,16 +78,16 @@ export class PhotoService extends ApiService {
   /**
    * コメントにいいねをする
    */
-  public likeComment(photoCd: string, commentCd: string): Observable<boolean> {
-    const url = `${ApiConst.PATH.PHOTO}/${photoCd}/comment/${commentCd}/like`;
+  public likeComment(loginId: string, photoCd: string, commentCd: string): Observable<boolean> {
+    const url = `${ApiConst.PATH.USER}/${loginId}/${ApiConst.PATH.PHOTO_CREATE}/${photoCd}/${ApiConst.PATH.PHOTO_COMMENT}/${commentCd}/${ApiConst.PATH.PHOTO_LIKE}`;
     return this.post<boolean>(url);
   }
 
   /**
    * コメントにいいねをする
    */
-  public dislikeComment(photoCd: string, commentCd: string): Observable<boolean> {
-    const url = `${ApiConst.PATH.PHOTO}/${photoCd}/comment/${commentCd}/dislike`;
+  public dislikeComment(loginId: string, photoCd: string, commentCd: string): Observable<boolean> {
+    const url = `${ApiConst.PATH.USER}/${loginId}/${ApiConst.PATH.PHOTO_CREATE}/${photoCd}/${ApiConst.PATH.PHOTO_COMMENT}/${commentCd}/${ApiConst.PATH.PHOTO_DISLIKE}`;
     return this.post<boolean>(url);
   }
 }
