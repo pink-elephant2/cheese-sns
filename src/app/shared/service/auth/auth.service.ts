@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { BehaviorSubject } from 'rxjs';
@@ -56,7 +57,10 @@ export class AuthService extends ApiService {
    * ログイン処理
    */
   public login(form: LoginForm): Observable<boolean> {
-    return this.post(ApiConst.PATH.LOGIN, form).pipe(map(ret => {
+    const params = new HttpParams()
+      .set('loginId', form.loginId)
+      .set('password', form.password);
+    return this.post(ApiConst.PATH.LOGIN, params).pipe(map(ret => {
       // ログイン成功
       this._loginId = form.loginId;
       this.saveSession();

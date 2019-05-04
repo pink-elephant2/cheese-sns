@@ -65,23 +65,19 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.authService.login(this.form.value).subscribe((ret: boolean) => {
       this.loadingService.setLoading(false);
 
-      if (ret) {
-        this.nextUrl = '/account';
-        this.navigateService.isLoggedIn = true;
-        if (this.navigateService.getAfterLoginUrl() !== undefined) {
-          this.nextUrl = this.navigateService.getAfterLoginUrl();
-        }
-
-        // 次ページへ
-        this.router.navigate([this.nextUrl]);
-      } else {
-        this.isInValid = true;
+      this.nextUrl = '/account';
+      this.navigateService.isLoggedIn = true;
+      if (this.navigateService.getAfterLoginUrl() !== undefined) {
+        this.nextUrl = this.navigateService.getAfterLoginUrl();
       }
+
+      // 次ページへ
+      this.router.navigate([this.nextUrl]);
     }, (error: Response) => {
       this.loadingService.setLoading(false);
 
       switch (error.status) {
-        case 403:
+        case 401:
           this.isInValid = true;
           break;
         case 500:
