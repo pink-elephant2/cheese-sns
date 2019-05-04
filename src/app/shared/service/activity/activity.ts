@@ -18,7 +18,7 @@ export class Activity {
   public photo: Photo;
 
   /** 日時 */
-  public createAt: Date;
+  public createdAt: Date;
 
   /** ユーザー */
   public account: Account;

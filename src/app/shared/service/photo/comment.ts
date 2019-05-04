@@ -15,7 +15,7 @@ export class Comment {
   public comment: string;
 
   /** コメント日時 */
-  public createAt: Date;
+  public createdAt: Date;
 
   /** コメントユーザー */
   public account: Account;

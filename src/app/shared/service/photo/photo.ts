@@ -19,7 +19,7 @@ export class Photo {
   public imgUrl: string;
 
   /** 投稿日時 */
-  public createAt: Date;
+  public createdAt: Date;
 
   /** 投稿ユーザー */
   public account: Account;

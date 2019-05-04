@@ -19,21 +19,21 @@ export class ActivityMockService extends ActivityService {
     activityType: ActivityType.comment,
     photo: PhotoMockService.photoList[0],
     account: PhotoMockService.photoList[0].account,
-    createAt: new Date('2019/03/12 6:30')
+    createdAt: new Date('2019/03/12 6:30')
   } as Activity, {
     activityType: ActivityType.follow,
     account: PhotoMockService.photoList[1].account,
-    createAt: new Date('2019/03/12 0:00')
+    createdAt: new Date('2019/03/12 0:00')
   } as Activity, {
     activityType: ActivityType.like,
     photo: PhotoMockService.photoList[2],
     account: PhotoMockService.photoList[2].account,
-    createAt: new Date('2019/03/11 6:30')
+    createdAt: new Date('2019/03/11 6:30')
   } as Activity, {
     activityType: ActivityType.newPost,
     photo: PhotoMockService.photoList[3],
     account: PhotoMockService.photoList[3].account,
-    createAt: new Date('2019/02/12 6:30')
+    createdAt: new Date('2019/02/12 6:30')
   } as Activity
   ];
 

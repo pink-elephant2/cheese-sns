@@ -4,7 +4,7 @@
     <a [routerLink]="['/', photo.account.loginId]"><img appAccountImage [src]="photo.account.imgUrl"
         [alt]="photo.account.loginId" class="circle"></a>
     <p class="title" *ngIf="hasInputComment">{{photo.account.loginId}}</p>
-    <p class="caption">{{photo.caption}}&nbsp;<span class="grey-text right">{{photo.createAt | pastDate}}</span></p>
+    <p class="caption">{{photo.caption}}&nbsp;<span class="grey-text right">{{photo.createdAt | pastDate}}</span></p>
   </li>
   <li class="collection-item center">
     <ng-container *ngIf="hasInputComment">

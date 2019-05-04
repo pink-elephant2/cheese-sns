@@ -8,7 +8,7 @@
       <ng-container *ngIf="activity.activityType === 2">{{activity.account.loginId}}さんがあなたの投稿に「いいね！」しました。</ng-container>
       <ng-container *ngIf="activity.activityType === 3">{{activity.account.loginId}}さんがあなたを「フォロー」しました。</ng-container>
       <ng-container *ngIf="activity.activityType === 4">{{activity.account.loginId}}さんが新しい投稿をしました。</ng-container>
-      <span class="grey-text">{{activity.createAt | pastDate}}</span>
+      <span class="grey-text">{{activity.createdAt | pastDate}}</span>
     </p>
     <a *ngIf="activity.photo" [routerLink]="['/photo/', activity.photo.cd]" class="col s4"><img
         src="{{activity.photo.imgUrl}}" class="responsive-img photo right" alt="{{activity.photo.caption}}">
