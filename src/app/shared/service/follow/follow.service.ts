@@ -37,7 +37,7 @@ export class FollowService extends ApiService {
   public follow(loginId: string, followLoginId: string): Observable<boolean> {
     const url = `${ApiConst.PATH.USER}/${loginId}/${ApiConst.PATH.ACCOUNT_FOLLOW}`;
     const params = {
-      'loginId': followLoginId
+      loginId: followLoginId
     };
     return this.post<boolean>(url, params);
   }
@@ -51,7 +51,7 @@ export class FollowService extends ApiService {
   public unfollow(loginId: string, followLoginId: string): Observable<boolean> {
     const url = `${ApiConst.PATH.USER}/${loginId}/${ApiConst.PATH.ACCOUNT_UNFOLLOW}`;
     const params = {
-      'loginId': followLoginId
+      loginId: followLoginId
     };
     return this.post<boolean>(url, params);
   }

@@ -1,4 +1,4 @@
-<ul class="collection">
+<ul class="collection" *ngIf="activityList.length > 0">
   <li class="collection-item avatar row" *ngFor="let activity of activityList">
     <a [routerLink]="['/', activity.account.loginId]"><img appAccountImage [src]="activity.account.imgUrl"
         [alt]="activity.account.loginId" class="circle"></a>
@@ -26,3 +26,6 @@
     </a>
   </li>
 </ul>
+<div *ngIf="activityList.length === 0">
+  <p>フォローしている人のアクティビティがありません。</p>
+</div>
