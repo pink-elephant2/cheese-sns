@@ -15,14 +15,16 @@ export class ActivityService extends ApiService {
   /**
    * フォロー中のアクティビティを取得する
    */
-  public getFollowing(): Observable<Page<Activity>> {
-    return this.get<Page<Activity>>(ApiConst.PATH.ACTIVITY_FOLLOWING);
+  public getFollowing(loginId: string): Observable<Page<Activity>> {
+    const url = `${ApiConst.PATH.USER}/${loginId}/${ApiConst.PATH.ACTIVITY_FOLLOWING}`;
+    return this.get<Page<Activity>>(url);
   }
 
   /**
    * 自分に対するアクティビティを取得する
    */
-  public getMe(): Observable<Page<Activity>> {
-    return this.get<Page<Activity>>(ApiConst.PATH.ACTIVITY_ME);
+  public getMe(loginId: string): Observable<Page<Activity>> {
+    const url = `${ApiConst.PATH.USER}/${loginId}/${ApiConst.PATH.ACTIVITY_ME}`;
+    return this.get<Page<Activity>>(url);
   }
 }

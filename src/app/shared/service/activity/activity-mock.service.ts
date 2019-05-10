@@ -45,7 +45,7 @@ export class ActivityMockService extends ActivityService {
   /**
    * フォロー中のアクティビティを取得する
    */
-  public getFollowing(): Observable<Page<Activity>> {
+  public getFollowing(loginId: string): Observable<Page<Activity>> {
     return of({
       content: ActivityMockService.activityList
     } as Page<Activity>);
@@ -54,7 +54,7 @@ export class ActivityMockService extends ActivityService {
   /**
    * 自分に対するアクティビティを取得する
    */
-  public getMe(): Observable<Page<Activity>> {
+  public getMe(loginId: string): Observable<Page<Activity>> {
     return of({
       content: ActivityMockService.activityList
     } as Page<Activity>);

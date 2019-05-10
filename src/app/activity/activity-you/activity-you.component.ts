@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivityService, Activity } from 'shared/service/activity';
+import { AuthService } from 'shared/service/auth';
 import { Page } from 'shared/model/page';
 
 @Component({
@@ -12,11 +13,14 @@ export class ActivityYouComponent implements OnInit {
   /** アクティビティ */
   activityList: Activity[] = [];
 
-  constructor(private activityService: ActivityService) { }
+  constructor(
+    private activityService: ActivityService,
+    private authService: AuthService
+  ) { }
 
   ngOnInit() {
     // アクティビティ取得
-    this.activityService.getMe().subscribe((activityPage: Page<Activity>) => {
+    this.activityService.getMe(this.authService.loginId).subscribe((activityPage: Page<Activity>) => {
       this.activityList = activityPage.content;
     });
   }

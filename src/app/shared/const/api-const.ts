@@ -21,9 +21,9 @@ export class ApiConst {
     /** アカウント.フォロー解除 */
     ACCOUNT_UNFOLLOW: 'account/unfollow',
     /** アクティビティ.フォロー中 */
-    ACTIVITY_FOLLOWING: '/api/v1/activity/following',
+    ACTIVITY_FOLLOWING: 'activity/following',
     /** アクティビティ.自分 */
-    ACTIVITY_ME: '/api/v1/activity/me',
+    ACTIVITY_ME: 'activity/me',
     /** 写真 */
     PHOTO: '/api/v1/photo',
     /** 写真.投稿 */
