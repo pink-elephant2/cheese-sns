@@ -3,7 +3,7 @@
     <p>TODO: カメラリンク押したら直接ダイアログを出す</p>
 
     <div class="row">
-      <div class="file-field input-field">
+      <div class="col s12 file-field input-field">
         <div class="btn pink accent-2">
           <span>参照</span>
           <input type="file" formControlName="upfile" accept="image/*" #fl (change)="onchange(fl.files)">
@@ -15,14 +15,16 @@
     </div>
 
     <div class="row" *ngIf="blobUrl">
-      <img [src]="blobUrl" class="responsive-img">
-      <ng-container *ngIf="form.controls['upfile'].touched">
-        <span class="helper-text" *ngIf="form.controls['upfile'].hasError('required')" data-error="入力してください"></span>
-      </ng-container>
+      <div class="col s12">
+        <img [src]="blobUrl" class="responsive-img">
+        <ng-container *ngIf="form.controls['upfile'].touched">
+          <span class="helper-text" *ngIf="form.controls['upfile'].hasError('required')" data-error="入力してください"></span>
+        </ng-container>
+      </div>
     </div>
 
     <div class="row">
-      <div class="input-field">
+      <div class="col s12 input-field">
         <textarea id="caption" type="text" class="validate materialize-textarea" formControlName="caption"
           maxlength="120" data-length="120"></textarea>
         <label for="caption">キャプション</label>
@@ -35,10 +37,12 @@
     </div>
 
     <div class="row">
-      <button [disabled]="!form.valid || isError" class="btn waves-effect waves-light right pink accent-2"
-        type="submit">シェアする
-        <i class="material-icons right">send</i>
-      </button>
+      <div class="col s12">
+        <button [disabled]="!form.valid || isError" class="btn waves-effect waves-light right pink accent-2"
+          type="submit">シェアする
+          <i class="material-icons right">send</i>
+        </button>
+      </div>
     </div>
   </form>
 </section>

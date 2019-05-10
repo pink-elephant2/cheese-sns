@@ -20,7 +20,7 @@
 
   <form id="profileForm" [formGroup]="form" (ngSubmit)="onSubmit(form.value, form.valid)">
     <div class="row">
-      <div class="input-field">
+      <div class="col s12 input-field">
         <input id="name" type="text" class="validate" formControlName="name" required maxlength="30" data-length="30">
         <label for="name" [ngClass]="{active: form.controls['name'].value}">名前</label>
         <ng-container *ngIf="form.controls['name'].touched">
@@ -32,7 +32,7 @@
     </div>
 
     <div class="row">
-      <div class="input-field">
+      <div class="col s12 input-field">
         <textarea id="description" type="text" class="validate materialize-textarea" formControlName="description"
           maxlength="120" data-length="120"></textarea>
         <label for="description" [ngClass]="{active: form.controls['description'].value}">自己紹介</label>
@@ -44,7 +44,7 @@
     </div>
 
     <div class="row">
-      <div class="input-field">
+      <div class="col s12 input-field">
         <input id="place" type="text" class="validate" formControlName="place" maxlength="30" data-length="30">
         <label for="place" [ngClass]="{active: form.controls['place'].value}">場所</label>
         <ng-container *ngIf="form.controls['place'].touched">
@@ -55,7 +55,7 @@
     </div>
 
     <div class="row">
-      <div class="input-field">
+      <div class="col s12 input-field">
         <input id="url" type="url" class="validate" formControlName="url" maxlength="100" data-length="100">
         <label for="url" [ngClass]="{active: form.controls['url'].value}">ウェブサイト</label>
         <ng-container *ngIf="form.controls['url'].touched">
@@ -66,12 +66,16 @@
     </div>
 
     <div class="row">
-      <button [disabled]="!form.valid || isError" class="btn waves-effect waves-light right pink accent-2"
-        type="submit">保存する</button>
+      <div class="col s12 input-field">
+        <button [disabled]="!form.valid || isError" class="btn waves-effect waves-light right pink accent-2"
+          type="submit">保存する</button>
+      </div>
     </div>
 
     <div class="row">
-      <p class="red-text" *ngIf="isError">申し訳ございません。ただいま回線が込み合っています。しばらくお待ちください。</p>
+      <div class="col s12 input-field">
+        <p class="red-text" *ngIf="isError">申し訳ございません。ただいま回線が込み合っています。しばらくお待ちください。</p>
+      </div>
     </div>
   </form>
 </section>
