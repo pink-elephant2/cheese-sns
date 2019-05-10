@@ -1,7 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientModule } from '@angular/common/http';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { TopComponent } from './top.component';
-import { PhotoCardModule } from 'shared/component';
+import { PhotoCardModule, MyAdsenseModule } from 'shared/component';
+import { PhotoService, PhotoMockService } from 'shared/service/photo';
+import { LoadingService } from 'shared/service/loading';
 
 describe('TopComponent', () => {
   let component: TopComponent;
@@ -10,9 +14,16 @@ describe('TopComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        PhotoCardModule
+        HttpClientModule,
+        RouterTestingModule,
+        PhotoCardModule,
+        MyAdsenseModule
       ],
-      declarations: [TopComponent]
+      declarations: [TopComponent],
+      providers: [
+        { provide: PhotoService, useClass: PhotoMockService },
+        LoadingService
+      ]
     })
       .compileComponents();
   }));

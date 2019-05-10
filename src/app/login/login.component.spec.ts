@@ -6,6 +6,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { LoginComponent } from './login.component';
 import { AuthService, AuthMockService } from 'shared/service/auth';
 import { LoadingService } from 'shared/service/loading';
+import { NavigateService } from 'shared/service/navigate';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -22,7 +23,8 @@ describe('LoginComponent', () => {
       declarations: [LoginComponent],
       providers: [
         { provide: AuthService, useClass: AuthMockService },
-        LoadingService
+        LoadingService,
+        NavigateService,
       ]
     })
       .compileComponents();

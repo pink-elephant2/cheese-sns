@@ -5,6 +5,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { ActivityYouComponent } from './activity-you.component';
 import { PastDateModule } from 'shared/pipe';
 import { ActivityService, ActivityMockService } from 'shared/service/activity';
+import { AuthService, AuthMockService } from 'shared/service/auth';
 import { AccountImageModule } from 'shared/directive';
 
 describe('ActivityYouComponent', () => {
@@ -21,7 +22,8 @@ describe('ActivityYouComponent', () => {
       ],
       declarations: [ActivityYouComponent],
       providers: [
-        { provide: ActivityService, useClass: ActivityMockService }
+        { provide: ActivityService, useClass: ActivityMockService },
+        { provide: AuthService, useClass: AuthMockService }
       ]
     })
       .compileComponents();

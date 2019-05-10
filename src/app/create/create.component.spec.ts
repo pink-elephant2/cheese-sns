@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { CreateComponent } from './create.component';
+import { AuthService, AuthMockService } from 'shared/service/auth';
 import { PhotoService, PhotoMockService } from 'shared/service/photo';
 import { LoadingService } from 'shared/service/loading';
 
@@ -21,6 +22,7 @@ describe('CreateComponent', () => {
       ],
       declarations: [CreateComponent],
       providers: [
+        { provide: AuthService, useClass: AuthMockService },
         { provide: PhotoService, useClass: PhotoMockService },
         LoadingService
       ]

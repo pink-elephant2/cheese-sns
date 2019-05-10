@@ -13,7 +13,8 @@ import { CreateComponent } from './create.component';
   declarations: [CreateComponent],
   exports: [CreateComponent],
   providers: [
-    environment.photoService
+    environment.photoService,
+    environment.authService
   ]
 })
 export class CreateModule { }

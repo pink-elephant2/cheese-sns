@@ -2,6 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AccountFollowersComponent } from './account-followers.component';
 import { AccountCardModule } from 'shared/component';
+import { FollowService, FollowMockService } from 'shared/service/follow';
 
 describe('AccountFollowersComponent', () => {
   let component: AccountFollowersComponent;
@@ -12,9 +13,12 @@ describe('AccountFollowersComponent', () => {
       imports: [
         AccountCardModule
       ],
-      declarations: [ AccountFollowersComponent ]
+      declarations: [AccountFollowersComponent],
+      providers: [
+        { provide: FollowService, useClass: FollowMockService }
+      ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
