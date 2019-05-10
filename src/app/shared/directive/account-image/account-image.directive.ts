@@ -17,7 +17,7 @@ export class AccountImageDirective implements OnInit {
   }
 
   ngOnInit(): void {
-    if (this.src === null) {
+    if (this.src === undefined || this.src === null) {
       // デフォルト画像セット
       this.src = '/assets/images/account.png';
     }
