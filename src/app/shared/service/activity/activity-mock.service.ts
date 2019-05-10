@@ -34,6 +34,11 @@ export class ActivityMockService extends ActivityService {
     photo: PhotoMockService.photoList[3],
     account: PhotoMockService.photoList[3].account,
     createdAt: new Date('2019/02/12 6:30')
+  } as Activity, {
+    activityType: ActivityType.commentLike,
+    photo: PhotoMockService.photoList[2],
+    account: PhotoMockService.photoList[2].account,
+    createdAt: new Date('2019/02/12 6:30')
   } as Activity
   ];
 

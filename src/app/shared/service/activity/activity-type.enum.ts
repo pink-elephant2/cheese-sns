@@ -9,5 +9,7 @@ export enum ActivityType {
   /** フォロー */
   follow = 3,
   /** 新しい投稿 */
-  newPost = 4
+  newPost = 4,
+  /** コメントいいね */
+  commentLike = 5
 }

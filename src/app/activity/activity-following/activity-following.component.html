@@ -4,10 +4,21 @@
         [alt]="activity.account.loginId" class="circle"></a>
 
     <p class="col s8">
-      <ng-container *ngIf="activity.activityType === 1">{{activity.account.loginId}}さんがあなたの投稿に「コメント」しました。</ng-container>
-      <ng-container *ngIf="activity.activityType === 2">{{activity.account.loginId}}さんがあなたの投稿に「いいね！」しました。</ng-container>
-      <ng-container *ngIf="activity.activityType === 3">{{activity.account.loginId}}さんがあなたを「フォロー」しました。</ng-container>
-      <ng-container *ngIf="activity.activityType === 4">{{activity.account.loginId}}さんが新しい投稿をしました。</ng-container>
+      <ng-container *ngIf="activity.activityType === 1">
+        <a [routerLink]="['/', activity.account.loginId]">@{{activity.account.loginId}}</a>さんがあなたの投稿に<b>コメント</b>しました。
+      </ng-container>
+      <ng-container *ngIf="activity.activityType === 2">
+        <a [routerLink]="['/', activity.account.loginId]">@{{activity.account.loginId}}</a>さんがあなたの投稿に<b>いいね！</b>しました。
+      </ng-container>
+      <ng-container *ngIf="activity.activityType === 3">
+        <a [routerLink]="['/', activity.account.loginId]">@{{activity.account.loginId}}</a>さんがあなたを<b>フォロー</b>しました。
+      </ng-container>
+      <ng-container *ngIf="activity.activityType === 4">
+        <a [routerLink]="['/', activity.account.loginId]">@{{activity.account.loginId}}</a>さんが<b>新しい投稿</b>をしました。
+      </ng-container>
+      <ng-container *ngIf="activity.activityType === 5">
+        <a [routerLink]="['/', activity.account.loginId]">@{{activity.account.loginId}}</a>さんがあなたのコメントに<b>いいね！</b>をしました。
+      </ng-container>
       <span class="grey-text">{{activity.createdAt | pastDate}}</span>
     </p>
     <a *ngIf="activity.photo" [routerLink]="['/photo/', activity.photo.cd]" class="col s4"><img
