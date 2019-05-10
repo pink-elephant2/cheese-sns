@@ -64,8 +64,9 @@ export class SignupComponent implements OnInit {
           this.router.navigate(['/account']);
           return;
         });
+      } else {
+        this.isInValid = true;
       }
-      this.isInValid = true;
     }, (error: Response) => {
       this.loadingService.setLoading(false);
 
