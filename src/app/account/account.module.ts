@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { environment } from 'env/environment';
 import { AppRoutingModule } from '../app-routing.module';
@@ -10,10 +11,13 @@ import { AccountFollowersComponent } from './account-followers/account-followers
 import { AccountCardModule, MyAdsenseModule } from 'shared/component';
 import { NavigateService } from 'shared/service/navigate';
 import { AccountImageModule } from 'shared/directive';
+import { AccountMenuComponent } from './account-menu/account-menu.component';
 
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     AccountCardModule,
     MyAdsenseModule,
@@ -23,7 +27,8 @@ import { AccountImageModule } from 'shared/directive';
     AccountComponent,
     AccountPostComponent,
     AccountFollowingComponent,
-    AccountFollowersComponent
+    AccountFollowersComponent,
+    AccountMenuComponent
   ],
   exports: [AccountComponent],
   providers: [

@@ -7,6 +7,7 @@ import { AccountImageModule } from 'shared/directive';
 import { AccountPostComponent } from './account-post/account-post.component';
 import { AccountFollowingComponent } from './account-following/account-following.component';
 import { AccountFollowersComponent } from './account-followers/account-followers.component';
+import { AccountMenuComponent } from './account-menu/account-menu.component';
 import { AccountService, AccountMockService } from 'shared/service/account';
 import { AuthService, AuthMockService } from 'shared/service/auth';
 import { FollowService, FollowMockService } from 'shared/service/follow';
@@ -28,7 +29,8 @@ describe('AccountComponent', () => {
         AccountComponent,
         AccountPostComponent,
         AccountFollowingComponent,
-        AccountFollowersComponent
+        AccountFollowersComponent,
+        AccountMenuComponent
       ],
       providers: [
         { provide: AccountService, useClass: AccountMockService },

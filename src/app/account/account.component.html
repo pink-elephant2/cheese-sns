@@ -18,6 +18,9 @@
         </ng-container>
         <a *ngIf="isMe" class="waves-effect waves-light btn-small pink accent-2"
           routerLink="/setting/profile">プロフィール編集</a>
+        <button class="btn-flat modal-trigger grey-text text-darken-2" data-target="menu-modal">
+          <i class="material-icons">more_horiz</i>
+        </button>
       </div>
     </div>
     <div class="row">
@@ -95,3 +98,6 @@
 </div>
 
 <app-my-adsense></app-my-adsense>
+
+<!-- 詳細メニューモーダル -->
+<app-account-menu *ngIf="account" [account]="account"></app-account-menu>

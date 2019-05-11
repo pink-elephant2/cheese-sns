@@ -16,6 +16,10 @@ export class ApiConst {
     ACCOUNT_PROFILE: 'account/profile',
     /** アカウント.画像 */
     ACCOUNT_IMAGE: 'account/image',
+    /** アカウント.通報 */
+    ACCOUNT_REPORT: 'report',
+    /** アカウント.ブロック */
+    ACCOUNT_BLOCK: 'block',
     /** アカウント.フォロー */
     ACCOUNT_FOLLOW: 'account/follow',
     /** アカウント.フォロー解除 */

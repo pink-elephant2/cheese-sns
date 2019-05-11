@@ -68,4 +68,18 @@ export class AccountMockService extends AccountService {
   public putImage(loginId: string, form: ImageForm, file: File): Observable<boolean> {
     return of(true);
   }
+
+  /**
+   * 通報する
+   */
+  public report(loginId: string, reason: number): Observable<boolean> {
+    return of(true);
+  }
+
+  /**
+   * ブロックする
+   */
+  public block(loginId: string): Observable<boolean> {
+    return of(true);
+  }
 }

@@ -78,7 +78,8 @@ export class AccountComponent implements OnInit, OnDestroy {
 
         // ログイン前に行う予定だった処理を実行する
         if (this.navigateService.getAfterLoginUrl() === ('/' + this.account.loginId)
-          && this.navigateService.getAfterLoginCallback() !== undefined) {
+          && this.navigateService.getAfterLoginCallback() !== undefined
+          && this[this.navigateService.getAfterLoginCallback()] !== undefined) {
           this[this.navigateService.getAfterLoginCallback()]();
           this.navigateService.clearAfterLogin();
         }

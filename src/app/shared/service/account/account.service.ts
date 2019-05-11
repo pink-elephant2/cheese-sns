@@ -46,4 +46,23 @@ export class AccountService extends ApiService {
     data.append('upfile', file, form.upfile);
     return this.post<boolean>(url, data);
   }
+
+  /**
+   * 通報する
+   */
+  public report(loginId: string, reason: number): Observable<boolean> {
+    const url = `${ApiConst.PATH.ACCOUNT}/${loginId}/${ApiConst.PATH.ACCOUNT_REPORT}`;
+    const params = {
+      reason: reason
+    };
+    return this.post<boolean>(url, params);
+  }
+
+  /**
+   * ブロックする
+   */
+  public block(loginId: string): Observable<boolean> {
+    const url = `${ApiConst.PATH.ACCOUNT}/${loginId}/${ApiConst.PATH.ACCOUNT_BLOCK}`;
+    return this.post<boolean>(url);
+  }
 }

@@ -1,0 +1,75 @@
+<!-- 詳細メニューモーダル -->
+<div id="menu-modal" class="modal">
+  <div class="collection">
+    <a href="javascript:void(0);" class="collection-item pink-text" *ngIf="!isMe"
+      (click)="reportConfirm()">不適切なユーザーを報告</a>
+    <a href="javascript:void(0);" class="collection-item pink-text" *ngIf="!isMe"
+      (click)="blockConfirm()">このユーザーをブロック</a>
+    <a href="javascript:void(0);" class="modal-close collection-item">シェア</a>
+    <a href="javascript:void(0);" class="modal-close grey-text collection-item">キャンセル</a>
+  </div>
+</div>
+
+<!-- 通報確認モーダル -->
+<div id="confirm-report-modal" class="modal modal-fixed-footer">
+  <form [formGroup]="form" (ngSubmit)="report(form.value, form.valid)" *ngIf="account">
+    <div class="modal-content">
+      <h5>報告</h5>
+      <p>不適切な理由を教えてください。誰が報告したかは{{account.loginId}}さんに通知されることはありません。</p>
+
+      <ng-container *ngIf="!isCompleted">
+        <p>
+          <label>
+            <input class="with-gap" name="reason" type="radio" formControlName="reason" value="1" />
+            <span>気に入らない</span>
+          </label>
+        </p>
+        <p>
+          <label>
+            <input class="with-gap" name="reason" type="radio" formControlName="reason" value="2" />
+            <span>スパム</span>
+          </label>
+        </p>
+        <p>
+          <label>
+            <input class="with-gap" name="reason" type="radio" formControlName="reason" value="3" />
+            <span>わいせつなコンテンツ</span>
+          </label>
+        </p>
+        <p>
+          <label>
+            <input class="with-gap" name="reason" type="radio" formControlName="reason" value="4" />
+            <span>差別的な内容</span>
+          </label>
+        </p>
+        <p>
+          <label>
+            <input class="with-gap" name="reason" type="radio" formControlName="reason" value="9" />
+            <span>その他</span>
+          </label>
+        </p>
+      </ng-container>
+      <!-- 完了メッセージ -->
+      <p class="animated fadeIn" *ngIf="isCompleted">ご報告ありがとうございます。運営にて確認後、順次処理いたします。</p>
+    </div>
+    <div class="modal-footer">
+      <ng-container *ngIf="!isCompleted">
+        <a href="javascript:void(0);" class="modal-close waves-effect waves btn-flat">キャンセル</a>
+        <button class="pink-text waves-effect waves-red btn-flat" type="submit" [disabled]="!form.valid">報告する</button>
+      </ng-container>
+      <a *ngIf="isCompleted" href="javascript:void(0);" class="modal-close waves-effect waves btn-flat">閉じる</a>
+    </div>
+  </form>
+</div>
+
+<!-- ブロック確認モーダル -->
+<div id="confirm-block-modal" class="modal">
+  <div class="modal-content" *ngIf="account">
+    <h5>ブロック</h5>
+    <p>ブロックされた人は、あなたの投稿を見られなくなります。ブロックされたことが{{account.loginId}}さんに通知されることはありません。</p>
+  </div>
+  <div class="modal-footer">
+    <a href="javascript:void(0);" class="modal-close waves-effect waves btn-flat">キャンセル</a>
+    <button class="pink-text waves-effect waves-red btn-flat" type="button" (click)="block()">ブロックする</button>
+  </div>
+</div>
