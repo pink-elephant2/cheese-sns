@@ -10,7 +10,7 @@
 
 <!-- 通報確認モーダル -->
 <div id="confirm-report-modal" class="modal modal-fixed-footer">
-  <form [formGroup]="form" (ngSubmit)="report(form.value, form.valid)">
+  <form [formGroup]="form" (ngSubmit)="report(form.value, form.valid)" *ngIf="photo">
     <div class="modal-content">
       <h5>報告</h5>
       <p>この投稿が不適切な理由を教えてください。誰が報告したかは{{photo.account.loginId}}さんに通知されることはありません。</p>
