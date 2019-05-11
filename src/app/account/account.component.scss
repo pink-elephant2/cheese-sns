@@ -1,13 +1,28 @@
+.row {
+  margin-bottom: 0;
+}
 .avatar {
   border: 1px solid rgba(0,0,0,.0975);
 }
 
-h3.h5 {
+.h5, .h6 {
   display: inline-block;
+  margin-top: 0;
 }
 
 .follow-btn {
   margin: calc(1.0933333333rem / 2) 0 .656rem 1.64rem
+}
+
+a {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.tabs .tab a {
+  padding: 0;
 }
 
 /* profile card */

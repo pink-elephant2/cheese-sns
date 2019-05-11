@@ -1,32 +1,53 @@
 <section class="section animated fadeIn">
-  <div class="row" *ngIf="account">
-    <div class="col s3">
-      <img appAccountImage [src]="account.imgUrl" [alt]="account.loginId" class="avatar circle responsive-img">
+  <ng-container *ngIf="account">
+    <div class="row">
+      <div class="col s3">
+        <img appAccountImage [src]="account.imgUrl" [alt]="account.loginId" class="avatar circle responsive-img">
+      </div>
+      <div class="col s9">
+        <div>
+          <h3 class="h5">{{account.name}}</h3>&nbsp;
+          <h2 class="h6 grey-text">@{{account.loginId}}</h2>
+        </div>
+        <ng-container *ngIf="!isMe">
+          <button *ngIf="account.isFollow"
+            class="btn follow-btn waves-effect waves-light grey-text grey lighten-5 modal-trigger"
+            data-target="unfollow-modal">フォロー中</button>
+          <button *ngIf="!account.isFollow" class="btn follow-btn waves-effect waves-light pink accent-2"
+            (click)="follow()">フォローする</button>
+        </ng-container>
+        <a *ngIf="isMe" class="waves-effect waves-light btn-small pink accent-2"
+          routerLink="/setting/profile">プロフィール編集</a>
+        <button class="btn-flat modal-trigger grey-text text-darken-2" data-target="menu-modal">
+          <i class="material-icons">more_horiz</i>
+        </button>
+      </div>
     </div>
-    <div class="col s9">
-      <h3 class="h5 left">{{account.name}}</h3>
-      <ng-container *ngIf="!isMe">
-        <button *ngIf="account.isFollow"
-          class="btn follow-btn waves-effect waves-light left grey-text grey lighten-5 modal-trigger"
-          data-target="unfollow-modal">フォロー中</button>
-        <button *ngIf="!account.isFollow" class="btn follow-btn waves-effect waves-light left pink accent-2"
-          (click)="follow()">フォローする</button>
-      </ng-container>
+    <div class="row">
+      <div class="col s12">
+        <span>
+          <a *ngIf="account.twitter" href="https://twitter.com/{{account.twitter}}" target="_blank" rel="noopener">
+            <img src="https://www.google.com/s2/favicons?domain=twitter.com" alt="twitter" width="16" height="16">
+          </a>&nbsp;
+          <img src="https://www.google.com/s2/favicons?domain=www.facebook.com" alt="facebook" width="16"
+            height="16">&nbsp;
+          <img src="https://www.google.com/s2/favicons?domain=www.instagram.com" alt="instagram" width="16" height="16">
+        </span>
+      </div>
     </div>
-    <div class="col s9">
-      <h2 class="h6 grey-text">@{{account.loginId}}</h2>
-      <a *ngIf="isMe" class="waves-effect waves-light btn-small right pink accent-2"
-        routerLink="/setting/profile">プロフィール編集</a>
-      <p>
-        <a *ngIf="account.twitter" href="https://twitter.com/{{account.twitter}}" target="_blank" rel="noopener">
-          <img src="https://www.google.com/s2/favicons?domain=twitter.com" alt="twitter" width="16" height="16">
-        </a>
-        <img src="https://www.google.com/s2/favicons?domain=www.facebook.com" alt="facebook" width="16" height="16">
-        <img src="https://www.google.com/s2/favicons?domain=www.instagram.com" alt="instagram" width="16" height="16">
-      </p>
-      <p>{{account.description}}</p>
+    <div class="row" *ngIf="account.description">
+      <div class="col s12">
+        {{account.description}}
+      </div>
     </div>
-  </div>
+    <div class="row" *ngIf="account.url">
+      <div class="col s12">
+        <a href="{{account.url}}" target="_blank" rel="me nofollow noreferrer noopener">{{account.url}}</a>
+      </div>
+    </div>
+  </ng-container>
+</section>
+<section class="section animated fadeIn">
   <div class="row">
     <div class="col s12">
       <ul class="tabs">
@@ -77,3 +98,6 @@
 </div>
 
 <app-my-adsense></app-my-adsense>
+
+<!-- 詳細メニューモーダル -->
+<app-account-menu *ngIf="account" [account]="account"></app-account-menu>

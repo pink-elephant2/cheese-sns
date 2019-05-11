@@ -1,19 +1,21 @@
 <!-- 詳細メニューモーダル -->
 <div id="menu-modal" class="modal">
   <div class="collection">
-    <a href="javascript:void(0);" class="collection-item pink-text" *ngIf="!isMine"
-      (click)="reportConfirm()">不適切な写真を報告</a>
-    <a href="javascript:void(0);" class="collection-item pink-text" *ngIf="isMine" (click)="removeConfirm()">削除</a>
+    <a href="javascript:void(0);" class="collection-item pink-text" *ngIf="!isMe"
+      (click)="reportConfirm()">不適切なユーザーを報告</a>
+    <a href="javascript:void(0);" class="collection-item pink-text" *ngIf="!isMe"
+      (click)="blockConfirm()">このユーザーをブロック</a>
+    <a href="javascript:void(0);" class="modal-close collection-item">シェア</a>
     <a href="javascript:void(0);" class="modal-close grey-text collection-item">キャンセル</a>
   </div>
 </div>
 
 <!-- 通報確認モーダル -->
 <div id="confirm-report-modal" class="modal modal-fixed-footer">
-  <form [formGroup]="form" (ngSubmit)="report(form.value, form.valid)" *ngIf="photo">
+  <form [formGroup]="form" (ngSubmit)="report(form.value, form.valid)" *ngIf="account">
     <div class="modal-content">
       <h5>報告</h5>
-      <p>この投稿が不適切な理由を教えてください。誰が報告したかは{{photo.account.loginId}}さんに通知されることはありません。</p>
+      <p>不適切な理由を教えてください。誰が報告したかは{{account.loginId}}さんに通知されることはありません。</p>
 
       <ng-container *ngIf="!isCompleted">
         <p>
@@ -60,14 +62,14 @@
   </form>
 </div>
 
-<!-- 削除確認モーダル -->
-<div id="confirm-remove-modal" class="modal">
-  <div class="modal-content">
-    <h5>削除</h5>
-    <p>投稿を削除します。よろしいですか？</p>
+<!-- ブロック確認モーダル -->
+<div id="confirm-block-modal" class="modal">
+  <div class="modal-content" *ngIf="account">
+    <h5>ブロック</h5>
+    <p>ブロックされた人は、あなたの投稿を見られなくなります。ブロックされたことが{{account.loginId}}さんに通知されることはありません。</p>
   </div>
   <div class="modal-footer">
     <a href="javascript:void(0);" class="modal-close waves-effect waves btn-flat">キャンセル</a>
-    <button class="pink-text waves-effect waves-red btn-flat" type="button" (click)="remove()">削除する</button>
+    <button class="pink-text waves-effect waves-red btn-flat" type="button" (click)="block()">ブロックする</button>
   </div>
 </div>

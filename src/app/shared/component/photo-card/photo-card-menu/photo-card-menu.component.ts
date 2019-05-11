@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -16,7 +16,7 @@ import { LoadingService } from 'shared/service/loading';
   templateUrl: './photo-card-menu.component.html',
   styleUrls: ['./photo-card-menu.component.scss']
 })
-export class PhotoCardMenuComponent implements OnInit {
+export class PhotoCardMenuComponent implements OnInit, OnChanges {
 
   /** 写真情報 */
   @Input() photo: Photo;
@@ -57,10 +57,13 @@ export class PhotoCardMenuComponent implements OnInit {
     this.modalConfirmRemoveInstance = window['M'].Modal.init(document.getElementById('confirm-remove-modal'), {
       endingTop: '30%'
     });
+  }
 
-    // 自分が投稿した写真か
-    this.isMine = this.authService.loginId === this.photo.account.loginId;
-
+  ngOnChanges(changes: SimpleChanges): void {
+    if (this.photo) {
+      // 自分が投稿した写真か
+      this.isMine = this.authService.loginId === this.photo.account.loginId;
+    }
   }
 
   /**

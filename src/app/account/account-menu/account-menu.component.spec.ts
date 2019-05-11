@@ -1,37 +1,39 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 
-import { PhotoCardMenuComponent } from './photo-card-menu.component';
+import { AccountMenuComponent } from './account-menu.component';
+import { AccountService, AccountMockService } from 'shared/service/account';
 import { AuthService, AuthMockService } from 'shared/service/auth';
-import { PhotoService, PhotoMockService } from 'shared/service/photo';
 import { LoadingService } from 'shared/service/loading';
+import { NavigateService } from 'shared/service/navigate';
 
-describe('PhotoCardMenuComponent', () => {
-  let component: PhotoCardMenuComponent;
-  let fixture: ComponentFixture<PhotoCardMenuComponent>;
+describe('AccountMenuComponent', () => {
+  let component: AccountMenuComponent;
+  let fixture: ComponentFixture<AccountMenuComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
+        HttpClientModule,
         FormsModule,
         ReactiveFormsModule,
-        HttpClientModule,
         RouterTestingModule
       ],
-      declarations: [PhotoCardMenuComponent],
+      declarations: [AccountMenuComponent],
       providers: [
+        { provide: AccountService, useClass: AccountMockService },
         { provide: AuthService, useClass: AuthMockService },
-        { provide: PhotoService, useClass: PhotoMockService },
-        LoadingService
+        LoadingService,
+        NavigateService
       ]
     })
       .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PhotoCardMenuComponent);
+    fixture = TestBed.createComponent(AccountMenuComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
