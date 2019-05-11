@@ -3,7 +3,12 @@
   <li class="collection-item avatar row">
     <a [routerLink]="['/', photo.account.loginId]"><img appAccountImage [src]="photo.account.imgUrl"
         [alt]="photo.account.loginId" class="circle"></a>
-    <p class="title" *ngIf="hasInputComment">{{photo.account.loginId}}</p>
+    <p class="title row" *ngIf="hasInputComment">
+      {{photo.account.loginId}}
+      <a class="modal-trigger grey-text text-darken-2" href="javascript:void(0);" data-target="menu-modal">
+        <i class="material-icons right">more_horiz</i>
+      </a>
+    </p>
     <p class="caption">{{photo.caption}}&nbsp;<span class="grey-text right">{{photo.createdAt | pastDate}}</span></p>
   </li>
   <li class="collection-item center">
@@ -59,6 +64,9 @@
     </ul>
   </li>
 </ul>
+
+<!-- 詳細メニューモーダル -->
+<app-photo-card-menu *ngIf="photo" [photo]="photo"></app-photo-card-menu>
 
 <!-- シェアモーダル -->
 <app-share-modal></app-share-modal>

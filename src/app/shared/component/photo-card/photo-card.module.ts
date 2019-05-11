@@ -7,6 +7,7 @@ import { AppRoutingModule } from 'src/app/app-routing.module';
 import { PastDateModule } from 'shared/pipe';
 import { ShareModalModule } from '../share-modal/share-modal.module';
 import { AccountImageModule } from 'shared/directive';
+import { PhotoCardMenuComponent } from './photo-card-menu/photo-card-menu.component';
 
 @NgModule({
   imports: [
@@ -18,7 +19,10 @@ import { AccountImageModule } from 'shared/directive';
     ShareModalModule,
     AccountImageModule
   ],
-  declarations: [PhotoCardComponent],
+  declarations: [
+    PhotoCardComponent,
+    PhotoCardMenuComponent
+  ],
   exports: [PhotoCardComponent]
 })
 export class PhotoCardModule { }

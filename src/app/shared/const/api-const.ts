@@ -34,6 +34,10 @@ export class ApiConst {
     PHOTO_DISLIKE: 'dislike',
     /** 写真.コメント */
     PHOTO_COMMENT: 'comment',
+    /** 写真.通報 */
+    PHOTO_REPORT: 'report',
+    /** 写真.削除 */
+    PHOTO_REMOVE: 'remove',
     /** お問合せ */
     CONTACT: '/api/v1/contact',
   };

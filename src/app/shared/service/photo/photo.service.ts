@@ -90,4 +90,23 @@ export class PhotoService extends ApiService {
     const url = `${ApiConst.PATH.USER}/${loginId}/${ApiConst.PATH.PHOTO_CREATE}/${photoCd}/${ApiConst.PATH.PHOTO_COMMENT}/${commentCd}/${ApiConst.PATH.PHOTO_DISLIKE}`;
     return this.post<boolean>(url);
   }
+
+  /**
+   * 写真を通報する
+   */
+  public report(photoCd: string, reason: any): Observable<boolean> {
+    const url = `${ApiConst.PATH.PHOTO}/${photoCd}/${ApiConst.PATH.PHOTO_REPORT}`;
+    const params = {
+      reason: reason
+    };
+    return this.post<boolean>(url, params);
+  }
+
+  /**
+   * 写真を削除する
+   */
+  public remove(loginId: string, photoCd: string): Observable<boolean> {
+    const url = `${ApiConst.PATH.USER}/${loginId}/${ApiConst.PATH.PHOTO_CREATE}/${photoCd}/${ApiConst.PATH.PHOTO_REMOVE}`;
+    return this.post<boolean>(url);
+  }
 }

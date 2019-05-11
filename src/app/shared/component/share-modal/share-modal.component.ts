@@ -11,13 +11,19 @@ import { GaService } from 'shared/service/ga';
 })
 export class ShareModalComponent implements OnInit {
 
+  /** モーダル */
+  private modalInstance: any;
+
   constructor(
     private gaService: GaService
   ) { }
 
   ngOnInit() {
     // モーダル
-    window['$']('.modal').modal();
+    const elems = document.getElementById('share-modal');
+    this.modalInstance = window['M'].Modal.init(elems, {
+      endingTop: '20%'
+    });
   }
 
   /**
@@ -85,6 +91,6 @@ export class ShareModalComponent implements OnInit {
     document.execCommand('copy');
 
     window['M'].toast({ html: 'リンクがクリップボードにコピーされました。' });
-    window['M'].Modal.getInstance(document.getElementById('share-modal')).close(); // TODO インスタンスを@Inputしたほうが良い？
+    this.modalInstance.close();
   }
 }

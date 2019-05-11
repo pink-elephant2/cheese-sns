@@ -175,4 +175,18 @@ export class PhotoMockService extends PhotoService {
   public dislikeComment(loginId: string, photoCd: string, commentCd: string): Observable<boolean> {
     return of(true);
   }
+
+  /**
+   * 写真を通報する
+   */
+  public report(photoCd: string, reason: any): Observable<boolean> {
+    return of(true);
+  }
+
+  /**
+   * 写真を削除する
+   */
+  public remove(loginId: string, photoCd: string): Observable<boolean> {
+    return of(true);
+  }
 }
