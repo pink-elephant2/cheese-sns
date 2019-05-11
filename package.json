@@ -25,10 +25,13 @@
     "@angular/platform-browser-dynamic": "^7.2.14",
     "@angular/router": "^7.2.14",
     "animate.css": "^3.7.0",
+    "classlist.js": "^1.1.20150312",
     "core-js": "^2.6.5",
     "ng2-adsense": "^5.4.2",
     "rxjs": "~6.3.3",
     "tslib": "^1.9.0",
+    "url-search-params-polyfill": "^6.0.0",
+    "web-animations-js": "^2.3.1",
     "zone.js": "~0.8.26"
   },
   "devDependencies": {
