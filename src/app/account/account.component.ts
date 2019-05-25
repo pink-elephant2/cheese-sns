@@ -8,6 +8,7 @@ import { FollowService } from 'shared/service/follow';
 import { LoadingService } from 'shared/service/loading';
 import { NavigateService } from 'shared/service/navigate';
 import { APP_TITLE } from 'shared/const';
+import { catchError } from 'rxjs/operators';
 
 /**
  * アカウント画面
@@ -34,6 +35,9 @@ export class AccountComponent implements OnInit, OnDestroy {
   /** フォローワー数 */
   followersCount = 0;
 
+  /** アカウントが存在しない */
+  isNotFound = false;
+
   private sub: any;
 
   constructor(
@@ -56,13 +60,20 @@ export class AccountComponent implements OnInit, OnDestroy {
 
       // アカウント取得
       this.loadingService.setLoading(true);
-      this.accountService.getAccount(loginId).subscribe((account: Account) => {
+      this.accountService.getAccount(loginId).pipe(catchError((error: Response) => {
+        this.loadingService.setLoading(false);
+
+        // アカウントが存在しない場合
+        if (error.status === 404) {
+          this.isNotFound = true;
+        }
+        throw error;
+      })).subscribe((account: Account) => {
         this.loadingService.setLoading(false);
 
         // アカウントが存在しない場合
         if (!account) {
-          // TODO 404NotFound
-          this.router.navigate(['/']);
+          this.isNotFound = true;
           return;
         }
 
@@ -84,8 +95,6 @@ export class AccountComponent implements OnInit, OnDestroy {
           this.navigateService.clearAfterLogin();
         }
       });
-    }, (error: Response) => {
-
     });
   }
 

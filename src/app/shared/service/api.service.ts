@@ -22,7 +22,7 @@ export abstract class ApiService {
       const requestParams = this.setParams(params);
       url += `?${requestParams.toString()}`;
     }
-    return this.http.get<T>(url).pipe(catchError((res: Response) => {
+    return this.http.get<T>(url).pipe(catchError((res: HttpResponse<T>) => {
       if (res.status === 503 || res.status === 504) {
         // メンテナンス画面へ
         location.href = '/assets/html/maintenance.html';

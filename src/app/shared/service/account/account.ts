@@ -29,4 +29,8 @@ export class Account {
 
   /** ログイン状態の場合、フォローしているかどうか */
   isFollow: boolean;
+  /** ログイン状態の場合、フォローされているかどうか */
+  isFollower: boolean;
+  /** ログイン状態の場合、ブロックされているかどうか */
+  isBlocked: boolean;
 }

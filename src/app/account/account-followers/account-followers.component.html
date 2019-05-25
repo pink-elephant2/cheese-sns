@@ -2,4 +2,8 @@
   <div class="col s6 m4 l4" *ngFor="let account of accountList">
     <app-account-card [account]="account"></app-account-card>
   </div>
+
+  <div class="col s12" *ngIf="accountList && accountList.length === 0">
+    <p>まだフォローしている人がいません。</p>
+  </div>
 </div>

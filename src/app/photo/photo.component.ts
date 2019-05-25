@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 
+import { AccountService, Account } from 'shared/service/account';
 import { Photo, PhotoService } from 'shared/service/photo';
 import { LoadingService } from 'shared/service/loading';
 import { APP_TITLE } from 'shared/const';
@@ -20,6 +21,7 @@ export class PhotoComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private titleService: Title,
+    private accountService: AccountService,
     private photoService: PhotoService,
     private loadingService: LoadingService
   ) { }
@@ -34,13 +36,22 @@ export class PhotoComponent implements OnInit, OnDestroy {
       this.photoService.getPhoto(photoId).subscribe(photo => {
         this.loadingService.setLoading(false);
 
-        this.photo = photo;
+        // 投稿者を取得 TODO API側で処理すること
+        this.accountService.getAccount(photo.account.loginId).subscribe((account: Account) => {
 
-        // タイトル設定
-        const caption = this.photo.caption ? '「' + this.photo.caption + '」' : '';
-        const title = this.photo.account.name + 'さん(@' + this.photo.account.loginId + ')'
-          + caption + ' - ' + APP_TITLE;
-        this.titleService.setTitle(title);
+          this.photo = photo;
+          this.photo.account = account;
+
+          if (this.photo.account.isBlocked) {
+            this.titleService.setTitle('お探しのページは見つかりませんでした。');
+            return;
+          }
+          // タイトル設定
+          const caption = this.photo.caption ? '「' + this.photo.caption + '」' : '';
+          const title = this.photo.account.name + 'さん(@' + this.photo.account.loginId + ')'
+            + caption + ' - ' + APP_TITLE;
+          this.titleService.setTitle(title);
+        });
       });
     });
   }
