@@ -20,12 +20,19 @@ export class HeaderComponent implements OnInit {
   /** アカウント */
   account: Account;
 
+  /** リンクを表示するか */
+  isLink = true;
+
   constructor(
     private authService: AuthService,
     private accountService: AccountService
   ) { }
 
   ngOnInit() {
+    if (location.pathname === '/maintenance') {
+      this.isLink = false;
+      return;
+    }
     // ログイン検知
     this.authService.isAuthenticated.subscribe(ret => {
       this.authenticated = Boolean(ret);
