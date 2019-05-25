@@ -18,6 +18,12 @@ export class AccountPostComponent implements OnInit {
   constructor(private photoService: PhotoService) { }
 
   ngOnInit() {
+    // ログインIDを渡されない場合(ブロックなど)
+    if (!this.loginId) {
+      this.photoList = [];
+      this.postCount.emit(0);
+      return;
+    }
     this.photoService.getPhotoList(this.loginId).subscribe(photoPage => {
       this.photoList = photoPage.content;
 

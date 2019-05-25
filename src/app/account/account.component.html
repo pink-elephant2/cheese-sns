@@ -9,7 +9,7 @@
           <h3 class="h5">{{account.name}}</h3>&nbsp;
           <h2 class="h6 grey-text">@{{account.loginId}}</h2>
         </div>
-        <ng-container *ngIf="!isMe">
+        <ng-container *ngIf="!isMe && !account.isBlocked">
           <button *ngIf="account.isFollow"
             class="btn follow-btn waves-effect waves-light grey-text grey lighten-5 modal-trigger"
             data-target="unfollow-modal">フォロー中</button>
@@ -64,18 +64,21 @@
 
     <!-- 投稿 -->
     <div id="post" class="col s12">
-      <app-account-post *ngIf="account" [loginId]="account.loginId" (postCount)="postCount=$event"></app-account-post>
+      <app-account-post *ngIf="account" [loginId]="!account.isBlocked ? account.loginId : null"
+        (postCount)="postCount=$event"></app-account-post>
     </div>
 
     <!-- フォロー -->
     <div id="following" class="col s12" style="display:none;">
-      <app-account-following *ngIf="account" [loginId]="account.loginId" (followingCount)="followingCount=$event">
+      <app-account-following *ngIf="account" [loginId]="!account.isBlocked ? account.loginId : null"
+        (followingCount)="followingCount=$event">
       </app-account-following>
     </div>
 
     <!-- フォローワー -->
     <div id="followers" class="col s12" style="display:none;">
-      <app-account-followers *ngIf="account" [loginId]="account.loginId" (followersCount)="followersCount=$event">
+      <app-account-followers *ngIf="account" [loginId]="!account.isBlocked ? account.loginId : null"
+        (followersCount)="followersCount=$event">
       </app-account-followers>
     </div>
   </div>

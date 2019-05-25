@@ -22,6 +22,13 @@ export class AccountFollowingComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    // ログインIDを渡されない場合(ブロックなど)
+    if (!this.loginId) {
+      this.accountList = [];
+      this.followingCount.emit(0);
+      return;
+    }
+
     // フォローを取得する
     this.followService.getFollow(this.loginId).subscribe(accountPage => {
       this.accountList = accountPage.content;
