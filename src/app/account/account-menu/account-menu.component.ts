@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -60,7 +60,7 @@ export class AccountMenuComponent implements OnInit, OnChanges {
     });
   }
 
-  ngOnChanges(changes: import("@angular/core").SimpleChanges): void {
+  ngOnChanges(changes: SimpleChanges): void {
     if (this.account) {
       // ログイン前に行う予定だった処理を実行する
       if (this.navigateService.getAfterLoginUrl() === ('/' + this.account.loginId)

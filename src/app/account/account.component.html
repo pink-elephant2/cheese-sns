@@ -1,4 +1,4 @@
-<section class="section animated fadeIn">
+<section class="section animated fadeIn" *ngIf="!isNotFound">
   <ng-container *ngIf="account">
     <div class="row">
       <div class="col s3">
@@ -47,7 +47,7 @@
     </div>
   </ng-container>
 </section>
-<section class="section animated fadeIn">
+<section class="section animated fadeIn" *ngIf="!isNotFound">
   <div class="row">
     <div class="col s12">
       <ul class="tabs">
@@ -96,6 +96,15 @@
     <a href="javascript:void(0)" class="modal-close waves-effect waves-light btn-flat">キャンセル</a>
   </div>
 </div>
+
+<section class="section animated fadeIn" *ngIf="isNotFound">
+  <div class="row">
+    <div class="col s12">
+      <h2 class="h5 red-text darken-1">お探しのページは見つかりませんでした。</h2>
+      <p>ページが削除されたか移動した可能性があります。</p>
+    </div>
+  </div>
+</section>
 
 <app-my-adsense></app-my-adsense>
 
