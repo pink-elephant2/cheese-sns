@@ -13,9 +13,6 @@ import { AccountModule } from './account/account.module';
 import { CreateModule } from './create/create.module';
 import { ActivityModule } from './activity/activity.module';
 import { PhotoModule } from './photo/photo.module';
-import { PrivacyModule } from './privacy/privacy.module';
-import { TermsModule } from './terms/terms.module';
-import { ContactModule } from './contact/contact.module';
 import { HeaderModule, FooterModule, LoadingModule, MyAdsenseModule } from './shared/component';
 import { PastDateModule } from './shared/pipe';
 
@@ -35,9 +32,6 @@ import { PastDateModule } from './shared/pipe';
     CreateModule,
     ActivityModule,
     PhotoModule,
-    PrivacyModule,
-    TermsModule,
-    ContactModule,
     HeaderModule,
     FooterModule,
     PastDateModule,

@@ -10,9 +10,6 @@ import { AccountComponent } from './account/account.component';
 import { CreateComponent } from './create/create.component';
 import { ActivityComponent } from './activity/activity.component';
 import { PhotoComponent } from './photo/photo.component';
-import { PrivacyComponent } from './privacy/privacy.component';
-import { TermsComponent } from './terms/terms.component';
-import { ContactComponent } from './contact/contact.component';
 
 const routes: Routes = [
   { path: '', component: TopComponent, data: { infinityScroll: true } },
@@ -24,9 +21,9 @@ const routes: Routes = [
   { path: 'create', component: CreateComponent, data: { title: '投稿' }, canActivate: [AuthGuard] },
   { path: 'activity', component: ActivityComponent, data: { title: 'アクティビティ' }, canActivate: [AuthGuard] },
   { path: 'photo/:photoId', component: PhotoComponent, data: { title: '写真' } },
-  { path: 'privacy', component: PrivacyComponent, data: { title: 'プライバシーポリシー' } },
-  { path: 'terms', component: TermsComponent, data: { title: '利用規約' } },
-  { path: 'contact', component: ContactComponent, data: { title: 'お問合せ' } },
+  { path: 'privacy', loadChildren: './privacy/privacy.module#PrivacyModule' },
+  { path: 'terms', loadChildren: './terms/terms.module#TermsModule' },
+  { path: 'contact', loadChildren: './contact/contact.module#ContactModule' },
   { path: 'setting', loadChildren: './setting/setting.module#SettingModule', canActivate: [AuthGuard] },
   { path: ':loginId', component: AccountComponent, data: { title: 'アカウント' } }
 ];
