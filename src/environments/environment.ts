@@ -11,6 +11,7 @@ import { FollowService, FollowMockService } from 'shared/service/follow';
 
 export const environment = {
   production: false,
+  apiDomain: '',
   authService: { provide: AuthService, useClass: AuthMockService },
   accountService: { provide: AccountService, useClass: AccountMockService },
   activityService: { provide: ActivityService, useClass: ActivityMockService },

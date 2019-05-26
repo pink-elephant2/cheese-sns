@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpResponse, HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
+import { environment } from 'env/environment';
 
 /**
  * APIサービス
@@ -22,7 +23,7 @@ export abstract class ApiService {
       const requestParams = this.setParams(params);
       url += `?${requestParams.toString()}`;
     }
-    return this.http.get<T>(url).pipe(catchError((res: HttpResponse<T>) => {
+    return this.http.get<T>(environment.apiDomain + url).pipe(catchError((res: HttpResponse<T>) => {
       if (res.status === 503 || res.status === 504) {
         // メンテナンス画面へ
         location.href = '/assets/html/maintenance.html';
@@ -39,7 +40,7 @@ export abstract class ApiService {
     header.append('Content-Type', 'application/x-www-form-urlencoded');
     // header.append('Content-Type', 'multipart/form-data');
 
-    return this.http.post<T>(url, params, { headers: header });
+    return this.http.post<T>(environment.apiDomain + url, params, { headers: header });
   }
 
   /**
@@ -50,7 +51,7 @@ export abstract class ApiService {
       const requestParams = this.setParams(params);
       url += `?${requestParams.toString()}`;
     }
-    return this.getObservable(this.http.delete(url)).pipe(map(data => data as T | T[]));
+    return this.getObservable(this.http.delete(environment.apiDomain + url)).pipe(map(data => data as T | T[]));
   }
 
   /**

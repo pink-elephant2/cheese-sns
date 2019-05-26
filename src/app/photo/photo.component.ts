@@ -46,10 +46,10 @@ export class PhotoComponent implements OnInit, OnDestroy {
         }
         throw error;
       })).subscribe(photo => {
-        this.loadingService.setLoading(false);
 
         // 投稿者を取得 TODO API側で処理すること
         this.accountService.getAccount(photo.account.loginId).subscribe((account: Account) => {
+          this.loadingService.setLoading(false);
 
           this.photo = photo;
           this.photo.account = account;

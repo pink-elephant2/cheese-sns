@@ -7,6 +7,7 @@ import { FollowService } from 'shared/service/follow';
 
 export const environment = {
   production: false,
+  apiDomain: '',
   authService: AuthService,
   accountService: AccountService,
   activityService: ActivityService,

@@ -37,7 +37,8 @@
               "node_modules/materialize-css/dist/js/materialize.min.js",
               "src/init.js"
             ],
-            "es5BrowserSupport": true
+            "es5BrowserSupport": true,
+            "showCircularDependencies": false
           },
           "configurations": {
             "production": {
