@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { FollowService } from 'shared/service/follow';
 import { Account } from 'shared/service/account';
 
@@ -7,7 +7,7 @@ import { Account } from 'shared/service/account';
   templateUrl: './account-following.component.html',
   styleUrls: ['./account-following.component.scss']
 })
-export class AccountFollowingComponent implements OnInit {
+export class AccountFollowingComponent implements OnChanges {
 
   /** ログインID */
   @Input() loginId: string;
@@ -21,7 +21,7 @@ export class AccountFollowingComponent implements OnInit {
     private followService: FollowService
   ) { }
 
-  ngOnInit() {
+  ngOnChanges(changes: SimpleChanges): void {
     // ログインIDを渡されない場合(ブロックなど)
     if (!this.loginId) {
       this.accountList = [];

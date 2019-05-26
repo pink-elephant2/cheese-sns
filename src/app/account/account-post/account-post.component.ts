@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { PhotoService, Photo } from 'shared/service/photo';
 
 @Component({
@@ -6,7 +6,7 @@ import { PhotoService, Photo } from 'shared/service/photo';
   templateUrl: './account-post.component.html',
   styleUrls: ['./account-post.component.scss']
 })
-export class AccountPostComponent implements OnInit {
+export class AccountPostComponent implements OnChanges {
 
   @Input() loginId: string;
 
@@ -17,7 +17,7 @@ export class AccountPostComponent implements OnInit {
 
   constructor(private photoService: PhotoService) { }
 
-  ngOnInit() {
+  ngOnChanges(changes: SimpleChanges): void {
     // ログインIDを渡されない場合(ブロックなど)
     if (!this.loginId) {
       this.photoList = [];
