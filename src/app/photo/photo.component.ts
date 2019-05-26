@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
+import { catchError } from 'rxjs/operators';
 
 import { AccountService, Account } from 'shared/service/account';
 import { Photo, PhotoService } from 'shared/service/photo';
@@ -18,6 +19,9 @@ export class PhotoComponent implements OnInit, OnDestroy {
 
   private sub: any;
 
+  /** 写真が存在しない */
+  isNotFound = false;
+
   constructor(
     private route: ActivatedRoute,
     private titleService: Title,
@@ -33,7 +37,15 @@ export class PhotoComponent implements OnInit, OnDestroy {
 
       // 写真を取得
       this.loadingService.setLoading(true);
-      this.photoService.getPhoto(photoId).subscribe(photo => {
+      this.photoService.getPhoto(photoId).pipe(catchError((error: Response) => {
+        this.loadingService.setLoading(false);
+
+        // 写真が存在しない場合
+        if (error.status === 404) {
+          this.isNotFound = true;
+        }
+        throw error;
+      })).subscribe(photo => {
         this.loadingService.setLoading(false);
 
         // 投稿者を取得 TODO API側で処理すること
