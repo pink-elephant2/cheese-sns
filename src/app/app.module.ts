@@ -15,6 +15,8 @@ import { ActivityModule } from './activity/activity.module';
 import { PhotoModule } from './photo/photo.module';
 import { HeaderModule, FooterModule, LoadingModule, MyAdsenseModule } from './shared/component';
 import { PastDateModule } from './shared/pipe';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,8 @@ import { PastDateModule } from './shared/pipe';
     FooterModule,
     PastDateModule,
     LoadingModule,
-    MyAdsenseModule
+    MyAdsenseModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]
