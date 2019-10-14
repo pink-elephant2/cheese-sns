@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import Compressor from 'compressorjs';
+
 import { AuthService } from 'shared/service/auth';
 import { AccountService, Account } from 'shared/service/account';
 import { LoadingService } from 'shared/service/loading';
@@ -73,26 +75,37 @@ export class SettingProfileComponent implements OnInit {
     reader.addEventListener('load', () => {
       this.blobUrl = reader.result.toString();
 
-      // 画像更新
-      this.loadingService.setLoading(true);
-      this.accountService.putImage(this.account.loginId, this.imageForm.value, files[0]).subscribe(ret => {
-        this.loadingService.setLoading(false);
-        if (ret) {
-          window['M'].toast({ html: '画像を更新しました。' });
-        } else {
-          this.isInValid = true;
-        }
-      }, (error: Response) => {
-        this.loadingService.setLoading(false);
+      // 画像圧縮
+      new Compressor(files[0], {
+        quality: 0.8,
+        maxWidth: 250,
+        success: (result) => {
+          // 画像更新
+          this.loadingService.setLoading(true);
+          this.accountService.putImage(this.account.loginId, this.imageForm.value, new File([result], files[0].name, { type: files[0].type })).subscribe(ret => {
+            this.loadingService.setLoading(false);
+            if (ret) {
+              window['M'].toast({ html: '画像を更新しました。' });
+            } else {
+              this.isInValid = true;
+            }
+          }, (error: Response) => {
+            this.loadingService.setLoading(false);
 
-        switch (error.status) {
-          case 403:
-            this.isInValid = true;
-            break;
-          case 500:
-          default:
-            this.isError = true;
-            break;
+            switch (error.status) {
+              case 403:
+                this.isInValid = true;
+                break;
+              case 500:
+              default:
+                this.isError = true;
+                break;
+            }
+          });
+        },
+        error(err) {
+          this.loadingService.setLoading(false);
+          throw err;
         }
       });
     }, false);
