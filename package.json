@@ -28,6 +28,7 @@
     "@angular/service-worker": "^8.2.7",
     "animate.css": "^3.7.0",
     "classlist.js": "^1.1.20150312",
+    "compressorjs": "^1.0.5",
     "core-js": "^2.6.5",
     "ng2-adsense": "^5.4.2",
     "rxjs": "~6.5.3",

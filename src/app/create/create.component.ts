@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
+import Compressor from 'compressorjs';
 
 import { CreateForm } from './create-form';
 import { AuthService } from 'shared/service/auth';
@@ -64,27 +65,38 @@ export class CreateComponent implements OnInit {
     this.isInValid = false;
     this.isError = false;
 
-    // 写真を投稿する
     this.loadingService.setLoading(true);
-    this.photoService.postPhoto(this.authService.loginId, form, files[0]).subscribe((photo: Photo) => {
-      this.loadingService.setLoading(false);
+    // 画像圧縮
+    new Compressor(files[0], {
+      quality: 0.8,
+      maxWidth: 1200,
+      success: (result) => {
+        // 写真を投稿する
+        this.photoService.postPhoto(this.authService.loginId, form, new File([result], files[0].name, { type: files[0].type })).subscribe((photo: Photo) => {
+          this.loadingService.setLoading(false);
 
-      if (photo.cd) {
-        // TODO 完了モーダルを出してから
-        this.router.navigate(['/photo/' + photo.cd]);
-      }
-    }, (error: HttpErrorResponse) => {
-      this.loadingService.setLoading(false);
-      console.error(error);
+          if (photo.cd) {
+            // TODO 完了モーダルを出してから
+            this.router.navigate(['/photo/' + photo.cd]);
+          }
+        }, (error: HttpErrorResponse) => {
+          this.loadingService.setLoading(false);
+          console.error(error);
 
-      switch (error.status) {
-        case 403:
-          this.isInValid = true;
-          break;
-        case 500:
-        default:
-          this.isError = true;
-          break;
+          switch (error.status) {
+            case 403:
+              this.isInValid = true;
+              break;
+            case 500:
+            default:
+              this.isError = true;
+              break;
+          }
+        });
+      },
+      error(err) {
+        this.loadingService.setLoading(false);
+        throw err;
       }
     });
   }
