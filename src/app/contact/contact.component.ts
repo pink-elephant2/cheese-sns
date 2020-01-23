@@ -59,7 +59,7 @@ export class ContactComponent implements OnInit {
 
       if (ret) {
         // tracking
-        this.gaService.sendEvent('contact', 'link', 'click', 'contact');
+        this.gaService.sendEvent('contact', 'contact', 'click', form.name);
 
         // 送信完了
         this.isCompleted = true;

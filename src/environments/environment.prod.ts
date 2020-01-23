@@ -7,7 +7,7 @@ import { FollowService } from 'shared/service/follow';
 
 export const environment = {
   production: true,
-  apiDomain: 'https://cheese-sns-api.herokuapp.com',
+  apiDomain: 'https://api.torochee.com',
   authService: AuthService,
   accountService: AccountService,
   activityService: ActivityService,

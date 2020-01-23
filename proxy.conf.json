@@ -1,7 +1,7 @@
 {
   "/api/v1": {
     "target": {
-      "host": "cheese-sns-api.herokuapp.com",
+      "host": "api.torochee.com",
       "protocol": "https:",
       "port": 443
     },

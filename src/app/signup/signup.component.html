@@ -1,6 +1,6 @@
 <section class="section animated fadeIn">
   <div class="row">
-    <div class="col s12 m6">
+    <div class="col s12">
       <h2 class="h5 red-text darken-1">新規アカウント登録</h2>
 
       <p>無料でご利用いただけます。</p>
@@ -8,12 +8,7 @@
   </div>
 
   <div class="row">
-    <div class="col s12 m6">
-      <button class="btn waves-effect waves-light indigo darken-2" type="button">Facebookアカウントで登録</button>
-      <br>
-    </div>
-
-    <div class="col s12 m6">
+    <div class="col s12">
       <form [formGroup]="form" (ngSubmit)="onSubmit(form.value, form.valid)">
         <div class="row">
           <div class="col s12 input-field">

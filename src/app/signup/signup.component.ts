@@ -5,6 +5,7 @@ import { SignupForm } from './signup-form';
 import { AccountService } from 'shared/service/account';
 import { LoadingService } from 'shared/service/loading';
 import { AuthService } from 'shared/service/auth';
+import { GaService } from 'shared/service/ga';
 
 /**
  * アカウント作成画面
@@ -29,7 +30,8 @@ export class SignupComponent implements OnInit {
     private router: Router,
     private accountService: AccountService,
     private authService: AuthService,
-    private loadingService: LoadingService
+    private loadingService: LoadingService,
+    private gaService: GaService
   ) {
     this.form = this.formBuilder.group(SignupForm.validators);
   }
@@ -60,6 +62,9 @@ export class SignupComponent implements OnInit {
       if (isCreated) {
         // ログイン認証
         this.authService.login(this.form.value).subscribe((isLogin: boolean) => {
+          // tracking
+          this.gaService.sendEvent('signup', 'signup', 'click', form.loginId);
+
           // 次ページへ
           this.router.navigate(['/account']);
           return;

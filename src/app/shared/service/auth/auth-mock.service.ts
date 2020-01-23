@@ -36,4 +36,11 @@ export class AuthMockService extends AuthService {
     return of(true);
   }
 
+  /**
+   * ログインチェック
+   */
+  public check(): Observable<boolean> {
+    // TODO throwしたい
+    return of(false);
+  }
 }

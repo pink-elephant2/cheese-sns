@@ -39,6 +39,18 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    if (this.authService.authenticated) {
+      // ログイン済みならTOPへ
+      this.router.navigate(['account']);
+    } else {
+      // ログインチェック
+      this.authService.check().subscribe((ret: boolean) => {
+        if (ret) {
+          // ログイン済みならTOPへ
+          this.router.navigate(['account']);
+        }
+      });
+    }
   }
 
   ngOnDestroy() {

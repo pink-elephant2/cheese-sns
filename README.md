@@ -14,6 +14,16 @@ Run `ng generate component component-name` to generate a new component. You can 
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
+`cd dist/cheese-sns/`
+
+`aws s3 sync . s3://cheese-sns-dev/web/ --delete --cache-control "max-age=25200"`
+
+`aws s3 sync --profile cheese . s3://cheese-sns-dev/web/ --delete --cache-control "max-age=25200"`
+
+`aws cloudfront create-invalidation --distribution-id E23XA7L6Q4V6WG --paths "/*"`
+
+`aws cloudfront create-invalidation --profile cheese --distribution-id E23XA7L6Q4V6WG --paths "/*"`
+
 ## Running unit tests
 
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
