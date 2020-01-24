@@ -22,6 +22,8 @@ export class Account {
   /** ウェブサイト */
   url: string;
 
+  /** Facebookアカウント */
+  facebook: string;
   /** Twitterアカウント */
   twitter: string;
   /** Instagramアカウント */

@@ -26,12 +26,21 @@
     <div class="row">
       <div class="col s12">
         <span>
-          <a *ngIf="account.twitter" href="https://twitter.com/{{account.twitter}}" target="_blank" rel="noopener">
+          <ng-container *ngIf="account.twitter">
+            <a href="https://twitter.com/{{account.twitter}}" target="_blank" rel="noopener">
             <img src="https://www.google.com/s2/favicons?domain=twitter.com" alt="twitter" width="16" height="16">
           </a>&nbsp;
+          </ng-container>
+          <ng-container *ngIf="account.facebook">
+            <a href="https://www.facebook.com/profile.php?id={{account.facebook}}" target="_blank" rel="noopener">
           <img src="https://www.google.com/s2/favicons?domain=www.facebook.com" alt="facebook" width="16"
-            height="16">&nbsp;
-          <img src="https://www.google.com/s2/favicons?domain=www.instagram.com" alt="instagram" width="16" height="16">
+                height="16">
+            </a>&nbsp;
+          </ng-container>
+          <ng-container *ngIf="account.instagram">
+            <img src="https://www.google.com/s2/favicons?domain=www.instagram.com" alt="instagram" width="16"
+              height="16">
+          </ng-container>
         </span>
       </div>
     </div>
