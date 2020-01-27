@@ -21,11 +21,11 @@ export class AppComponent implements OnInit {
     private titleService: Title,
     private gaService: GaService,
     private swUpdate: SwUpdate
-  ) { 
+  ) {
     if (this.swUpdate.isEnabled) {
       this.swUpdate.available.subscribe(() => {
         // 強制更新
-        window.location.reload(true);
+        window.location.reload();
       });
       // Check for new version
       this.swUpdate.checkForUpdate();
@@ -47,6 +47,13 @@ export class AppComponent implements OnInit {
 
       // tracking
       this.gaService.sendPageView(params.url);
+
+      // ホーム画面へ追加イベント
+      window.addEventListener('beforeinstallprompt', event => {
+        event['userChoice'].then(choiceResult => {
+          this.gaService.sendEvent('install', 'install', 'click', choiceResult.outcome);
+        });
+      });
     });
   }
 
