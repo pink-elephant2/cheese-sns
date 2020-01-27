@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { APP_TITLE } from 'shared/const';
+import { APP_TITLE, APP_DESCRIPTION } from 'shared/const';
 
 @Component({
   selector: 'app-footer',
@@ -10,6 +10,9 @@ export class FooterComponent implements OnInit {
 
   /** タイトル */
   title = APP_TITLE;
+
+  /** 説明文 */
+  description = APP_DESCRIPTION;
 
   constructor() { }
 
