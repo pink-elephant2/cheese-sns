@@ -16,8 +16,7 @@
           <button *ngIf="!account.isFollow" class="btn follow-btn waves-effect waves-light pink accent-2"
             (click)="follow()">フォローする</button>
         </ng-container>
-        <a *ngIf="isMe" class="waves-effect waves-light btn-small pink accent-2"
-          routerLink="/setting/profile">プロフィール編集</a>
+        <button *ngIf="isMe" class="waves-effect waves-light btn-small pink accent-2" routerLink="/setting/profile">プロフィール編集</button>
         <button class="btn-flat modal-trigger grey-text text-darken-2" data-target="menu-modal">
           <i class="material-icons">more_horiz</i>
         </button>
