@@ -13,6 +13,7 @@ import { PhotoComponent } from './photo/photo.component';
 
 const routes: Routes = [
   { path: '', component: TopComponent, data: { infinityScroll: true } },
+  { path: 'home', component: TopComponent, data: { infinityScroll: true } }, // PWA
   { path: 'login', component: LoginComponent, data: { title: 'ログイン' } },
   { path: 'logout', component: LogoutComponent, data: { title: 'ログアウト' } },
   { path: 'maintenance', loadChildren: () => import('./maintenance/maintenance.module').then(m => m.MaintenanceModule) },

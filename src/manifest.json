@@ -4,8 +4,8 @@
   "theme_color": "#ffee58",
   "background_color": "#ffffff",
   "display": "standalone",
-  "scope": "/cheese-sns",
-  "start_url": "/cheese-sns",
+  "scope": "/",
+  "start_url": "/home",
   "icons": [
     {
       "src": "favicon.png",
