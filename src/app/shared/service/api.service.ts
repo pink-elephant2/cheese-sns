@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpResponse, HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
+import { Router } from '@angular/router';
 import { environment } from 'env/environment';
 
 /**
@@ -12,7 +13,8 @@ import { environment } from 'env/environment';
 export abstract class ApiService {
 
   constructor(
-    public http: HttpClient
+    public http: HttpClient,
+    public router: Router
   ) { }
 
   /**
@@ -26,7 +28,7 @@ export abstract class ApiService {
     return this.http.get<T>(environment.apiDomain + url, { withCredentials: true }).pipe(catchError((res: HttpResponse<T>) => {
       if (res.status === 503 || res.status === 504) {
         // メンテナンス画面へ
-        location.href = '/assets/html/maintenance.html';
+        this.router.navigate(['/maintenance']);
       }
       throw res;
     }));
