@@ -59,6 +59,7 @@ export class AccountComponent implements OnInit, OnDestroy {
       const loginId = params.loginId || this.authService.loginId;
 
       // アカウント取得
+      this.account = undefined;
       this.loadingService.setLoading(true);
       this.accountService.getAccount(loginId).pipe(catchError((error: Response) => {
         this.loadingService.setLoading(false);
