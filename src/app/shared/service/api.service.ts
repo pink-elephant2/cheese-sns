@@ -26,7 +26,7 @@ export abstract class ApiService {
       url += `?${requestParams.toString()}`;
     }
     return this.http.get<T>(environment.apiDomain + url, { withCredentials: true }).pipe(catchError((res: HttpResponse<T>) => {
-      if (res.status === 503 || res.status === 504) {
+      if (res.status === 503 || res.status === 504 || res.status === 0) {
         // メンテナンス画面へ
         this.router.navigate(['/maintenance']);
       }
