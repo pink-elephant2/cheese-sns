@@ -1,15 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
+import { filter } from 'rxjs/operators';
 
-import { APP_TITLE } from 'shared/const';
-import { AuthService } from 'shared/service/auth';
-import { AccountService, Account } from 'shared/service/account';
+import { APP_TITLE } from '../../const';
+import { AuthService } from '../../service/auth';
+import { AccountService, Account } from '../../service/account';
 
+/**
+ * ヘッダー
+ */
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, AfterViewInit {
 
   /** タイトル */
   title = APP_TITLE;
@@ -24,29 +29,39 @@ export class HeaderComponent implements OnInit {
   isLink = true;
 
   constructor(
+    private router: Router,
     private authService: AuthService,
     private accountService: AccountService
   ) { }
 
   ngOnInit() {
-    if (location.pathname === '/maintenance') {
-      this.isLink = false;
-      return;
-    }
-    // ログイン検知
-    this.authService.isAuthenticated.subscribe(ret => {
-      this.authenticated = Boolean(ret);
-
-      // ログイン後
-      if (this.authenticated) {
-        // アカウント取得
-        this.accountService.getAccount(this.authService.loginId).subscribe(account => {
-          this.account = account;
-        });
-      } else {
-        this.account = undefined;
+    this.router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe((params: any) => {
+      if (params.url === '/maintenance') {
+        this.isLink = false;
+        return;
       }
+      this.isLink = true;
+
+      // ログイン検知
+      this.authService.isAuthenticated.subscribe(ret => {
+        this.authenticated = Boolean(ret);
+
+        // ログイン後
+        if (this.authenticated) {
+          // アカウント取得
+          this.accountService.getAccount(this.authService.loginId).subscribe(account => {
+            this.account = account;
+          });
+        } else {
+          this.account = undefined;
+        }
+      });
     });
+  }
+
+  ngAfterViewInit(): void {
+    // サイドメニュー初期化
+    window['$']('.sidenav').sidenav();
 
     // ドロップダウン初期化
     const option = {
@@ -54,5 +69,4 @@ export class HeaderComponent implements OnInit {
     };
     window['M'].Dropdown.init(document.querySelectorAll('.dropdown-trigger'), option);
   }
-
 }
