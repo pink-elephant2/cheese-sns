@@ -173,5 +173,8 @@
       }
     }
   },
-  "defaultProject": "cheese-sns"
+  "defaultProject": "cheese-sns",
+  "cli": {
+    "analytics": "5a74dc26-0ea7-437e-b7e2-ca95a4d2e77a"
+  }
 }

@@ -5,6 +5,7 @@ import { FollowService } from './follow.service';
 import { Account } from '../account/account';
 import { AccountMockService } from '../account';
 import { Page } from 'shared/model/page';
+import { Pageable } from 'shared/model/pageable';
 
 /**
  * フォローサービス
@@ -16,7 +17,7 @@ export class FollowMockService extends FollowService {
   /**
    * フォローを取得する
    */
-  public getFollow(loginId: string): Observable<Page<Account>> {
+  public getFollow(loginId: string, pageable?: Pageable): Observable<Page<Account>> {
     if (!loginId) {
       loginId = 'my_melody';
     }
@@ -28,7 +29,7 @@ export class FollowMockService extends FollowService {
   /**
    * フォローワーを取得する
    */
-  public getFollower(loginId: string): Observable<Page<Account>> {
+  public getFollower(loginId: string, pageable?: Pageable): Observable<Page<Account>> {
     if (!loginId) {
       loginId = 'my_melody';
     }

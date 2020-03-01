@@ -1,9 +1,13 @@
-<div class="row">
-  <div class="col s6 m4 l4" *ngFor="let account of accountList">
-    <app-account-card [account]="account"></app-account-card>
-  </div>
+<ng-container *ngIf="accountData">
+  <div class="row">
+    <div class="col s6 m4 l4" *ngFor="let account of accountData.content">
+      <app-account-card [account]="account"></app-account-card>
+    </div>
 
-  <div class="col s12" *ngIf="accountList && accountList.length === 0">
-    <p>まだフォローしている人がいません。</p>
+    <div class="col s12" *ngIf="accountData.totalElements === 0">
+      <p>まだフォローしている人がいません。</p>
+    </div>
   </div>
-</div>
+  <!-- ページネーション -->
+  <app-pagination [pageData]="accountData" (onNext)="getFollower($event)"></app-pagination>
+</ng-container>

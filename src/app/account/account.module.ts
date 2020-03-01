@@ -12,6 +12,7 @@ import { AccountCardModule, MyAdsenseModule } from 'shared/component';
 import { NavigateService } from 'shared/service/navigate';
 import { AccountImageModule } from 'shared/directive';
 import { AccountMenuComponent } from './account-menu/account-menu.component';
+import { PaginationModule } from 'shared/component/pagination';
 
 @NgModule({
   imports: [
@@ -21,7 +22,8 @@ import { AccountMenuComponent } from './account-menu/account-menu.component';
     AppRoutingModule,
     AccountCardModule,
     MyAdsenseModule,
-    AccountImageModule
+    AccountImageModule,
+    PaginationModule
   ],
   declarations: [
     AccountComponent,

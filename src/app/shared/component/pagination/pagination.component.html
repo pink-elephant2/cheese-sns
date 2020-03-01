@@ -1,0 +1,15 @@
+<ul class="pagination" *ngIf="pagination.length > 1">
+  <li [ngClass]="pageData.first ? 'disabled' : 'waves-effect'">
+    <a (click)="next(pageData.number - 1)">
+      <i class="material-icons">chevron_left</i>
+    </a>
+  </li>
+  <li *ngFor="let i of this.pagination" [ngClass]="pageData.number + 1 == i ? 'active' : 'waves-effect'">
+    <a (click)="next(i - 1)">{{i}}</a>
+  </li>
+  <li [ngClass]="pageData.last ? 'disabled' : 'waves-effect'">
+    <a (click)="next(pageData.number + 1)">
+      <i class="material-icons">chevron_right</i>
+    </a>
+  </li>
+</ul>

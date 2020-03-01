@@ -5,6 +5,7 @@ import { ApiService } from '../api.service';
 import { Account } from '../account/account';
 import { ApiConst } from 'shared/const';
 import { Page } from 'shared/model/page';
+import { Pageable } from 'shared/model/pageable';
 
 /**
  * フォローサービス
@@ -15,17 +16,17 @@ export class FollowService extends ApiService {
   /**
    * フォローを取得する
    */
-  public getFollow(loginId: string): Observable<Page<Account>> {
+  public getFollow(loginId: string, pageable?: Pageable): Observable<Page<Account>> {
     const url = `${ApiConst.PATH.ACCOUNT}/${loginId}/follow`;
-    return this.get<Page<Account>>(url);
+    return this.get<Page<Account>>(url, pageable);
   }
 
   /**
    * フォローワーを取得する
    */
-  public getFollower(loginId: string): Observable<Page<Account>> {
+  public getFollower(loginId: string, pageable?: Pageable): Observable<Page<Account>> {
     const url = `${ApiConst.PATH.ACCOUNT}/${loginId}/follower`;
-    return this.get<Page<Account>>(url);
+    return this.get<Page<Account>>(url, pageable);
   }
 
   /**
