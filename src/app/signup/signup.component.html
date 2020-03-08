@@ -59,6 +59,11 @@
               <input id="isAgreeTerm" type="checkbox" formControlName="isAgreeTerm" required>
               <span><a routerLink="/terms" target="_blank" rel="noopener">利用規約</a>に同意の上、「利用規約に同意して登録」ボタンを押してください。</span>
             </label>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col s12">
             <button [disabled]="!form.valid || isError" class="btn waves-effect waves-light right pink accent-2"
               type="submit">利用規約に同意して登録</button>
           </div>
