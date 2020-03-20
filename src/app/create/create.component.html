@@ -1,12 +1,11 @@
 <section class="section animated fadeIn">
   <form [formGroup]="form" (ngSubmit)="onSubmit(form.value, fl.files, form.valid)">
-    <p>TODO: カメラリンク押したら直接ダイアログを出す</p>
-
     <div class="row">
       <div class="col s12 file-field input-field">
         <div class="btn pink accent-2">
           <span>参照</span>
-          <input type="file" formControlName="upfile" accept="image/*" #fl (change)="onchange(fl.files)">
+          <!-- TODO acceptを細かく指定 -->
+          <input type="file" formControlName="upfile" accept="image/*,video/*" #fl (change)="onchange(fl.files)">
         </div>
         <div class="file-path-wrapper">
           <input class="file-path validate" type="text">
@@ -14,9 +13,22 @@
       </div>
     </div>
 
+    <!-- 画像プレビュー -->
     <div class="row" *ngIf="blobUrl">
       <div class="col s12">
         <img [src]="blobUrl" class="responsive-img">
+
+        <ng-container *ngIf="form.controls['upfile'].touched">
+          <span class="helper-text" *ngIf="form.controls['upfile'].hasError('required')" data-error="入力してください"></span>
+        </ng-container>
+      </div>
+    </div>
+
+    <!-- 動画プレビュー -->
+    <div class="row" *ngIf="blobVideoUrl">
+      <div class="col s12">
+        <iframe [src]="blobVideoUrl"></iframe>
+
         <ng-container *ngIf="form.controls['upfile'].touched">
           <span class="helper-text" *ngIf="form.controls['upfile'].hasError('required')" data-error="入力してください"></span>
         </ng-container>

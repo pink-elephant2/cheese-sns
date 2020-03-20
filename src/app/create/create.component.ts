@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import Compressor from 'compressorjs';
 
@@ -22,6 +23,9 @@ export class CreateComponent implements OnInit {
   /** プレビュー画像パス */
   blobUrl: string;
 
+  /** プレビュー動画パス */
+  blobVideoUrl: SafeResourceUrl;
+
   /** バリデーション失敗 */
   isInValid: boolean;
   /** APIエラー */
@@ -33,6 +37,7 @@ export class CreateComponent implements OnInit {
     private authService: AuthService,
     private photoService: PhotoService,
     private loadingService: LoadingService,
+    private sanitizer: DomSanitizer
   ) {
     this.form = this.formBuilder.group(CreateForm.validators);
   }
@@ -46,11 +51,23 @@ export class CreateComponent implements OnInit {
     if (files.length <= 0) {
       return;
     }
-    const reader = new FileReader();
-    reader.addEventListener('load', () => {
-      this.blobUrl = reader.result.toString();
-    }, false);
-    reader.readAsDataURL(files[0]);
+    this.blobUrl = undefined;
+    this.blobVideoUrl = undefined;
+
+    if (files[0].type.indexOf('image/') !== -1) {
+      // 画像
+      const reader = new FileReader();
+      reader.addEventListener('load', () => {
+        this.blobUrl = reader.result.toString();
+      }, false);
+      reader.readAsDataURL(files[0]);
+    } else if (files[0].type.indexOf('video/') !== -1) {
+      // 動画
+      this.blobVideoUrl = this.sanitizer.bypassSecurityTrustResourceUrl(window.URL.createObjectURL(files[0]));
+    } else {
+      // TODO エラー処理
+      console.error(files[0]);
+    }
   }
 
   /**
@@ -66,6 +83,18 @@ export class CreateComponent implements OnInit {
     this.isError = false;
 
     this.loadingService.setLoading(true);
+
+    if (this.blobUrl) {
+      // 画像登録
+      this.postImage(form, files);
+    } else if (this.blobVideoUrl) {
+      // 動画登録
+      this.postVideo(form, files);
+    }
+  }
+
+  /** 画像登録 */
+  private postImage(form: CreateForm, files: FileList): void {
     // 画像圧縮
     new Compressor(files[0], {
       quality: 0.8,
@@ -97,6 +126,32 @@ export class CreateComponent implements OnInit {
       error(err) {
         this.loadingService.setLoading(false);
         throw err;
+      }
+    });
+  }
+
+  /** 動画登録 */
+  private postVideo(form: CreateForm, files: FileList): void {
+    // 動画を投稿する
+    this.photoService.postVideo(this.authService.loginId, form, files[0]).subscribe((photo: Photo) => {
+      this.loadingService.setLoading(false);
+
+      if (photo.cd) {
+        // TODO 完了モーダルを出してから
+        this.router.navigate(['/photo/' + photo.cd]);
+      }
+    }, (error: HttpErrorResponse) => {
+      this.loadingService.setLoading(false);
+      console.error(error);
+
+      switch (error.status) {
+        case 403:
+          this.isInValid = true;
+          break;
+        case 500:
+        default:
+          this.isError = true;
+          break;
       }
     });
   }

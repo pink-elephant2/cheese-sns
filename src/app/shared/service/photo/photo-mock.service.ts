@@ -133,6 +133,16 @@ export class PhotoMockService extends PhotoService {
   }
 
   /**
+   * 動画を投稿する
+   * TODO VideoServiceに移行
+   *
+   * @returns 写真情報
+   */
+  public postVideo(loginId: string, form: CreateForm, file: File): Observable<Photo> {
+    return of(PhotoMockService.photoList[0]);
+  }
+
+  /**
    * 写真にいいねをする
    */
   public likePhoto(loginId: string, photoCd: string): Observable<boolean> {

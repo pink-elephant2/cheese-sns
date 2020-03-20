@@ -47,6 +47,20 @@ export class PhotoService extends ApiService {
   }
 
   /**
+   * 動画を投稿する
+   * TODO VideoServiceに移行
+   *
+   * @returns 動画情報
+   */
+  public postVideo(loginId: string, form: CreateForm, file: File): Observable<Photo> {
+    const url = `${ApiConst.PATH.USER}/${loginId}/video`;
+    const data = new FormData();
+    data.append('upfile', file, form.upfile);
+    data.append('caption', form.caption);
+    return this.post<Photo>(url, data);
+  }
+
+  /**
    * 写真にいいねをする
    */
   public likePhoto(loginId: string, photoCd: string): Observable<boolean> {
