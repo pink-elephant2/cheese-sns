@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -24,11 +24,16 @@ export class PhotoCardComponent implements OnInit {
   /** コメント入力フォームを表示するか */
   @Input() hasInputComment = false;
 
+  @ViewChild('videoPlayer', { static: false }) videoPlayer: ElementRef;
+
   /** 入力フォーム */
   form: FormGroup;
 
   /** ログイン状態か */
   authenticated = false;
+
+  /** 動画再生中か(AutoPlay) TODO 読み込み完了してからtrueにする */
+  isStarted = true;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -49,6 +54,33 @@ export class PhotoCardComponent implements OnInit {
       this.navigateService.clearAfterLogin();
     }
     this.authenticated = this.authService.authenticated;
+  }
+
+  /**
+   * 動画再生/停止
+   */
+  public toggleVideo(): void {
+    // TODO
+    // if (!this.canplay) {
+    //   return;
+    // }
+    if (this.isStarted) {
+      this.pause();
+    } else {
+      this.play();
+    }
+  }
+
+  /** 動画再生 */
+  public play(): void {
+    this.videoPlayer.nativeElement.play();
+    this.isStarted = true;
+  }
+
+  /** 動画停止 */
+  public pause(): void {
+    this.videoPlayer.nativeElement.pause();
+    this.isStarted = false;
   }
 
   /**
