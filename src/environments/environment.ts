@@ -4,6 +4,7 @@ import { ActivityService, ActivityMockService } from 'shared/service/activity';
 import { ContactService, ContactMockService } from 'shared/service/contact';
 import { PhotoService, PhotoMockService } from 'shared/service/photo';
 import { FollowService, FollowMockService } from 'shared/service/follow';
+import { PasswordService, PasswordMockService } from 'shared/service/password';
 
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
@@ -18,6 +19,7 @@ export const environment = {
   contactService: { provide: ContactService, useClass: ContactMockService },
   followService: { provide: FollowService, useClass: FollowMockService },
   photoService: { provide: PhotoService, useClass: PhotoMockService },
+  passwordService: { provide: PasswordService, useClass: PasswordMockService },
   analytics: {
     id: ''
   },

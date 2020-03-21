@@ -18,6 +18,7 @@ const routes: Routes = [
   { path: 'logout', component: LogoutComponent, data: { title: 'ログアウト' } },
   { path: 'maintenance', loadChildren: () => import('./maintenance/maintenance.module').then(m => m.MaintenanceModule) },
   { path: 'signup', component: SignupComponent, data: { title: 'ユーザー登録' } },
+  { path: 'password', loadChildren: () => import('./password/password.module').then(m => m.PasswordModule) },
   { path: 'account', component: AccountComponent, data: { title: 'マイページ' }, canActivate: [AuthGuard] },
   { path: 'create', component: CreateComponent, data: { title: '投稿' }, canActivate: [AuthGuard] },
   { path: 'activity', component: ActivityComponent, data: { title: 'アクティビティ' }, canActivate: [AuthGuard] },

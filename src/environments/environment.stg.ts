@@ -4,6 +4,7 @@ import { ActivityService } from 'shared/service/activity';
 import { ContactService } from 'shared/service/contact';
 import { PhotoService } from 'shared/service/photo';
 import { FollowService } from 'shared/service/follow';
+import { PasswordService } from 'shared/service/password';
 
 export const environment = {
   production: false,
@@ -14,6 +15,7 @@ export const environment = {
   contactService: ContactService,
   followService: FollowService,
   photoService: PhotoService,
+  passwordService: PasswordService,
   analytics: {
     id: ''
   },
