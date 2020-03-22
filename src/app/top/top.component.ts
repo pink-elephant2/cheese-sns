@@ -41,6 +41,8 @@ export class TopComponent implements OnInit {
       this.loadingService.setLoading(false);
 
       this.photoList = this.photoList.concat(photoPage.content);
+    }, () => {
+      this.loadingService.setLoading(false);
     });
   }
 
