@@ -7,7 +7,7 @@ import { PasswordRoutingModule } from './password-routing.module';
 import { PasswordComponent } from './password.component';
 import { PasswordReminderComponent } from './password-reminder/password-reminder.component';
 import { PasswordReminderCbkComponent } from './password-reminder-cbk/password-reminder-cbk.component';
-// import { ThemeColorModule } from 'shared/directive/theme-color';
+import { ThemeColorModule } from 'shared/directive/theme-color';
 
 @NgModule({
   declarations: [
@@ -20,7 +20,7 @@ import { PasswordReminderCbkComponent } from './password-reminder-cbk/password-r
     FormsModule,
     ReactiveFormsModule,
     PasswordRoutingModule,
-    // ThemeColorModule
+    ThemeColorModule
   ],
   exports: [
     PasswordComponent
