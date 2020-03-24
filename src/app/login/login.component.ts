@@ -101,4 +101,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     });
   }
 
+  alert() {
+    window.alert('デモのため一部機能を制限しています。ご了承ください。');
+  }
 }
