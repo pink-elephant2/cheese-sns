@@ -13,7 +13,7 @@
             </ng-container>
             <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">
                 <i *ngIf="!account" class="material-icons">person</i>
-                <img *ngIf="account" [src]="account.imgUrl || '/assets/images/account.png'" [alt]="account.loginId"
+                <img *ngIf="account" appAccountImage [src]="account.imgUrl" [alt]="account.loginId"
                   class="avatar circle responsive-img white" style="width: 28px; vertical-align: middle;">
               </a></li>
           </ul>
