@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Photo, PhotoService } from 'shared/service/photo';
-import { Pageable } from 'shared/model';
+import { Pageable, Page } from 'shared/model';
 import { LoadingService } from 'shared/service/loading';
 
 /**
@@ -13,17 +13,18 @@ import { LoadingService } from 'shared/service/loading';
 })
 export class TopComponent implements OnInit {
 
-  height: number = window.innerHeight - (56 + 32); // ヘッダー+気持ち減らす
-  itemSize: 500;
-
   /** 写真リスト */
   photoList: Photo[] = [];
+  photoData: Page<Photo>;
 
   /** ページ情報 */
   pageable = {
     page: 0,
-    size: 9
+    size: 20
   } as Pageable;
+
+  /** もっと見るリンク */
+  @ViewChild('nextLink', { static: false }) nextLink: ElementRef;
 
   constructor(
     private photoService: PhotoService,
@@ -31,16 +32,38 @@ export class TopComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.loadingService.setLoading(true);
     this.getPhotoList();
   }
 
   getPhotoList() {
     // 写真を取得
-    this.loadingService.setLoading(true);
-    this.photoService.getPhotoList(null, this.pageable).subscribe(photoPage => {
+    this.photoService.getPhotoList(null, this.pageable).subscribe(photoData => {
       this.loadingService.setLoading(false);
 
-      this.photoList = this.photoList.concat(photoPage.content);
+      this.photoData = photoData;
+      this.photoList = this.photoList.concat(photoData.content);
+
+      if (!photoData.last) {
+        // もっと見るリンク
+        setTimeout(() => {
+          if (typeof IntersectionObserver !== 'undefined') {
+            const io = new IntersectionObserver(entries => {
+              entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                // 次のページへ
+                this.next();
+                io.unobserve(entry.target)
+              })
+            }, {
+                rootMargin: '200px 0px'
+              })
+            io.observe(this.nextLink.nativeElement)
+          } else {
+            // なし
+          }
+        }, 0);
+      }
     }, () => {
       this.loadingService.setLoading(false);
     });
