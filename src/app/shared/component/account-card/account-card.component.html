@@ -4,7 +4,8 @@
   </div>
   <div class="card-content">
     <span class="card-title activator grey-text text-darken-4">{{account.loginId}}</span>
-    <span class="grey-text"><a [routerLink]="['/', account.loginId]">@{{account.loginId}}</a></span>
+    <span class="grey-text"><a [routerLink]="['/', account.loginId]"
+        appThemeColorText="mainLink">@{{account.loginId}}</a></span>
   </div>
   <div class="card-reveal">
     <span class="card-title grey-text text-darken-4">{{account.loginId}}
