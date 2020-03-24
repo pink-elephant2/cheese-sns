@@ -24,6 +24,12 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 
 `aws cloudfront create-invalidation --profile cheese --distribution-id E23XA7L6Q4V6WG --paths "/*"`
 
+### デモ用
+
+`cd dist/cheese-sns/`
+
+`aws s3 sync . s3://demo-sns-ts/ --delete --cache-control "max-age=25200" --acl public-read`
+
 ## Running unit tests
 
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
