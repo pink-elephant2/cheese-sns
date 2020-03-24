@@ -44,15 +44,15 @@
   </li>
   <li class="collection-item" *ngIf="hasInputComment">
     <div>
-      <a class="pink-text" href="javascript:void(0);" (click)="like()">
+      <a appThemeColorText="accent" href="javascript:void(0);" (click)="like()">
         <i *ngIf="photo.isLike" class="material-icons">favorite</i>
         <i *ngIf="!photo.isLike" class="material-icons">favorite_border</i>
       </a>
-      <a class="pink-text" href="javascript:void(0);" (click)="focusComment()">
+      <a appThemeColorText="accent" href="javascript:void(0);" (click)="focusComment()">
         <i class="material-icons">chat_bubble_outline</i></a>
-      <a class="modal-trigger pink-text" href="javascript:void(0);" data-target="share-modal">
+      <a class="modal-trigger" appThemeColorText="accent" href="javascript:void(0);" data-target="share-modal">
         <i class="material-icons">share</i></a>
-      <a class="pink-text right"><i class="material-icons">bookmark_border</i></a>
+      <a class="right" appThemeColorText="accent"><i class="material-icons">bookmark_border</i></a>
     </div>
     <div *ngIf="photo.likeCount">いいね！{{photo.likeCount}}件</div>
   </li>
@@ -63,18 +63,19 @@
           required maxlength="120" data-length="120">
       </span>
       <span class="col s5 m4 l3">
-        <button class="btn waves-effect waves-light right pink accent-2" type="submit"
+        <button class="btn waves-effect waves-light right" appThemeColorBg="accent" type="submit"
           [disabled]="!form.valid">コメントする</button>
       </span>
     </form>
   </li>
   <li class="collection-item row" *ngIf="hasInputComment && photo.comments && photo.comments.length > 0">
     <ul class="comments">
-      <li class="row" *ngFor="let comment of photo.comments; let i = index"><span class="col"><a
-            [routerLink]="['/', comment.account.loginId]">@{{comment.account.loginId}}</a></span><span
-          class="col">{{comment.content}}</span>
+      <li class="row" *ngFor="let comment of photo.comments; let i = index">
+        <span class="col"><a [routerLink]="['/', comment.account.loginId]"
+            appThemeColorText="mainLink">@{{comment.account.loginId}}</a></span>
+        <span class="col">{{comment.content}}</span>
         <span class="col right">
-          <a class="pink-text" href="javascript:void(0);" (click)="likeComment(i)">
+          <a appThemeColorText="accent" href="javascript:void(0);" (click)="likeComment(i)">
             <i *ngIf="comment.isLike" class="material-icons">favorite</i>
             <i *ngIf="!comment.isLike" class="material-icons">favorite_border</i>
           </a>

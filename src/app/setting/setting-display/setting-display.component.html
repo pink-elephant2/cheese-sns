@@ -1,0 +1,20 @@
+<section class="section animated fadeIn">
+  <div class="row">
+    <h2 class="h4" appThemeColorText="mainHeadline">表示設定</h2>
+  </div>
+
+  <div class="row">
+    <p>お好きなテーマカラーを選んでください</p>
+  </div>
+
+  <div class="row">
+    <div class="col s4 center" *ngFor="let theme of themeList; let i = index">
+      <button class="btn btn-large waves-effect" [ngClass]="theme.bg.main" (click)="setTheme(i)">
+        <i class="material-icons" *ngIf="myThemeNo === i">check</i>
+        <i class="material-icons transparent-text" *ngIf="myThemeNo !== i">check_box_outline_blank</i>
+      </button>
+
+      <br><br>
+    </div>
+  </div>
+</section>

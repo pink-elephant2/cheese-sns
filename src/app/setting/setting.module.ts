@@ -6,7 +6,9 @@ import { environment } from 'env/environment';
 import { SettingComponent } from './setting.component';
 import { SettingRoutingModule } from './setting-routing.module';
 import { SettingProfileComponent } from './setting-profile/setting-profile.component';
+import { SettingDisplayComponent } from './setting-display/setting-display.component';
 import { AccountImageModule } from 'shared/directive';
+import { ThemeColorModule } from 'shared/directive/theme-color';
 
 @NgModule({
   imports: [
@@ -14,11 +16,13 @@ import { AccountImageModule } from 'shared/directive';
     SettingRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    AccountImageModule
+    AccountImageModule,
+    ThemeColorModule
   ],
   declarations: [
     SettingComponent,
-    SettingProfileComponent
+    SettingProfileComponent,
+    SettingDisplayComponent
   ],
   exports: [
     SettingComponent,

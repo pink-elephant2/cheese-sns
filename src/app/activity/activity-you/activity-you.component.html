@@ -5,19 +5,24 @@
 
     <p class="col s8">
       <ng-container *ngIf="activity.activityType === 1">
-        <a [routerLink]="['/', activity.account.loginId]">@{{activity.account.loginId}}</a>さんがあなたの投稿に<b>コメント</b>しました。
+        <a [routerLink]="['/', activity.account.loginId]"
+          appThemeColorText="mainLink">@{{activity.account.loginId}}</a>さんがあなたの投稿に<b>コメント</b>しました。
       </ng-container>
       <ng-container *ngIf="activity.activityType === 2">
-        <a [routerLink]="['/', activity.account.loginId]">@{{activity.account.loginId}}</a>さんがあなたの投稿に<b>いいね！</b>しました。
+        <a [routerLink]="['/', activity.account.loginId]"
+          appThemeColorText="mainLink">@{{activity.account.loginId}}</a>さんがあなたの投稿に<b>いいね！</b>しました。
       </ng-container>
       <ng-container *ngIf="activity.activityType === 3">
-        <a [routerLink]="['/', activity.account.loginId]">@{{activity.account.loginId}}</a>さんがあなたを<b>フォロー</b>しました。
+        <a [routerLink]="['/', activity.account.loginId]"
+          appThemeColorText="mainLink">@{{activity.account.loginId}}</a>さんがあなたを<b>フォロー</b>しました。
       </ng-container>
       <ng-container *ngIf="activity.activityType === 4">
-        <a [routerLink]="['/', activity.account.loginId]">@{{activity.account.loginId}}</a>さんが<b>新しい投稿</b>をしました。
+        <a [routerLink]="['/', activity.account.loginId]"
+          appThemeColorText="mainLink">@{{activity.account.loginId}}</a>さんが<b>新しい投稿</b>をしました。
       </ng-container>
       <ng-container *ngIf="activity.activityType === 5">
-        <a [routerLink]="['/', activity.account.loginId]">@{{activity.account.loginId}}</a>さんがあなたのコメントに<b>いいね！</b>をしました。
+        <a [routerLink]="['/', activity.account.loginId]"
+          appThemeColorText="mainLink">@{{activity.account.loginId}}</a>さんがあなたのコメントに<b>いいね！</b>をしました。
       </ng-container>
       <span class="grey-text">{{activity.createdAt | pastDate}}</span>
     </p>
@@ -28,5 +33,5 @@
 </ul>
 <div *ngIf="activityList.length === 0">
   <p>投稿に誰かが<b>いいね！</b>や<b>コメント</b>をするとここで確認することができます。</p>
-  <p><a [routerLink]="['/create']">たくさん投稿してみましょう！</a></p>
+  <p><a [routerLink]="['/create']" appThemeColorText="mainLink">たくさん投稿してみましょう！</a></p>
 </div>

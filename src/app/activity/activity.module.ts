@@ -8,13 +8,15 @@ import { ActivityFollowingComponent } from './activity-following/activity-follow
 import { ActivityYouComponent } from './activity-you/activity-you.component';
 import { PastDateModule } from 'shared/pipe';
 import { AccountImageModule } from 'shared/directive';
+import { ThemeColorModule } from 'shared/directive/theme-color';
 
 @NgModule({
   imports: [
     CommonModule,
     AppRoutingModule,
     PastDateModule,
-    AccountImageModule
+    AccountImageModule,
+    ThemeColorModule
   ],
   declarations: [
     ActivityComponent,

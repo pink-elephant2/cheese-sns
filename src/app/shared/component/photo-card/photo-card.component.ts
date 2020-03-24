@@ -147,7 +147,7 @@ export class PhotoCardComponent implements OnInit {
       this.loadingService.setLoading(false);
 
       // コメントに1行追加
-      if (this.photo.comments === null) {
+      if (this.photo.comments === undefined || this.photo.comments === null) {
         this.photo.comments = [];
       }
       this.photo.comments.push(comment);

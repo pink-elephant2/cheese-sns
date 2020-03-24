@@ -119,7 +119,8 @@ export class PhotoMockService extends PhotoService {
       photoList = photoList.slice(start, end);
     }
     return of({
-      content: photoList
+      content: photoList,
+      number: pageable.page || 0
     } as Page<Photo>);
   }
 

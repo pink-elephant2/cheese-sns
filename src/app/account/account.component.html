@@ -13,11 +13,11 @@
           <button *ngIf="account.isFollow"
             class="btn follow-btn waves-effect waves-light grey-text grey lighten-5 modal-trigger"
             data-target="unfollow-modal">フォロー中</button>
-          <button *ngIf="!account.isFollow" class="btn follow-btn waves-effect waves-light pink accent-2"
-            (click)="follow()">フォローする</button>
+          <button *ngIf="!account.isFollow" class="btn follow-btn waves-effect" (click)="follow()"
+            appThemeColorBg="accent">フォローする</button>
         </ng-container>
-        <button *ngIf="isMe" class="waves-effect waves-light btn-small pink accent-2"
-          routerLink="/setting/profile">プロフィール編集</button>
+        <button *ngIf="isMe" class="waves-effect btn-small" routerLink="/setting/profile"
+          appThemeColorBg="accent">プロフィール編集</button>
         <button class="btn-flat modal-trigger grey-text text-darken-2" data-target="menu-modal">
           <i class="material-icons">more_horiz</i>
         </button>
@@ -51,7 +51,8 @@
     </div>
     <div class="row" *ngIf="account.url">
       <div class="col s12">
-        <a href="{{account.url}}" target="_blank" rel="me nofollow noreferrer noopener">{{account.url}}</a>
+        <a href="{{account.url}}" target="_blank" rel="me nofollow noreferrer noopener"
+          appThemeColorText="mainLink">{{account.url}}</a>
       </div>
     </div>
   </ng-container>
@@ -104,7 +105,8 @@
     </div>
   </div>
   <div class="modal-footer">
-    <a href="javascript:void(0)" (click)="unfollow()" class="waves-effect waves-light btn-flat red-text">フォローをやめる</a>
+    <a href="javascript:void(0)" (click)="unfollow()" class="waves-effect btn-flat"
+      appThemeColorText="accent">フォローをやめる</a>
     <a href="javascript:void(0)" class="modal-close waves-effect waves-light btn-flat">キャンセル</a>
   </div>
 </div>
@@ -112,7 +114,7 @@
 <section class="section animated fadeIn" *ngIf="isNotFound">
   <div class="row">
     <div class="col s12">
-      <h2 class="h5 red-text darken-1">お探しのページは見つかりませんでした。</h2>
+      <h2 class="h5" appThemeColorText="mainHeadline">お探しのページは見つかりませんでした。</h2>
       <p>ページが削除されたか移動した可能性があります。</p>
     </div>
   </div>

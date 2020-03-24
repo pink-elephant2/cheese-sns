@@ -1,11 +1,12 @@
 <section class="section animated fadeIn">
   <div class="row">
     <div class="col s12 m6">
-      <h2 class="h5 red-text darken-1">ログイン</h2>
+      <h2 class="h5" appThemeColorText="mainHeadline">ログイン</h2>
       <!--
         <p><button class="btn waves-effect waves-light light-blue lighten-1" type="button">Twitterでログインする</button></p>
       -->
-      <p><a class="btn waves-effect waves-light indigo darken-2" href="https://api.torochee.com/api/v1/login/facebook">Facebookでログインする</a></p>
+      <p><a class="btn waves-effect waves-light indigo darken-2"
+          href="https://api.quiz-note.com/api/v1/login/facebook">Facebookでログインする</a></p>
       <!--
         <p><button class="btn waves-effect waves-light deep-purple lighten-5 black-text" type="button">Instagramでログインする</button></p>
       -->
@@ -39,8 +40,8 @@
 
         <div class="row">
           <div class="col s12">
-            <button [disabled]="!form.valid || isError" class="btn waves-effect waves-light right pink accent-2"
-              type="submit">ログイン</button>
+            <button [disabled]="!form.valid || isError" class="btn waves-effect right" type="submit"
+              appThemeColorBg="accent">ログイン</button>
           </div>
         </div>
 
@@ -55,13 +56,13 @@
       <div class="card-panel">
         <div class="row">
           <div class="col s12">
-            <a routerLink="/password/reminder">パスワードをお忘れですか？</a>
+            <a routerLink="/password/reminder" appThemeColorText="mainLink">パスワードをお忘れですか？</a>
           </div>
         </div>
         <div class="row">
           <div class="col s12">
             <p class="left">もしくはアカウントをお持ちでないですか？&emsp;</p>
-            <a routerLink="/signup" class="btn right pink accent-2">アカウントを登録する</a>
+            <a routerLink="/signup" class="btn waves-effect right" appThemeColorBg="accent">アカウントを登録する</a>
           </div>
         </div>
       </div>

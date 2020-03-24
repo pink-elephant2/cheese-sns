@@ -8,6 +8,7 @@ import { PastDateModule } from 'shared/pipe';
 import { ShareModalModule } from '../share-modal/share-modal.module';
 import { AccountImageModule } from 'shared/directive';
 import { PhotoCardMenuComponent } from './photo-card-menu/photo-card-menu.component';
+import { ThemeColorModule } from 'shared/directive/theme-color';
 
 @NgModule({
   imports: [
@@ -17,7 +18,8 @@ import { PhotoCardMenuComponent } from './photo-card-menu/photo-card-menu.compon
     AppRoutingModule,
     PastDateModule,
     ShareModalModule,
-    AccountImageModule
+    AccountImageModule,
+    ThemeColorModule
   ],
   declarations: [
     PhotoCardComponent,

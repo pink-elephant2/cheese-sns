@@ -106,7 +106,9 @@ export class CreateComponent implements OnInit {
 
           if (photo.cd) {
             // TODO 完了モーダルを出してから
-            this.router.navigate(['/photo/' + photo.cd]);
+            setTimeout(() => {
+              this.router.navigate(['/photo/' + photo.cd]);
+            }, 0)
           }
         }, (error: HttpErrorResponse) => {
           this.loadingService.setLoading(false);

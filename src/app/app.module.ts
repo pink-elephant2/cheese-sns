@@ -17,6 +17,7 @@ import { HeaderModule, FooterModule, LoadingModule, TwitterModule, MyAdsenseModu
 import { PastDateModule } from './shared/pipe';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { ThemeColorModule } from 'shared/directive/theme-color';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { environment } from '../environments/environment';
     LoadingModule,
     TwitterModule,
     MyAdsenseModule,
+    ThemeColorModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [AuthGuard],

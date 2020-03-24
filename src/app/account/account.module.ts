@@ -13,6 +13,7 @@ import { NavigateService } from 'shared/service/navigate';
 import { AccountImageModule } from 'shared/directive';
 import { AccountMenuComponent } from './account-menu/account-menu.component';
 import { PaginationModule } from 'shared/component/pagination';
+import { ThemeColorModule } from 'shared/directive/theme-color';
 
 @NgModule({
   imports: [
@@ -23,7 +24,8 @@ import { PaginationModule } from 'shared/component/pagination';
     AccountCardModule,
     MyAdsenseModule,
     AccountImageModule,
-    PaginationModule
+    PaginationModule,
+    ThemeColorModule
   ],
   declarations: [
     AccountComponent,
