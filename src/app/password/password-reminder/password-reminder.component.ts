@@ -46,6 +46,10 @@ export class PasswordReminderComponent implements OnInit {
    * @param isValid 有効か
    */
   onSubmit(form: PasswordReminderForm, isValid: boolean) {
+    window.alert('デモのため一部機能を制限しています。ご了承ください。');
+    return;
+
+    /*
     if (!isValid) {
       return;
     }
@@ -80,5 +84,6 @@ export class PasswordReminderComponent implements OnInit {
           break;
       }
     });
+    */
   }
 }
