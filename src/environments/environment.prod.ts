@@ -8,7 +8,7 @@ import { PasswordService } from 'shared/service/password';
 
 export const environment = {
   production: true,
-  apiDomain: 'http://ec2-18-176-84-54.ap-northeast-1.compute.amazonaws.com/',
+  apiDomain: 'http://ec2-18-176-84-54.ap-northeast-1.compute.amazonaws.com',
   authService: AuthService,
   accountService: AccountService,
   activityService: ActivityService,
