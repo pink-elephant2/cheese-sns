@@ -4,19 +4,10 @@
       <div class="card">
         <div class="card-image">
           <!-- 画像 -->
-          <ng-container *ngIf="photo.imgUrl.indexOf('/photo/') !== -1">
-            <a [routerLink]="['/photo/', photo.cd]">
-              <img class="photo-list" src="{{photo.imgUrl}}" alt="{{photo.caption}}">
-              <span class="cover"></span>
-            </a>
-          </ng-container>
-          <!-- 動画 TODO サムネイル -->
-          <ng-container *ngIf="photo.imgUrl.indexOf('/video/') !== -1">
-            <a [routerLink]="['/photo/', photo.cd]">
-              <video class="photo-list" src="{{photo.imgUrl}}"></video>
-              <span class="cover"></span>
-            </a>
-          </ng-container>
+          <a [routerLink]="['/photo/', photo.cd]">
+            <img class="photo-list" src="{{photo.imgUrl}}" alt="{{photo.caption}}">
+            <span class="cover"></span>
+          </a>
         </div>
       </div>
     </div>

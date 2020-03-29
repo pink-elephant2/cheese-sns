@@ -14,32 +14,23 @@
   <li class="collection-item center">
     <ng-container *ngIf="hasInputComment">
       <!-- 画像 -->
-      <ng-container *ngIf="photo.imgUrl.indexOf('/photo/') !== -1">
+      <ng-container *ngIf="!photo.videoUrl">
         <img src="{{photo.imgUrl}}" class="photo responsive-img" alt="{{photo.caption}}">
         <div class="cover"></div>
       </ng-container>
       <!-- 動画 -->
-      <ng-container *ngIf="photo.imgUrl.indexOf('/video/') !== -1">
-        <video #videoPlayer src="{{photo.imgUrl}}" class="photo responsive-video" autoplay muted playsinline
+      <ng-container *ngIf="photo.videoUrl">
+        <video #videoPlayer src="{{photo.videoUrl}}" class="photo responsive-video" autoplay muted playsinline
           (click)="toggleVideo()" oncontextmenu="return false;">
         </video>
       </ng-container>
     </ng-container>
     <ng-container *ngIf="!hasInputComment">
       <!-- 画像 -->
-      <ng-container *ngIf="photo.imgUrl.indexOf('/photo/') !== -1">
-        <a [routerLink]="['/photo/', photo.cd]">
-          <img src="{{photo.imgUrl}}" class="photo-list responsive-img" alt="{{photo.caption}}">
-          <span class="cover"></span>
-        </a>
-      </ng-container>
-      <!-- 動画 TODO サムネイル -->
-      <ng-container *ngIf="photo.imgUrl.indexOf('/video/') !== -1">
-        <a [routerLink]="['/photo/', photo.cd]">
-          <video src="{{photo.imgUrl}}" class="photo-list responsive-video"></video>
-          <span class="cover"></span>
-        </a>
-      </ng-container>
+      <a [routerLink]="['/photo/', photo.cd]">
+        <img src="{{photo.imgUrl}}" class="photo-list responsive-img" alt="{{photo.caption}}">
+        <span class="cover"></span>
+      </a>
     </ng-container>
   </li>
   <li class="collection-item" *ngIf="hasInputComment">
