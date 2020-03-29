@@ -33,6 +33,7 @@
     "rxjs": "^6.5.4",
     "tslib": "^1.10.0",
     "url-search-params-polyfill": "^6.0.0",
+    "videojs-contrib-hls": "^5.15.0",
     "web-animations-js": "^2.3.2",
     "zone.js": "~0.10.2"
   },
