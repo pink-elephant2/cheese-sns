@@ -28,7 +28,9 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 
 `cd dist/cheese-sns/`
 
-`aws s3 sync . s3://demo-sns-ts/ --delete --cache-control "max-age=25200" --acl public-read`
+`aws s3 sync . s3://demo-sns-ts/web/ --delete --cache-control "max-age=25200" --acl public-read`
+
+`aws s3 sync --profile cheese . s3://demo-sns-ts/web/ --delete --cache-control "max-age=25200" --acl public-read`
 
 ## Running unit tests
 
