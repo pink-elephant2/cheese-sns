@@ -20,8 +20,8 @@
       </ng-container>
       <!-- 動画 -->
       <ng-container *ngIf="photo.videoUrl">
-        <video #videoPlayer src="{{photo.videoUrl}}" class="photo responsive-video" autoplay muted playsinline
-          (click)="toggleVideo()" oncontextmenu="return false;">
+        <video #videoPlayer class="photo responsive-video video-js vjs-default-skin vjs-big-play-centered" controls
+          autoplay muted playsinline preload="auto" (click)="toggleVideo()" oncontextmenu="return false;">
         </video>
       </ng-container>
     </ng-container>
