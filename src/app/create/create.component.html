@@ -4,8 +4,8 @@
       <div class="col s12 file-field input-field">
         <div class="btn" appThemeColorBg="accent">
           <span>参照</span>
-          <!-- TODO acceptを細かく指定 -->
-          <input type="file" formControlName="upfile" accept="image/*,video/*" #fl (change)="onchange(fl.files)">
+          <input type="file" formControlName="upfile" accept="image/gif,image/jpeg,image/png,image/bmp,video/mp4" #fl
+            (change)="onchange(fl.files)">
         </div>
         <div class="file-path-wrapper">
           <input class="file-path validate" type="text">
