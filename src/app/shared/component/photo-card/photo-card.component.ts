@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef, OnDestroy, AfterViewInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -7,6 +7,7 @@ import { CommentForm } from './comment-form';
 import { AuthService } from 'shared/service/auth';
 import { LoadingService } from 'shared/service/loading';
 import { NavigateService } from 'shared/service/navigate';
+import videojs from "video.js";
 
 /**
  * 写真カード
@@ -16,7 +17,7 @@ import { NavigateService } from 'shared/service/navigate';
   templateUrl: './photo-card.component.html',
   styleUrls: ['./photo-card.component.scss']
 })
-export class PhotoCardComponent implements OnInit {
+export class PhotoCardComponent implements OnInit, OnDestroy, AfterViewInit {
 
   /** 写真情報 */
   @Input() photo: Photo;
@@ -25,6 +26,7 @@ export class PhotoCardComponent implements OnInit {
   @Input() hasInputComment = false;
 
   @ViewChild('videoPlayer', { static: false }) videoPlayer: ElementRef;
+  player: any;
 
   /** 入力フォーム */
   form: FormGroup;
@@ -54,6 +56,41 @@ export class PhotoCardComponent implements OnInit {
       this.navigateService.clearAfterLogin();
     }
     this.authenticated = this.authService.authenticated;
+  }
+
+  ngAfterViewInit(): void {
+    if (!this.videoPlayer) {
+      return;
+    }
+
+    const options = {
+      html5: {
+        hls: {
+          withCredentials: true
+        }
+      },
+      flash: {
+        hls: {
+          withCredentials: true
+        }
+      },
+      fluid: true
+    };
+    this.player = videojs(this.videoPlayer.nativeElement, options);
+    this.player.poster(this.photo.imgUrl);
+
+    let src = { type: 'application/x-mpegURL', src: this.photo.videoUrl };
+    if (window.location.hostname !== 'torochee.com') {
+      // CORS
+      src = { type: 'video/mp4', src: this.photo.videoUrl.substring(0, this.photo.videoUrl.lastIndexOf('.')) + '.mp4' };
+    }
+    this.player.src(src);
+  }
+
+  ngOnDestroy(): void {
+    if (this.player) {
+      this.player.dispose();
+    }
   }
 
   /**

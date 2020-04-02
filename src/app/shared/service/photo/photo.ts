@@ -18,6 +18,9 @@ export class Photo {
   /** 画像パス */ // TODO 画像情報クラス
   public imgUrl: string;
 
+  /** 動画パス */
+  public videoUrl: string;
+
   /** 投稿日時 */
   public createdAt: Date;
 
