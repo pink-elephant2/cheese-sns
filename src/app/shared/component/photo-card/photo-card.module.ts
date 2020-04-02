@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { PhotoCardComponent } from './photo-card.component';
 import { AppRoutingModule } from 'src/app/app-routing.module';
-import { PastDateModule } from 'shared/pipe';
+import { PastDateModule, SafeHtmlModule } from 'shared/pipe';
 import { ShareModalModule } from '../share-modal/share-modal.module';
 import { AccountImageModule } from 'shared/directive';
 import { PhotoCardMenuComponent } from './photo-card-menu/photo-card-menu.component';
@@ -17,6 +17,7 @@ import { ThemeColorModule } from 'shared/directive/theme-color';
     ReactiveFormsModule,
     AppRoutingModule,
     PastDateModule,
+    SafeHtmlModule,
     ShareModalModule,
     AccountImageModule,
     ThemeColorModule

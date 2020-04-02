@@ -2,7 +2,8 @@
   <ng-container *ngIf="account">
     <div class="row">
       <div class="col s3">
-        <img appAccountImage [src]="account.imgUrl" [alt]="account.loginId" class="avatar circle responsive-img">
+        <img appAccountImage [src]="account.imgUrl | safeHtml" [alt]="account.loginId"
+          class="avatar circle responsive-img">
       </div>
       <div class="col s9">
         <div>
