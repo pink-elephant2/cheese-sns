@@ -37,6 +37,9 @@ export class PhotoCardComponent implements OnInit, OnDestroy, AfterViewInit {
   /** 動画再生中か(AutoPlay) TODO 読み込み完了してからtrueにする */
   isStarted = true;
 
+  /** ドメインが異なる場合、m3u8が再生できない */
+  isCrossOrigin = window.location.hostname !== 'torochee.com';
+
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
@@ -63,7 +66,7 @@ export class PhotoCardComponent implements OnInit, OnDestroy, AfterViewInit {
       return;
     }
 
-    const options = {
+    this.player = videojs(this.videoPlayer.nativeElement, {
       html5: {
         hls: {
           withCredentials: true
@@ -75,16 +78,7 @@ export class PhotoCardComponent implements OnInit, OnDestroy, AfterViewInit {
         }
       },
       fluid: true
-    };
-    this.player = videojs(this.videoPlayer.nativeElement, options);
-    this.player.poster(this.photo.imgUrl);
-
-    let src = { type: 'application/x-mpegURL', src: this.photo.videoUrl };
-    if (window.location.hostname !== 'torochee.com') {
-      // CORS
-      src = { type: 'video/mp4', src: this.photo.videoUrl.substring(0, this.photo.videoUrl.lastIndexOf('.')) + '.mp4' };
-    }
-    this.player.src(src);
+    });
   }
 
   ngOnDestroy(): void {

@@ -5,7 +5,7 @@
         <div class="card-image">
           <!-- 画像 -->
           <a [routerLink]="['/photo/', photo.cd]">
-            <img class="photo-list" src="{{photo.imgUrl}}" alt="{{photo.caption}}">
+            <img class="photo-list" [src]="photo.imgUrl | safeHtml" alt="{{photo.caption}}">
             <span class="cover"></span>
           </a>
         </div>

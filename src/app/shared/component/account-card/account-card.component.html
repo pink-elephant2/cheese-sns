@@ -1,6 +1,6 @@
 <div id="profile-card" class="card" *ngIf="account">
   <div class="card-image waves-effect waves-block waves-light">
-    <img appAccountImage class="activator" [src]="account.imgUrl" alt="user bg">
+    <img appAccountImage class="activator" [src]="account.imgUrl | safeHtml" [alt]="account.name">
   </div>
   <div class="card-content">
     <span class="card-title activator grey-text text-darken-4">{{account.loginId}}</span>

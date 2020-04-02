@@ -14,6 +14,7 @@ import { AccountImageModule } from 'shared/directive';
 import { AccountMenuComponent } from './account-menu/account-menu.component';
 import { PaginationModule } from 'shared/component/pagination';
 import { ThemeColorModule } from 'shared/directive/theme-color';
+import { SafeHtmlModule } from 'shared/pipe';
 
 @NgModule({
   imports: [
@@ -25,7 +26,8 @@ import { ThemeColorModule } from 'shared/directive/theme-color';
     MyAdsenseModule,
     AccountImageModule,
     PaginationModule,
-    ThemeColorModule
+    ThemeColorModule,
+    SafeHtmlModule
   ],
   declarations: [
     AccountComponent,

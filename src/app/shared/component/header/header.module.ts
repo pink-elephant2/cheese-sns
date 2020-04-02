@@ -5,13 +5,15 @@ import { AppRoutingModule } from '../../../app-routing.module';
 import { environment } from 'env/environment';
 import { AccountImageModule } from 'shared/directive/account-image';
 import { ThemeColorModule } from 'shared/directive/theme-color';
+import { SafeHtmlModule } from 'shared/pipe';
 
 @NgModule({
   imports: [
     CommonModule,
     AppRoutingModule,
     AccountImageModule,
-    ThemeColorModule
+    ThemeColorModule,
+    SafeHtmlModule
   ],
   declarations: [HeaderComponent],
   exports: [HeaderComponent],

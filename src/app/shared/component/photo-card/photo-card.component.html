@@ -1,7 +1,7 @@
 <!-- 写真コンポーネント -->
 <ul class="collection" *ngIf="photo">
   <li class="collection-item avatar row">
-    <a [routerLink]="['/', photo.account.loginId]"><img appAccountImage [src]="photo.account.imgUrl"
+    <a [routerLink]="['/', photo.account.loginId]"><img appAccountImage [src]="photo.account.imgUrl | safeHtml"
         [alt]="photo.account.loginId" class="circle"></a>
     <p class="title row" *ngIf="hasInputComment">
       {{photo.account.loginId}}
@@ -15,20 +15,26 @@
     <ng-container *ngIf="hasInputComment">
       <!-- 画像 -->
       <ng-container *ngIf="!photo.videoUrl">
-        <img src="{{photo.imgUrl}}" class="photo responsive-img" alt="{{photo.caption}}">
+        <img [src]="photo.imgUrl | safeHtml" class="photo responsive-img" alt="{{photo.caption}}">
         <div class="cover"></div>
       </ng-container>
       <!-- 動画 -->
       <ng-container *ngIf="photo.videoUrl">
         <video #videoPlayer class="photo responsive-video video-js vjs-default-skin vjs-big-play-centered" controls
-          autoplay muted playsinline preload="auto" (click)="toggleVideo()" oncontextmenu="return false;">
+          autoplay muted playsinline preload="auto" [poster]="photo.imgUrl | safeHtml" (click)="toggleVideo()"
+          oncontextmenu="return false;">
+
+          <source *ngIf="!isCrossOrigin" [src]="photo.videoUrl | safeHtml" type="application/x-mpegURL">
+          <source *ngIf="isCrossOrigin"
+            [src]="photo.videoUrl.substring(0, photo.videoUrl.lastIndexOf('.')) + '.mp4' | safeHtml" type="video/mp4">
+
         </video>
       </ng-container>
     </ng-container>
     <ng-container *ngIf="!hasInputComment">
       <!-- 画像 -->
       <a [routerLink]="['/photo/', photo.cd]">
-        <img src="{{photo.imgUrl}}" class="photo-list responsive-img" alt="{{photo.caption}}">
+        <img [src]="photo.imgUrl | safeHtml" class="photo-list responsive-img" alt="{{photo.caption}}">
         <span class="cover"></span>
       </a>
     </ng-container>
