@@ -68,5 +68,17 @@ export class HeaderComponent implements OnInit, AfterViewInit {
       constrainWidth: false
     };
     window['M'].Dropdown.init(document.querySelectorAll('.dropdown-trigger'), option);
+
+    // オートコンプリート初期化
+    window['$']('input.autocomplete').autocomplete({
+      data: {
+        "Apple": null,
+        "Microsoft": null,
+        "Google": 'https://placehold.it/250x250'
+      },
+      onAutocomplete: (value: string) => {
+        console.log(value);
+      }
+    });
   }
 }

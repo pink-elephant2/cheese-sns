@@ -1,5 +1,5 @@
 .avatar {
-  border: 1px solid rgba(0,0,0,.0975);
+  border: 1px solid rgba(0, 0, 0, 0.0975);
 }
 
 /* S */
@@ -13,5 +13,17 @@
 @media only screen and (max-width: 480px) {
   nav .brand-logo {
     font-size: 1.2rem;
+  }
+}
+
+nav .input-field label {
+  top: -12px; /* autocompleteにより位置がずれるため調整 */
+}
+
+input[type="search"] {
+  color: #fff; /* .input-field input[type=search]:focus:not(.browser-default) を上書き */
+
+  &:focus ~label i {
+    color: #444;
   }
 }
