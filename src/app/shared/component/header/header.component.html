@@ -62,7 +62,8 @@
       <li>
         <a href="javascript:void(0);" class="input-field">
           <i class="material-icons">search</i>
-          <input type="text" class="autocomplete validate" style="width:initial" placeholder="検索">
+          <input type="text" class="autocomplete validate" style="width:initial" placeholder="検索"
+            (keyup)="onChangeSearch($event)">
         </a>
       </li>
       <!-- ログイン時 -->

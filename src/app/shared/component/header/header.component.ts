@@ -28,6 +28,22 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   /** リンクを表示するか */
   isLink = true;
 
+  /** オートコンプリート */
+  autocompleteInstance: any[];
+
+  /** 検索結果サジェスト */
+  searchSuggest = {
+    "Apple": null,
+    "Microsoft": null,
+    "Google": 'https://placehold.it/250x250'
+  }; // TODO 後で消す
+
+  /** setTimeout 入力待ち */
+  eventId: NodeJS.Timeout;
+
+  /** 検索フォーム入力値 */
+  searchInputValue: string;
+
   constructor(
     private router: Router,
     private authService: AuthService,
@@ -64,21 +80,49 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     window['$']('.sidenav').sidenav();
 
     // ドロップダウン初期化
-    const option = {
+    window['M'].Dropdown.init(document.querySelectorAll('.dropdown-trigger'), {
       constrainWidth: false
-    };
-    window['M'].Dropdown.init(document.querySelectorAll('.dropdown-trigger'), option);
+    });
 
     // オートコンプリート初期化
-    window['$']('input.autocomplete').autocomplete({
-      data: {
-        "Apple": null,
-        "Microsoft": null,
-        "Google": 'https://placehold.it/250x250'
-      },
+    this.autocompleteInstance = window['M'].Autocomplete.init(document.querySelectorAll('input.autocomplete'), {
       onAutocomplete: (value: string) => {
         console.log(value);
+
+        // 検索文字列を保存
+        this.searchInputValue = value;
       }
     });
+  }
+
+  /**
+   * 検索ボックス入力イベント
+   */
+  onChangeSearch($event: Event): void {
+    const value = ($event.target as HTMLInputElement).value;
+    if (!value || value === this.searchInputValue) {
+      return;
+    }
+
+    if (this.eventId) {
+      clearTimeout(this.eventId);
+    }
+    this.eventId = setTimeout(() => {
+
+      console.group();
+      console.log(this.eventId);
+      console.log($event);
+      console.log(typeof $event);
+      console.log(value);
+      console.groupEnd();
+
+      // 検索文字列を保存
+      this.searchInputValue = value;
+
+      // オートコンプリート更新
+      this.searchSuggest[value] = null;
+      this.autocompleteInstance.forEach(i => i.updateData(this.searchSuggest));
+    }, 300);
+
   }
 }
