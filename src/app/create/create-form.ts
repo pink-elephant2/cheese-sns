@@ -12,11 +12,16 @@ export class CreateForm {
   /** キャプション */
   caption: string;
 
+  /** タグ */
+  tags: string[];
+
   static validators = {
     /** 画像ファイル */
     upfile: ['', Validators.compose([Validators.required])],
     /** キャプション */
     caption: ['', Validators.compose([Validators.required, Validators.maxLength(1000)])]
+    /** タグ */
+    // tags: ['', Validators.compose([])]
   };
 
 }

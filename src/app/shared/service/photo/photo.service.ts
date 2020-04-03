@@ -43,6 +43,8 @@ export class PhotoService extends ApiService {
     const data = new FormData();
     data.append('upfile', file, form.upfile);
     data.append('caption', form.caption);
+    data.append('tags', form.tags.toString());
+    // form.tags.forEach(tag => data.append('tags[]', tag));
     return this.post<Photo>(url, data);
   }
 

@@ -84,6 +84,10 @@ export class CreateComponent implements OnInit {
 
     this.loadingService.setLoading(true);
 
+    // タグ設定
+    form.tags = (form.caption.match(/[#＃][Ａ-Ｚａ-ｚA-Za-z一-鿆0-9０-９ぁ-ヶｦ-ﾟー._-]+/gm) || [])
+      .map(tag => tag.substring(1));
+
     if (this.blobUrl) {
       // 画像登録
       this.postImage(form, files);
@@ -107,8 +111,9 @@ export class CreateComponent implements OnInit {
           if (photo.cd) {
             // TODO 完了モーダルを出してから
             setTimeout(() => {
-              this.router.navigate(['/photo/' + photo.cd]);
-            }, 0)
+              // this.router.navigate(['/photo/' + photo.cd]);
+              window.location.href = '/photo/' + photo.cd;
+            }, 0);
           }
         }, (error: HttpErrorResponse) => {
           this.loadingService.setLoading(false);
