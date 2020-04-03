@@ -11,7 +11,8 @@
                 <div class="nav-wrapper">
                   <form autocomplete="off">
                     <div class="input-field">
-                      <input id="search" type="search" required class="autocomplete">
+                      <input id="search" type="search" required class="autocomplete"
+                        (keyup)="onChangeSearch(0, $event)">
                       <label class="label-icon" for="search"><i class="material-icons">search</i></label>
                       <i class="material-icons">close</i>
                     </div>
@@ -63,7 +64,7 @@
         <a href="javascript:void(0);" class="input-field">
           <i class="material-icons">search</i>
           <input type="text" class="autocomplete validate" style="width:initial" placeholder="検索"
-            (keyup)="onChangeSearch($event)">
+            (keyup)="onChangeSearch(1, $event)">
         </a>
       </li>
       <!-- ログイン時 -->

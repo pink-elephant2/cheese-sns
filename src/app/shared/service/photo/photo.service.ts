@@ -123,4 +123,12 @@ export class PhotoService extends ApiService {
     const url = `${ApiConst.PATH.USER}/${loginId}/${ApiConst.PATH.PHOTO_CREATE}/${photoCd}/${ApiConst.PATH.PHOTO_REMOVE}`;
     return this.post<boolean>(url);
   }
+
+  /**
+   * サジェストを取得する
+   */
+  public suggest(keyword: string): Observable<string[]> {
+    const url = `/api/v1/photo/suggest/${keyword}`;
+    return this.get<boolean>(url);
+  }
 }

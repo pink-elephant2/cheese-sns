@@ -5,6 +5,7 @@ import { filter } from 'rxjs/operators';
 import { APP_TITLE } from '../../const';
 import { AuthService } from '../../service/auth';
 import { AccountService, Account } from '../../service/account';
+import { PhotoService } from 'shared/service/photo';
 
 /**
  * ヘッダー
@@ -32,14 +33,10 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   autocompleteInstance: any[];
 
   /** 検索結果サジェスト */
-  searchSuggest = {
-    "Apple": null,
-    "Microsoft": null,
-    "Google": 'https://placehold.it/250x250'
-  }; // TODO 後で消す
+  searchSuggest = {};
 
   /** setTimeout 入力待ち */
-  eventId: NodeJS.Timeout;
+  eventId: any;
 
   /** 検索フォーム入力値 */
   searchInputValue: string;
@@ -47,7 +44,8 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   constructor(
     private router: Router,
     private authService: AuthService,
-    private accountService: AccountService
+    private accountService: AccountService,
+    private photoService: PhotoService
   ) { }
 
   ngOnInit() {
@@ -87,18 +85,19 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     // オートコンプリート初期化
     this.autocompleteInstance = window['M'].Autocomplete.init(document.querySelectorAll('input.autocomplete'), {
       onAutocomplete: (value: string) => {
-        console.log(value);
-
         // 検索文字列を保存
         this.searchInputValue = value;
+
+        // TODO 検索ページへ
       }
     });
   }
 
   /**
    * 検索ボックス入力イベント
+   * @param index ヘッダー:0, サイドナビ:1
    */
-  onChangeSearch($event: Event): void {
+  onChangeSearch(index: number, $event: KeyboardEvent): void {
     const value = ($event.target as HTMLInputElement).value;
     if (!value || value === this.searchInputValue) {
       return;
@@ -108,20 +107,16 @@ export class HeaderComponent implements OnInit, AfterViewInit {
       clearTimeout(this.eventId);
     }
     this.eventId = setTimeout(() => {
-
-      console.group();
-      console.log(this.eventId);
-      console.log($event);
-      console.log(typeof $event);
-      console.log(value);
-      console.groupEnd();
-
       // 検索文字列を保存
       this.searchInputValue = value;
 
       // オートコンプリート更新
-      this.searchSuggest[value] = null;
-      this.autocompleteInstance.forEach(i => i.updateData(this.searchSuggest));
+      this.photoService.suggest(value).subscribe((suggestList: string[]) => {
+        this.searchSuggest = {};
+        suggestList.forEach(v => this.searchSuggest[v] = null);
+        this.autocompleteInstance[index].updateData(this.searchSuggest);
+        this.autocompleteInstance[index].open();
+      });
     }, 300);
 
   }

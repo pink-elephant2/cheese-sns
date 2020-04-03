@@ -19,7 +19,8 @@ import { SafeHtmlModule } from 'shared/pipe';
   exports: [HeaderComponent],
   providers: [
     environment.authService,
-    environment.accountService
+    environment.accountService,
+    environment.photoService
   ]
 })
 export class HeaderModule { }

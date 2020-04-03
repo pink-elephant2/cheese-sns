@@ -200,4 +200,11 @@ export class PhotoMockService extends PhotoService {
   public remove(loginId: string, photoCd: string): Observable<boolean> {
     return of(true);
   }
+
+  /**
+   * サジェストを取得する
+   */
+  public suggest(keyword: string): Observable<string[]> {
+    return of(['Apple', 'Banana', 'アップル', 'ばなな', 'なし']);
+  }
 }
