@@ -129,8 +129,11 @@ export class PhotoService extends ApiService {
   /**
    * サジェストを取得する
    */
-  public suggest(keyword: string): Observable<string[]> {
-    const url = `/api/v1/photo/suggest/${keyword}`;
-    return this.get<boolean>(url);
+  public suggest(key: string): Observable<string[]> {
+    const url = `/api/v1/photo/suggest`;
+    const params = {
+      keyword: key
+    };
+    return this.get<boolean>(url, params);
   }
 }
