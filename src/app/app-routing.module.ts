@@ -23,6 +23,8 @@ const routes: Routes = [
   { path: 'create', component: CreateComponent, data: { title: '投稿' }, canActivate: [AuthGuard] },
   { path: 'activity', component: ActivityComponent, data: { title: 'アクティビティ' }, canActivate: [AuthGuard] },
   { path: 'photo/:photoId', component: PhotoComponent, data: { title: '写真' } },
+  { path: 'search', loadChildren: () => import('./search/search.module').then(m => m.SearchModule) },
+  { path: 'hashtag', loadChildren: () => import('./hashtag/hashtag.module').then(m => m.HashtagModule) },
   { path: 'privacy', loadChildren: () => import('./privacy/privacy.module').then(m => m.PrivacyModule) },
   { path: 'terms', loadChildren: () => import('./terms/terms.module').then(m => m.TermsModule) },
   { path: 'contact', loadChildren: () => import('./contact/contact.module').then(m => m.ContactModule) },

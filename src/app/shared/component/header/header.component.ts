@@ -29,6 +29,9 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   /** リンクを表示するか */
   isLink = true;
 
+  /** サイドナビ */
+  sidenavInstance: any;
+
   /** オートコンプリート */
   autocompleteInstance: any[];
 
@@ -75,7 +78,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     // サイドメニュー初期化
-    window['$']('.sidenav').sidenav();
+    this.sidenavInstance = window['M'].Sidenav.init(document.getElementById('nav-mobile')), {};
 
     // ドロップダウン初期化
     window['M'].Dropdown.init(document.querySelectorAll('.dropdown-trigger'), {
@@ -88,7 +91,10 @@ export class HeaderComponent implements OnInit, AfterViewInit {
         // 検索文字列を保存
         this.searchInputValue = value;
 
-        // TODO 検索ページへ
+        this.sidenavInstance.close(); // TODO サイドメニューが閉じない不具合
+
+        // 検索ページへ
+        this.toSearch();
       }
     });
   }
@@ -98,6 +104,10 @@ export class HeaderComponent implements OnInit, AfterViewInit {
    * @param index ヘッダー:0, サイドナビ:1
    */
   onChangeSearch(index: number, $event: KeyboardEvent): void {
+    if ($event.key === 'Enter' && $event.code === 'Enter') {
+      // 検索ページへ
+      return this.toSearch();
+    }
     const value = ($event.target as HTMLInputElement).value.trim();
     if (!value || value === this.searchInputValue || $event.code === 'Space') {
       return;
@@ -118,6 +128,21 @@ export class HeaderComponent implements OnInit, AfterViewInit {
         this.autocompleteInstance[index].open();
       });
     }, 300);
+  }
 
+  /**
+   * 検索ページへ
+   */
+  toSearch() {
+    if (!this.searchInputValue) {
+      return;
+    }
+    // 検索ページへ
+    if (this.searchInputValue.substring(0, 1) === '#') {
+      window.location.href = '/hashtag/' + this.searchInputValue.substring(1);
+    } else {
+      window.location.href = '/search?q=' + this.searchInputValue;
+    }
+    // this.router.navigate(['/search'], { queryParams: { q: this.searchInputValue } });
   }
 }
