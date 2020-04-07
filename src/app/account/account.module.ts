@@ -15,6 +15,7 @@ import { AccountMenuComponent } from './account-menu/account-menu.component';
 import { PaginationModule } from 'shared/component/pagination';
 import { ThemeColorModule } from 'shared/directive/theme-color';
 import { SafeHtmlModule } from 'shared/pipe';
+import { TagLinkModule } from 'shared/component/tag-link';
 
 @NgModule({
   imports: [
@@ -27,7 +28,8 @@ import { SafeHtmlModule } from 'shared/pipe';
     AccountImageModule,
     PaginationModule,
     ThemeColorModule,
-    SafeHtmlModule
+    SafeHtmlModule,
+    TagLinkModule
   ],
   declarations: [
     AccountComponent,

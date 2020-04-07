@@ -4,13 +4,15 @@ import { AccountCardComponent } from './account-card.component';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { AccountImageModule } from 'shared/directive';
 import { SafeHtmlModule } from 'shared/pipe';
+import { TagLinkModule } from '../tag-link';
 
 @NgModule({
   imports: [
     CommonModule,
     AppRoutingModule,
     AccountImageModule,
-    SafeHtmlModule
+    SafeHtmlModule,
+    TagLinkModule
   ],
   declarations: [AccountCardComponent],
   exports: [AccountCardComponent]

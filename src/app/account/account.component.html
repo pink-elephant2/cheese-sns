@@ -47,7 +47,7 @@
     </div>
     <div class="row" *ngIf="account.description">
       <div class="col s12">
-        {{account.description}}
+        <app-tag-link [value]="account.description" [isBr]="true"></app-tag-link>
       </div>
     </div>
     <div class="row" *ngIf="account.url">

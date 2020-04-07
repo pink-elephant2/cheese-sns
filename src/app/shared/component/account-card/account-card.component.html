@@ -10,6 +10,8 @@
     <span class="card-title grey-text text-darken-4">{{account.loginId}}
       <i class="material-icons right">close</i>
     </span>
-    <p>{{account.description}}</p>
+    <p>
+      <app-tag-link [value]="account.description" [isBr]="true"></app-tag-link>
+    </p>
   </div>
 </div>

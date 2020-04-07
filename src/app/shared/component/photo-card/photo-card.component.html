@@ -9,7 +9,10 @@
         <i class="material-icons right">more_horiz</i>
       </a>
     </p>
-    <p class="caption">{{photo.caption}}&nbsp;<span class="grey-text right">{{photo.createdAt | pastDate}}</span></p>
+    <p class="caption">
+      <app-tag-link [value]="photo.caption" [isBr]="hasInputComment"></app-tag-link>&nbsp;<span
+        class="grey-text right">{{photo.createdAt | pastDate}}</span>
+    </p>
   </li>
   <li class="collection-item center">
     <ng-container *ngIf="hasInputComment">

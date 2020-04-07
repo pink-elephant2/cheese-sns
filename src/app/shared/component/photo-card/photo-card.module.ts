@@ -9,6 +9,7 @@ import { ShareModalModule } from '../share-modal/share-modal.module';
 import { AccountImageModule } from 'shared/directive';
 import { PhotoCardMenuComponent } from './photo-card-menu/photo-card-menu.component';
 import { ThemeColorModule } from 'shared/directive/theme-color';
+import { TagLinkModule } from '../tag-link/tag-link.module';
 
 @NgModule({
   imports: [
@@ -20,7 +21,8 @@ import { ThemeColorModule } from 'shared/directive/theme-color';
     SafeHtmlModule,
     ShareModalModule,
     AccountImageModule,
-    ThemeColorModule
+    ThemeColorModule,
+    TagLinkModule
   ],
   declarations: [
     PhotoCardComponent,
