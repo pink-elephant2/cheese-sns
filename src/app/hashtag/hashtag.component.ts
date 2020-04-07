@@ -47,7 +47,7 @@ export class HashtagComponent implements OnInit {
         return this.router.navigate(['/']);
       }
 
-      // TODO キーワードを渡す
+      // キーワード
       this.tag = tag;
 
       this.loadingService.setLoading(true);
@@ -57,7 +57,7 @@ export class HashtagComponent implements OnInit {
 
   getPhotoList() {
     // 写真を取得
-    this.photoService.getPhotoList(null, this.pageable).subscribe(photoData => {
+    this.photoService.getPhotoListByTag(this.tag, this.pageable).subscribe(photoData => {
       this.loadingService.setLoading(false);
 
       this.photoData = photoData;

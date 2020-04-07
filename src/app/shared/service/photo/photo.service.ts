@@ -34,6 +34,26 @@ export class PhotoService extends ApiService {
   }
 
   /**
+   * 写真を検索する
+   */
+  public getPhotoListByKeyword(keyword: string, pageable?: Pageable): Observable<Page<Photo>> {
+    const params = {
+      'q': keyword
+    };
+    return this.get<Page<Photo>>(ApiConst.PATH.PHOTO, Object.assign(params, pageable));
+  }
+
+  /**
+   * 写真をタグ検索する
+   */
+  public getPhotoListByTag(tag: string, pageable?: Pageable): Observable<Page<Photo>> {
+    const params = {
+      'tag': tag
+    };
+    return this.get<Page<Photo>>(ApiConst.PATH.PHOTO, Object.assign(params, pageable));
+  }
+
+  /**
    * 写真を投稿する
    *
    * @returns 写真情報

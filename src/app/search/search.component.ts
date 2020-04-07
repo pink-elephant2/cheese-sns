@@ -47,7 +47,7 @@ export class SearchComponent implements OnInit {
         return this.router.navigate(['/']);
       }
 
-      // TODO キーワードを渡す
+      // キーワードを渡す
       this.keyword = keyword;
 
       this.loadingService.setLoading(true);
@@ -56,8 +56,8 @@ export class SearchComponent implements OnInit {
   }
 
   getPhotoList() {
-    // 写真を取得
-    this.photoService.getPhotoList(null, this.pageable).subscribe(photoData => {
+    // 写真を検索
+    this.photoService.getPhotoListByKeyword(this.keyword, this.pageable).subscribe(photoData => {
       this.loadingService.setLoading(false);
 
       this.photoData = photoData;

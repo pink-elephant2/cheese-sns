@@ -18,5 +18,8 @@
       <a #nextLink appThemeColorText="mainLink" (click)="next()" href="javascript:void(0);">もっと見る</a>
     </div>
   </div>
+  <div class="row" *ngIf="photoData.totalElements === 0">
+    <div class="col s12">検索結果と一致するものはありませんでした。</div>
+  </div>
 </section>
 <app-my-adsense></app-my-adsense>

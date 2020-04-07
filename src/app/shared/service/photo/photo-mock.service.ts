@@ -125,6 +125,20 @@ export class PhotoMockService extends PhotoService {
   }
 
   /**
+   * 写真を検索する
+   */
+  public getPhotoListByKeyword(keyword: string, pageable?: Pageable): Observable<Page<Photo>> {
+    return this.getPhotoList(null, pageable);
+  }
+
+  /**
+   * 写真をタグ検索する
+   */
+  public getPhotoListByTag(tag: string, pageable?: Pageable): Observable<Page<Photo>> {
+    return this.getPhotoList(null, pageable);
+  }
+
+  /**
    * 写真を投稿する
    *
    * @returns 写真情報
