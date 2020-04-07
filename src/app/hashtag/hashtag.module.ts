@@ -1,15 +1,24 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HashtagComponent } from './hashtag.component';
-import { HashtagRoutingModule } from './hashtag-routing.module';
 
+import { environment } from 'env/environment';
+import { HashtagComponent } from './hashtag.component';
+import { AppRoutingModule } from 'src/app/app-routing.module';
+import { PhotoCardModule, MyAdsenseModule } from 'shared/component';
+import { ThemeColorModule } from 'shared/directive/theme-color';
 
 
 @NgModule({
   declarations: [HashtagComponent],
   imports: [
     CommonModule,
-    HashtagRoutingModule
+    AppRoutingModule,
+    PhotoCardModule,
+    MyAdsenseModule,
+    ThemeColorModule
+  ],
+  providers: [
+    environment.photoService
   ]
 })
 export class HashtagModule { }

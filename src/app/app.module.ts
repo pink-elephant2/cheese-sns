@@ -13,6 +13,8 @@ import { AccountModule } from './account/account.module';
 import { CreateModule } from './create/create.module';
 import { ActivityModule } from './activity/activity.module';
 import { PhotoModule } from './photo/photo.module';
+import { SearchModule } from './search/search.module';
+import { HashtagModule } from './hashtag/hashtag.module';
 import { HeaderModule, FooterModule, LoadingModule, TwitterModule, MyAdsenseModule } from './shared/component';
 import { PastDateModule } from './shared/pipe';
 import { ServiceWorkerModule } from '@angular/service-worker';
@@ -35,6 +37,8 @@ import { ThemeColorModule } from 'shared/directive/theme-color';
     CreateModule,
     ActivityModule,
     PhotoModule,
+    SearchModule,
+    HashtagModule,
     HeaderModule,
     FooterModule,
     PastDateModule,

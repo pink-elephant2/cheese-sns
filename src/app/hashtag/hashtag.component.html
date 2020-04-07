@@ -1,1 +1,22 @@
-<p>hashtag works!</p>
+<section class="section row">
+  <div class="col s1">
+    <a routerLink="/" appThemeColorText="mainLink"><i class="material-icons">chevron_left</i></a>
+  </div>
+  <div class="col s11">
+    #{{tag}}
+  </div>
+</section>
+
+<section class="section animated fadeIn" *ngIf="photoData">
+  <div class="row">
+    <div class="col s12 m6 l4 animated fadeIn" *ngFor="let photo of photoList">
+      <app-photo-card [photo]="photo"></app-photo-card>
+    </div>
+  </div>
+  <div class="row" *ngIf="!photoData.last">
+    <div class="col s12 center">
+      <a #nextLink appThemeColorText="mainLink" (click)="next()" href="javascript:void(0);">もっと見る</a>
+    </div>
+  </div>
+</section>
+<app-my-adsense></app-my-adsense>

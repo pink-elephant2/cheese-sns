@@ -10,6 +10,8 @@ import { AccountComponent } from './account/account.component';
 import { CreateComponent } from './create/create.component';
 import { ActivityComponent } from './activity/activity.component';
 import { PhotoComponent } from './photo/photo.component';
+import { SearchComponent } from './search/search.component';
+import { HashtagComponent } from './hashtag/hashtag.component';
 
 const routes: Routes = [
   { path: '', component: TopComponent, data: { infinityScroll: true } },
@@ -23,8 +25,8 @@ const routes: Routes = [
   { path: 'create', component: CreateComponent, data: { title: '投稿' }, canActivate: [AuthGuard] },
   { path: 'activity', component: ActivityComponent, data: { title: 'アクティビティ' }, canActivate: [AuthGuard] },
   { path: 'photo/:photoId', component: PhotoComponent, data: { title: '写真' } },
-  { path: 'search', loadChildren: () => import('./search/search.module').then(m => m.SearchModule) },
-  { path: 'hashtag', loadChildren: () => import('./hashtag/hashtag.module').then(m => m.HashtagModule) },
+  { path: 'search', component: SearchComponent, data: { title: '検索' } },
+  { path: 'hashtag/:tag', component: HashtagComponent, data: { title: 'タグ検索' } },
   { path: 'privacy', loadChildren: () => import('./privacy/privacy.module').then(m => m.PrivacyModule) },
   { path: 'terms', loadChildren: () => import('./terms/terms.module').then(m => m.TermsModule) },
   { path: 'contact', loadChildren: () => import('./contact/contact.module').then(m => m.ContactModule) },
