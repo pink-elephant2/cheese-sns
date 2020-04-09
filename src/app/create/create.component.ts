@@ -31,6 +31,9 @@ export class CreateComponent implements OnInit {
   /** APIエラー */
   isError: boolean;
 
+  /** 現在地取得失敗 */
+  isGeolocationError: boolean;
+
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
@@ -67,6 +70,21 @@ export class CreateComponent implements OnInit {
     } else {
       // TODO エラー処理
       console.error(files[0]);
+    }
+  }
+
+  /**
+   * 現在地取得ボタン
+   */
+  getCurrentPosition(): void {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        this.form.controls['lat'].setValue(position.coords.latitude);
+        this.form.controls['lng'].setValue(position.coords.longitude);
+      }, (error) => {
+        // エラー
+        this.isGeolocationError = true;
+      });
     }
   }
 

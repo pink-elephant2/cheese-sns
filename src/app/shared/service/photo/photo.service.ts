@@ -65,6 +65,15 @@ export class PhotoService extends ApiService {
     data.append('caption', form.caption);
     data.append('tags', form.tags.toString());
     // form.tags.forEach(tag => data.append('tags[]', tag));
+    if (form.lat) {
+      data.append('lat', `${form.lat}`);
+    }
+    if (form.lng) {
+      data.append('lng', `${form.lng}`);
+    }
+    if (form.address) {
+      data.append('address', form.address);
+    }
     return this.post<Photo>(url, data);
   }
 

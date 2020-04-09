@@ -1,5 +1,5 @@
 <section class="section animated fadeIn">
-  <form [formGroup]="form" (ngSubmit)="onSubmit(form.value, fl.files, form.valid)">
+  <form [formGroup]="form" (ngSubmit)="onSubmit(form.value, fl.files, form.valid)" autocomplete="off">
     <div class="row">
       <div class="col s12 file-field input-field">
         <div class="btn" appThemeColorBg="accent">
@@ -45,6 +45,21 @@
           <span class="helper-text" *ngIf="form.controls['caption'].hasError('maxlength')"
             data-error="120文字以内で入力してください"></span>
         </ng-container>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col s8 input-field">
+        <input id="address" type="text" class="validate" formControlName="address" maxlength="50" data-length="50">
+        <label for="address">場所</label>
+        <ng-container *ngIf="form.controls['address'].touched">
+          <span class="helper-text" *ngIf="form.controls['address'].hasError('maxlength')"
+            data-error="50文字以内で入力してください"></span>
+        </ng-container>
+      </div>
+      <div class="col s4 input-field">
+        <button type="button" class="btn right btn right grey lighten-4 grey-text text-darken-3"
+          (click)="getCurrentPosition()" [disabled]="isGeolocationError">現在地</button>
       </div>
     </div>
 
