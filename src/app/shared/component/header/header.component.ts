@@ -104,12 +104,15 @@ export class HeaderComponent implements OnInit, AfterViewInit {
    * @param index ヘッダー:0, サイドナビ:1
    */
   onChangeSearch(index: number, $event: KeyboardEvent): void {
-    if ($event.key === 'Enter' && $event.code === 'Enter') {
-      // 検索ページへ
-      return this.toSearch();
-    }
     const value = ($event.target as HTMLInputElement).value.trim();
-    if (!value || value === this.searchInputValue || $event.code === 'Space') {
+    if (!value || $event.code === 'Space') {
+      return;
+    }
+    if (value === this.searchInputValue) {
+      if ($event.keyCode === 13) {
+        // 検索ページへ
+        return this.toSearch();
+      }
       return;
     }
 
