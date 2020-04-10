@@ -2,7 +2,7 @@
   "name": "撮ろっとチーズ",
   "short_name": "撮ろっとチーズ",
   "description": "",
-  "theme_color": "#ffee58",
+  "theme_color": "#000000",
   "background_color": "#ffffff",
   "display": "standalone",
   "scope": "/",
