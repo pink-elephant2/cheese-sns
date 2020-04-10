@@ -12,44 +12,44 @@ export class ThemeService {
 
   /** テーマリスト */
   public themeList = [
-    // 青
-    {
-      bg: {
-        base: [],
-        main: ['blue', 'lighten-2'],
-        mainHeadline: [],
-        mainLink: [],
-        accent: ['cyan', 'darken-3', 'waves-light'],
-        accent2: ['cyan', 'lighten-2', 'waves-light'],
-        accent3: ['green', 'lighten-2', 'waves-light']
-      },
-      text: {
-        base: [],
-        main: [],
-        mainHeadline: ['light-blue-text', 'text-darken-4'],
-        mainLink: ['deep-purple-text', 'text-darken-3'],
-        accent: ['cyan-text', 'text-darken-3', 'waves-light']
-      }
-    },
-    // オレンジ
-    {
-      bg: {
-        base: [],
-        main: ['orange', 'lighten-2'],
-        mainHeadline: [],
-        mainLink: [],
-        accent: ['deep-purple', 'lighten-2', 'waves-light'],
-        accent2: ['cyan', 'lighten-2', 'waves-light'],
-        accent3: ['green', 'lighten-2', 'waves-light']
-      },
-      text: {
-        base: [],
-        main: [],
-        mainHeadline: ['light-green-text', 'text-darken-1'],
-        mainLink: ['cyan-text', 'text-darken-3'],
-        accent: ['deep-purple-text', 'text-lighten-2', 'waves-light']
-      }
-    },
+    // // 青
+    // {
+    //   bg: {
+    //     base: [],
+    //     main: ['blue', 'lighten-2'],
+    //     mainHeadline: [],
+    //     mainLink: [],
+    //     accent: ['cyan', 'darken-3', 'waves-light'],
+    //     accent2: ['cyan', 'lighten-2', 'waves-light'],
+    //     accent3: ['green', 'lighten-2', 'waves-light']
+    //   },
+    //   text: {
+    //     base: [],
+    //     main: [],
+    //     mainHeadline: ['light-blue-text', 'text-darken-4'],
+    //     mainLink: ['deep-purple-text', 'text-darken-3'],
+    //     accent: ['cyan-text', 'text-darken-3', 'waves-light']
+    //   }
+    // },
+    // // オレンジ
+    // {
+    //   bg: {
+    //     base: [],
+    //     main: ['orange', 'lighten-2'],
+    //     mainHeadline: [],
+    //     mainLink: [],
+    //     accent: ['deep-purple', 'lighten-2', 'waves-light'],
+    //     accent2: ['cyan', 'lighten-2', 'waves-light'],
+    //     accent3: ['green', 'lighten-2', 'waves-light']
+    //   },
+    //   text: {
+    //     base: [],
+    //     main: [],
+    //     mainHeadline: ['light-green-text', 'text-darken-1'],
+    //     mainLink: ['cyan-text', 'text-darken-3'],
+    //     accent: ['deep-purple-text', 'text-lighten-2', 'waves-light']
+    //   }
+    // },
     // ピンク
     {
       bg: {
@@ -65,67 +65,67 @@ export class ThemeService {
         base: [],
         main: [],
         mainHeadline: ['brown-text'],
-        mainLink: ['green-text'],
+        mainLink: [],
         accent: ['pink-text', 'text-lighten-2', 'waves-light']
       }
-    },
-    // TODO 紫
-    {
-      bg: {
-        base: [],
-        main: ['purple'],
-        mainHeadline: [],
-        mainLink: [],
-        accent: ['purple', 'waves-light'],
-        accent2: ['cyan', 'lighten-2', 'waves-light'],
-        accent3: ['green', 'lighten-2', 'waves-light']
-      },
-      text: {
-        base: [],
-        main: [],
-        mainHeadline: ['purple-text'],
-        mainLink: ['purple-text'],
-        accent: ['purple-text', 'waves-light']
-      }
-    },
-    // 赤
-    {
-      bg: {
-        base: [],
-        main: ['red', 'accent-2'],
-        mainHeadline: [],
-        mainLink: [],
-        accent: ['teal', 'accent-4', 'waves-light'],
-        accent2: ['orange', 'waves-light'],
-        accent3: ['pink', 'accent-1', 'waves-light']
-      },
-      text: {
-        base: [],
-        main: [],
-        mainHeadline: ['teal-text', 'text-accent-4'],
-        mainLink: ['blue-text', 'text-darken-1'],
-        accent: ['teal-text', 'waves-light']
-      }
-    },
-    // TODO 緑
-    {
-      bg: {
-        base: [],
-        main: ['green'],
-        mainHeadline: [],
-        mainLink: [],
-        accent: ['green', 'waves-light'],
-        accent2: ['cyan', 'lighten-2', 'waves-light'],
-        accent3: ['green', 'lighten-2', 'waves-light']
-      },
-      text: {
-        base: [],
-        main: [],
-        mainHeadline: ['green-text'],
-        mainLink: ['green-text'],
-        accent: ['green-text', 'waves-light']
-      }
     }
+    // // TODO 紫
+    // {
+    //   bg: {
+    //     base: [],
+    //     main: ['purple'],
+    //     mainHeadline: [],
+    //     mainLink: [],
+    //     accent: ['purple', 'waves-light'],
+    //     accent2: ['cyan', 'lighten-2', 'waves-light'],
+    //     accent3: ['green', 'lighten-2', 'waves-light']
+    //   },
+    //   text: {
+    //     base: [],
+    //     main: [],
+    //     mainHeadline: ['purple-text'],
+    //     mainLink: ['purple-text'],
+    //     accent: ['purple-text', 'waves-light']
+    //   }
+    // },
+    // // 赤
+    // {
+    //   bg: {
+    //     base: [],
+    //     main: ['red', 'accent-2'],
+    //     mainHeadline: [],
+    //     mainLink: [],
+    //     accent: ['teal', 'accent-4', 'waves-light'],
+    //     accent2: ['orange', 'waves-light'],
+    //     accent3: ['pink', 'accent-1', 'waves-light']
+    //   },
+    //   text: {
+    //     base: [],
+    //     main: [],
+    //     mainHeadline: ['teal-text', 'text-accent-4'],
+    //     mainLink: ['blue-text', 'text-darken-1'],
+    //     accent: ['teal-text', 'waves-light']
+    //   }
+    // },
+    // // TODO 緑
+    // {
+    //   bg: {
+    //     base: [],
+    //     main: ['green'],
+    //     mainHeadline: [],
+    //     mainLink: [],
+    //     accent: ['green', 'waves-light'],
+    //     accent2: ['cyan', 'lighten-2', 'waves-light'],
+    //     accent3: ['green', 'lighten-2', 'waves-light']
+    //   },
+    //   text: {
+    //     base: [],
+    //     main: [],
+    //     mainHeadline: ['green-text'],
+    //     mainLink: ['green-text'],
+    //     accent: ['green-text', 'waves-light']
+    //   }
+    // }
   ];
 
   /** 選択中のテーマ番号 */
@@ -136,6 +136,11 @@ export class ThemeService {
 
   constructor() {
     this.myThemeNo = Number(localStorage.getItem('myThemeNo')) || 0;
+
+    if (!this.themeList[this.myThemeNo]) {
+      // テーマ設定機能が変更された場合のフォールバック
+      this.myThemeNo = 0;
+    }
   }
 
   /**
