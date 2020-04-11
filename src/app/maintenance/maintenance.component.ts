@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonConst } from 'shared/const';
 
 /**
  * メンテナンス画面
@@ -9,6 +10,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./maintenance.component.scss']
 })
 export class MaintenanceComponent implements OnInit {
+
+  twitter = CommonConst.SNS.Twitter;
 
   constructor() { }
 

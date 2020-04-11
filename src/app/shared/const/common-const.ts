@@ -11,4 +11,8 @@ export const APP_PRODUCER = '撮ろっとチーズ制作委員会';
  * 共通定数
  */
 export class CommonConst {
+  static SNS = {
+    Twitter: 'info_torochee',
+    Instagram: 'info.torochee'
+  };
 }

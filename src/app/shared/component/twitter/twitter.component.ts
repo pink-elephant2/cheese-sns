@@ -1,4 +1,5 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { CommonConst } from 'shared/const';
 
 /**
  * Twitter
@@ -9,6 +10,8 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
   styleUrls: ['./twitter.component.scss']
 })
 export class TwitterComponent implements OnInit, AfterViewInit {
+
+  twitter = CommonConst.SNS.Twitter;
 
   constructor() { }
 

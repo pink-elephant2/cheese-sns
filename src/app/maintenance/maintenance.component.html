@@ -6,7 +6,10 @@
         <p>いつもご利用いただきありがとうございます。</p>
         <p>ただいまシステムメンテナンスのため、一部サービスがご利用いただけません。</p>
         <p>ご不便をおかけいたしますが、何卒ご理解のほどよろしくお願いいたします。</p>
-        <p>メンテナンス再開日時は、公式Twitterにてご確認ください。</p>
+        <p *ngIf="twitter">
+          メンテナンス再開日時は、<a href="https://twitter.com/{{twitter}}" target="_blank"
+            rel="nofollow noreferrer noopener">公式Twitter</a>にてご確認ください。
+        </p>
       </section>
 
       <app-twitter></app-twitter>

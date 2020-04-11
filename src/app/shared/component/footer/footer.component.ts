@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { APP_TITLE, APP_DESCRIPTION } from 'shared/const';
+import { APP_TITLE, APP_DESCRIPTION, CommonConst } from 'shared/const';
 
 @Component({
   selector: 'app-footer',
@@ -13,6 +13,10 @@ export class FooterComponent implements OnInit {
 
   /** 説明文 */
   description = APP_DESCRIPTION;
+
+  twitter = CommonConst.SNS.Twitter;
+
+  instagram = CommonConst.SNS.Instagram;
 
   constructor() { }
 

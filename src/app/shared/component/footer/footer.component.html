@@ -9,6 +9,12 @@
           <li><a class="white-text" routerLink="privacy">プライバシーポリシー</a></li>
           <li><a class="white-text" routerLink="contact">お問合せ</a></li>
         </ul>
+        <ul *ngIf="twitter || instagram">
+          <li *ngIf="twitter"><a class="white-text" href="https://twitter.com/{{twitter}}" target="_blank"
+              rel="nofollow noreferrer noopener">Twitter</a></li>
+          <li *ngIf="instagram"><a class="white-text" href="https://www.instagram.com/{{instagram}}/" target="_blank"
+              rel="nofollow noreferrer noopener">Instagram</a></li>
+        </ul>
       </div>
     </div>
   </div>
