@@ -34,6 +34,8 @@
           <ul id="dropdown1" class="dropdown-content">
             <!-- ログイン時 -->
             <ng-container *ngIf="authenticated">
+              <li><a class="grey-text text-darken-2" routerLink="bookmark"><i
+                    class="material-icons">bookmark</i>ブックマーク</a></li>
               <li><a class="grey-text text-darken-2" routerLink="account"><i class="material-icons">person</i>アカウント</a>
               </li>
               <!-- <li><a class="grey-text text-darken-2" routerLink="setting/display"><i
@@ -69,6 +71,7 @@
       <ng-container *ngIf="authenticated">
         <li><a routerLink="create" class="sidenav-close"><i class="material-icons">photo_camera</i>投稿</a></li>
         <li><a routerLink="activity" class="sidenav-close"><i class="material-icons">favorite</i>アクティビティ</a></li>
+        <li><a routerLink="bookmark" class="sidenav-close"><i class="material-icons">bookmark</i>ブックマーク</a></li>
         <li><a routerLink="account" class="sidenav-close"><i class="material-icons">person</i>アカウント</a></li>
         <!-- <li><a routerLink="setting/display" class="sidenav-close"><i class="material-icons">settings</i>設定</a></li> -->
         <li><a routerLink="contact" class="sidenav-close"><i class="material-icons">mail_outline</i>お問い合わせ</a></li>

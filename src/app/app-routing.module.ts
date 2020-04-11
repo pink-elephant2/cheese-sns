@@ -12,6 +12,7 @@ import { ActivityComponent } from './activity/activity.component';
 import { PhotoComponent } from './photo/photo.component';
 import { SearchComponent } from './search/search.component';
 import { HashtagComponent } from './hashtag/hashtag.component';
+import { BookmarkComponent } from './bookmark/bookmark.component';
 
 const routes: Routes = [
   { path: '', component: TopComponent, data: { infinityScroll: true } },
@@ -27,6 +28,7 @@ const routes: Routes = [
   { path: 'photo/:photoId', component: PhotoComponent, data: { title: '写真' } },
   { path: 'search', component: SearchComponent, data: { title: '検索' } },
   { path: 'hashtag/:tag', component: HashtagComponent, data: { title: 'タグ検索' } },
+  { path: 'bookmark', component: BookmarkComponent, data: { title: 'ブックマーク' } },
   { path: 'privacy', loadChildren: () => import('./privacy/privacy.module').then(m => m.PrivacyModule) },
   { path: 'terms', loadChildren: () => import('./terms/terms.module').then(m => m.TermsModule) },
   { path: 'contact', loadChildren: () => import('./contact/contact.module').then(m => m.ContactModule) },
