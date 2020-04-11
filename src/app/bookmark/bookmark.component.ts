@@ -1,8 +1,10 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 
 import { Page, Pageable } from 'shared/model';
-import { Photo, PhotoService } from 'shared/service/photo';
+import { Photo } from 'shared/service/photo';
 import { LoadingService } from 'shared/service/loading';
+import { BookmarkService } from 'shared/service/bookmark';
+import { AuthService } from 'shared/service/auth';
 
 /**
  * ブックマーク
@@ -28,7 +30,8 @@ export class BookmarkComponent implements OnInit {
   @ViewChild('nextLink', { static: false }) nextLink: ElementRef;
 
   constructor(
-    private photoService: PhotoService,
+    private bookmarkService: BookmarkService,
+    private authService: AuthService,
     private loadingService: LoadingService
   ) { }
 
@@ -39,11 +42,11 @@ export class BookmarkComponent implements OnInit {
 
   getPhotoList() {
     // 写真を取得
-    this.photoService.getPhotoList(null, this.pageable).subscribe(photoData => {
+    this.bookmarkService.getBookmarkList(this.authService.loginId, this.pageable).subscribe(photoData => {
       this.loadingService.setLoading(false);
 
       this.photoData = photoData;
-      this.photoList = this.photoList.concat(photoData.content);
+      this.photoList = this.photoList.concat(photoData.content.filter(photo => photo !== null)); // TODO nullも表示して削除ボタンを設置する
 
       if (!photoData.last) {
         // もっと見るリンク

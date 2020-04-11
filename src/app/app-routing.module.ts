@@ -28,7 +28,7 @@ const routes: Routes = [
   { path: 'photo/:photoId', component: PhotoComponent, data: { title: '写真' } },
   { path: 'search', component: SearchComponent, data: { title: '検索' } },
   { path: 'hashtag/:tag', component: HashtagComponent, data: { title: 'タグ検索' } },
-  { path: 'bookmark', component: BookmarkComponent, data: { title: 'ブックマーク' } },
+  { path: 'bookmark', component: BookmarkComponent, data: { title: 'ブックマーク' }, canActivate: [AuthGuard] },
   { path: 'privacy', loadChildren: () => import('./privacy/privacy.module').then(m => m.PrivacyModule) },
   { path: 'terms', loadChildren: () => import('./terms/terms.module').then(m => m.TermsModule) },
   { path: 'contact', loadChildren: () => import('./contact/contact.module').then(m => m.ContactModule) },

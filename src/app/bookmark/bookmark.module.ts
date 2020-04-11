@@ -17,7 +17,7 @@ import { ThemeColorModule } from 'shared/directive/theme-color';
   ],
   providers: [
     environment.bookmarkService,
-    environment.photoService
+    environment.authService
   ]
 })
 export class BookmarkModule { }
