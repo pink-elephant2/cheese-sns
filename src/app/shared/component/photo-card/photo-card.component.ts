@@ -7,6 +7,7 @@ import { CommentForm } from './comment-form';
 import { AuthService } from 'shared/service/auth';
 import { LoadingService } from 'shared/service/loading';
 import { NavigateService } from 'shared/service/navigate';
+import { BookmarkService } from 'shared/service/bookmark';
 import videojs from "video.js";
 
 /**
@@ -46,7 +47,8 @@ export class PhotoCardComponent implements OnInit, OnDestroy, AfterViewInit {
     private photoService: PhotoService,
     private authService: AuthService,
     private loadingService: LoadingService,
-    private navigateService: NavigateService
+    private navigateService: NavigateService,
+    private bookmarkService: BookmarkService
   ) {
     this.form = this.formBuilder.group(CommentForm.validators);
   }
@@ -208,6 +210,24 @@ export class PhotoCardComponent implements OnInit, OnDestroy, AfterViewInit {
 
     sub.subscribe((ret: boolean) => {
       this.photo.comments[index].isLike = !this.photo.comments[index].isLike;
+    });
+  }
+
+  /**
+   * ブックマーク
+   */
+  public bookmark(): void {
+    // 未ログイン処理
+    if (!this.authService.authenticated) {
+      // ログイン後に行う処理を設定
+      this.navigateService.setAfterLogin('/photo/' + this.photo.cd, 'bookmark');
+      this.router.navigate(['/login']);
+      return;
+    }
+
+    // ブックマークをする
+    this.bookmarkService.postBookmark(this.authService.loginId, this.photo.cd).subscribe((ret) => {
+      this.photo.isBookmark = !this.photo.isBookmark;
     });
   }
 }

@@ -52,7 +52,10 @@
         <i class="material-icons">chat_bubble_outline</i></a>
       <a class="modal-trigger" appThemeColorText="accent" href="javascript:void(0);" data-target="share-modal">
         <i class="material-icons">share</i></a>
-      <a class="right" appThemeColorText="accent"><i class="material-icons">bookmark_border</i></a>
+      <a class="right" appThemeColorText="accent" href="javascript:void(0);" (click)="bookmark()">
+        <i *ngIf="photo.isBookmark" class="material-icons">bookmark</i>
+        <i *ngIf="!photo.isBookmark" class="material-icons">bookmark_border</i>
+      </a>
     </div>
     <div *ngIf="photo.likeCount">いいね！{{photo.likeCount}}件</div>
   </li>

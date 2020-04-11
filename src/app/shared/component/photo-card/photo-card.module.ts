@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import { environment } from 'env/environment';
 import { PhotoCardComponent } from './photo-card.component';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { PastDateModule, SafeHtmlModule } from 'shared/pipe';
@@ -28,6 +29,9 @@ import { TagLinkModule } from '../tag-link/tag-link.module';
     PhotoCardComponent,
     PhotoCardMenuComponent
   ],
-  exports: [PhotoCardComponent]
+  exports: [PhotoCardComponent],
+  providers: [
+    environment.bookmarkService
+  ]
 })
 export class PhotoCardModule { }

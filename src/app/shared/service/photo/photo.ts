@@ -33,6 +33,9 @@ export class Photo {
   /** 自分がいいねしたか */
   public isLike: boolean;
 
+  /** 自分がブックマークしているか */
+  public isBookmark: boolean;
+
   /** コメント */
   public comments: Comment[];
 }
