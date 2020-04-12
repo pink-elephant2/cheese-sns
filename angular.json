@@ -28,7 +28,9 @@
               "src/favicon.png",
               "src/assets",
               "src/.htaccess",
-              "src/manifest.json"
+              "src/manifest.json",
+              "src/sitemap.xml",
+              "src/robots.txt"
             ],
             "styles": [
               "node_modules/materialize-css/dist/css/materialize.min.css",
