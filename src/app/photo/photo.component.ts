@@ -47,23 +47,20 @@ export class PhotoComponent implements OnInit, OnDestroy {
         throw error;
       })).subscribe(photo => {
 
-        // 投稿者を取得 TODO API側で処理すること
-        this.accountService.getAccount(photo.account.loginId).subscribe((account: Account) => {
-          this.loadingService.setLoading(false);
+        this.loadingService.setLoading(false);
 
-          this.photo = photo;
-          this.photo.account = account;
+        this.photo = photo;
 
-          if (this.photo.account.isBlocked) {
-            this.titleService.setTitle('お探しのページは見つかりませんでした。');
-            return;
-          }
-          // タイトル設定
-          const caption = this.photo.caption ? '「' + this.photo.caption + '」' : '';
-          const title = this.photo.account.name + 'さん(@' + this.photo.account.loginId + ')'
-            + caption + ' - ' + APP_TITLE;
-          this.titleService.setTitle(title);
-        });
+        if (photo.account.isBlocked) {
+          this.titleService.setTitle('お探しのページは見つかりませんでした。');
+          return;
+        }
+
+        // タイトル設定
+        const caption = this.photo.caption ? '「' + this.photo.caption + '」' : '';
+        const title = this.photo.account.name + 'さん(@' + this.photo.account.loginId + ')'
+          + caption + ' - ' + APP_TITLE;
+        this.titleService.setTitle(title);
       });
     });
   }

@@ -61,6 +61,11 @@ export class PhotoCardComponent implements OnInit, OnDestroy, AfterViewInit {
       this.navigateService.clearAfterLogin();
     }
     this.authenticated = this.authService.authenticated;
+
+    // ブロックされている場合
+    if (this.photo.account.isBlocked) {
+      this.photo = null;
+    }
   }
 
   ngAfterViewInit(): void {
