@@ -41,13 +41,15 @@ body {
   right: 0;
   left: 0;
 }
+/* S */
 @media only screen and (max-width: 600px) {
   main.container {
     width: 100%;
   }
-}
-.modal {
-  border-radius: 12px;
+  section.section {
+    margin: 0 auto;
+    width: 90%;
+  }
 }
 .yellow.lighten-1 {
   background-color: #000000 !important;
