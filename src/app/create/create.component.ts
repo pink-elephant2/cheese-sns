@@ -135,7 +135,6 @@ export class CreateComponent implements OnInit {
           }
         }, (error: HttpErrorResponse) => {
           this.loadingService.setLoading(false);
-          console.error(error);
 
           switch (error.status) {
             case 403:
@@ -145,11 +144,12 @@ export class CreateComponent implements OnInit {
             default:
               this.isError = true;
               break;
-          }
+          };
         });
       },
       error(err) {
         this.loadingService.setLoading(false);
+        this.isError = true;
         throw err;
       }
     });
