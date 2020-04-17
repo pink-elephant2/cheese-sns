@@ -25,13 +25,8 @@ export abstract class ApiService {
       const requestParams = this.setParams(params);
       url += `?${requestParams.toString()}`;
     }
-    return this.http.get<T>(environment.apiDomain + url, { withCredentials: true }).pipe(catchError((res: HttpResponse<T>) => {
-      if (res.status === 503 || res.status === 504 || res.status === 0) {
-        // メンテナンス画面へ
-        this.router.navigate(['/maintenance']);
-      }
-      throw res;
-    }));
+    return this.http.get<T>(environment.apiDomain + url, { withCredentials: true })
+      .pipe(this.catchError<T>());
   }
 
   /**
@@ -42,7 +37,8 @@ export abstract class ApiService {
     header.append('Content-Type', 'application/x-www-form-urlencoded');
     // header.append('Content-Type', 'multipart/form-data');
 
-    return this.http.post<T>(environment.apiDomain + url, params, { headers: header, withCredentials: true });
+    return this.http.post<T>(environment.apiDomain + url, params, { headers: header, withCredentials: true })
+      .pipe(this.catchError<T>());
   }
 
   /**
@@ -53,7 +49,8 @@ export abstract class ApiService {
     header.append('Content-Type', 'application/x-www-form-urlencoded');
     // header.append('Content-Type', 'multipart/form-data');
 
-    return this.http.put<T>(environment.apiDomain + url, params, { headers: header, withCredentials: true });
+    return this.http.put<T>(environment.apiDomain + url, params, { headers: header, withCredentials: true })
+      .pipe(this.catchError<T>());
   }
 
   /**
@@ -64,7 +61,8 @@ export abstract class ApiService {
       const requestParams = this.setParams(params);
       url += `?${requestParams.toString()}`;
     }
-    return this.getObservable(this.http.delete(environment.apiDomain + url, { withCredentials: true })).pipe(map(data => data as T | T[]));
+    return this.getObservable(this.http.delete(environment.apiDomain + url, { withCredentials: true }))
+      .pipe(map(data => data as T | T[]));
   }
 
   /**
@@ -101,9 +99,34 @@ export abstract class ApiService {
         }
       }
       return ret;
-    })).pipe(catchError((e: any) => {
-      console.error(e);
-      throw e;
+    })).pipe(catchError((res: any) => {
+      if (res.status === 401) {
+        // ログアウト画面へ
+        this.router.navigate(['/logout']);
+      }
+      else if (res.status === 503 || res.status === 504 || res.status === 0) {
+        // メンテナンス画面へ
+        this.router.navigate(['/maintenance']);
+      }
+      throw res;
     }));
+  }
+
+  /**
+   * エラー処理
+   */
+  catchError<T>() {
+    return catchError((res: HttpResponse<T>) => {
+      console.log(res);
+      if (res.status === 401) {
+        // ログアウト画面へ
+        this.router.navigate(['/logout']);
+      }
+      else if (res.status === 503 || res.status === 504 || res.status === 0) {
+        // メンテナンス画面へ
+        this.router.navigate(['/maintenance']);
+      }
+      throw res;
+    });
   }
 }
