@@ -18,6 +18,8 @@
             <ng-container *ngIf="form.controls['loginId'].touched">
               <span class="helper-text" *ngIf="form.controls['loginId'].hasError('required')"
                 data-error="入力してください"></span>
+              <span class="helper-text" *ngIf="form.controls['loginId'].hasError('minlength')"
+                data-error="6文字以上入力してください"></span>
               <span class="helper-text" *ngIf="form.controls['loginId'].hasError('maxlength')"
                 data-error="30文字以内で入力してください"></span>
             </ng-container>
@@ -50,6 +52,7 @@
               <span class="helper-text" *ngIf="form.controls['password'].hasError('maxlength')"
                 data-error="30文字以内で入力してください"></span>
             </ng-container>
+            <span class="helper-text">※8文字以上</span>
           </div>
         </div>
 

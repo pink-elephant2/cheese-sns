@@ -13,9 +13,9 @@ export class LoginForm {
 
   static validators = {
     /** ログインID */
-    loginId: ['', Validators.compose([Validators.required, Validators.maxLength(30)])],
+    loginId: ['', Validators.compose([Validators.required, Validators.minLength(6), Validators.maxLength(30)])],
     /** パスワード */
-    password: ['', Validators.compose([Validators.required, Validators.maxLength(30)])]
+    password: ['', Validators.compose([Validators.required, Validators.minLength(8), Validators.maxLength(30)])]
   };
 
 }
