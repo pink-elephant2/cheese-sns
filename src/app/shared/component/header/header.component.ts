@@ -52,27 +52,28 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   ) { }
 
   ngOnInit() {
+    // 画面遷移検知
     this.router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe((params: any) => {
       if (params.url === '/maintenance') {
         this.isLink = false;
         return;
       }
       this.isLink = true;
+    });
 
-      // ログイン検知
-      this.authService.isAuthenticated.subscribe(ret => {
-        this.authenticated = Boolean(ret);
+    // ログイン検知
+    this.authService.isAuthenticated.subscribe(ret => {
+      this.authenticated = Boolean(ret);
 
-        // ログイン後
-        if (this.authenticated) {
-          // アカウント取得
-          this.accountService.getAccount(this.authService.loginId).subscribe(account => {
-            this.account = account;
-          });
-        } else {
-          this.account = undefined;
-        }
-      });
+      // ログイン後
+      if (this.authenticated) {
+        // アカウント取得
+        this.accountService.getAccount(this.authService.loginId).subscribe(account => {
+          this.account = account;
+        });
+      } else {
+        this.account = undefined;
+      }
     });
   }
 
