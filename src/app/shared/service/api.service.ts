@@ -117,7 +117,6 @@ export abstract class ApiService {
    */
   catchError<T>() {
     return catchError((res: HttpResponse<T>) => {
-      console.log(res);
       if (res.status === 401) {
         // ログアウト画面へ
         this.router.navigate(['/logout']);

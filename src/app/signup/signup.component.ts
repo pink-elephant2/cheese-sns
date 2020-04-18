@@ -76,6 +76,7 @@ export class SignupComponent implements OnInit {
       this.loadingService.setLoading(false);
 
       switch (error.status) {
+        case 400:
         case 403:
           this.isInValid = true;
           break;
