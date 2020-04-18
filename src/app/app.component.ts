@@ -4,6 +4,7 @@ import { Router, NavigationEnd } from '@angular/router';
 import { SwUpdate } from '@angular/service-worker';
 import { filter } from 'rxjs/operators';
 import { GaService } from 'shared/service/ga';
+import { AuthService } from 'shared/service/auth';
 import { APP_TITLE } from 'shared/const';
 
 @Component({
@@ -20,6 +21,7 @@ export class AppComponent implements OnInit {
     private router: Router,
     private titleService: Title,
     private gaService: GaService,
+    private authService: AuthService,
     private swUpdate: SwUpdate
   ) {
     if (this.swUpdate.isEnabled) {
@@ -35,6 +37,13 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe((params: any) => {
       window.scrollTo(0, 0);
+
+      if (params.url !== '/maintenance') {
+        if (!this.authService.authenticated) {
+          // ログインチェック
+          this.authService.check().subscribe();
+        }
+      }
 
       // タイトル設定
       const titles: Array<string> = this.getRouterData(this.router.routerState, this.router.routerState.root, 'title');

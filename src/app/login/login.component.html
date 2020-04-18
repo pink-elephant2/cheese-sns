@@ -35,7 +35,7 @@
           <ng-container *ngIf="form.controls['password'].touched">
             <span class="helper-text" *ngIf="form.controls['password'].hasError('required')"
               data-error="入力してください"></span>
-            <span class="helper-text" *ngIf="form.controls['password'].hasError('minLength')"
+            <span class="helper-text" *ngIf="form.controls['password'].hasError('minlength')"
               data-error="8文字以上入力してください"></span>
             <span class="helper-text" *ngIf="form.controls['password'].hasError('maxlength')"
               data-error="30文字以内で入力してください"></span>
