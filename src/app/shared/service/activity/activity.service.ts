@@ -5,6 +5,7 @@ import { ApiService } from '../api.service';
 import { ApiConst } from 'shared/const';
 import { Activity } from '.';
 import { Page } from 'shared/model/page';
+import { map } from 'rxjs/operators';
 
 /**
  * アクティビティサービス
@@ -17,7 +18,10 @@ export class ActivityService extends ApiService {
    */
   public getFollowing(loginId: string): Observable<Page<Activity>> {
     const url = `${ApiConst.PATH.USER}/${loginId}/${ApiConst.PATH.ACTIVITY_FOLLOWING}`;
-    return this.get<Page<Activity>>(url);
+    return this.get<Page<Activity>>(url).pipe(map((data: Page<Activity>) => {
+      data.content = data.content.filter(activity => activity !== null);
+      return data;
+    }));
   }
 
   /**
@@ -25,6 +29,9 @@ export class ActivityService extends ApiService {
    */
   public getMe(loginId: string): Observable<Page<Activity>> {
     const url = `${ApiConst.PATH.USER}/${loginId}/${ApiConst.PATH.ACTIVITY_ME}`;
-    return this.get<Page<Activity>>(url);
+    return this.get<Page<Activity>>(url).pipe(map((data: Page<Activity>) => {
+      data.content = data.content.filter(activity => activity !== null);
+      return data;
+    }));
   }
 }
