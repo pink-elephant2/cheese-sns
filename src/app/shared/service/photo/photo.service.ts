@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { ApiService } from '../api.service';
 import { Photo } from './photo';
@@ -30,7 +31,13 @@ export class PhotoService extends ApiService {
     const params = loginId ? {
       'loginId': loginId
     } : {};
-    return this.get<Page<Photo>>(ApiConst.PATH.PHOTO, Object.assign(params, pageable));
+    return this.get<Page<Photo>>(ApiConst.PATH.PHOTO, Object.assign(params, pageable))
+      .pipe(map((data: Page<Photo>) => {
+        data.content = data.content.filter(photo => {
+          return !photo.account.isBlocked;
+        })
+        return data;
+      }));
   }
 
   /**
@@ -40,7 +47,13 @@ export class PhotoService extends ApiService {
     const params = {
       'q': keyword
     };
-    return this.get<Page<Photo>>(ApiConst.PATH.PHOTO, Object.assign(params, pageable));
+    return this.get<Page<Photo>>(ApiConst.PATH.PHOTO, Object.assign(params, pageable))
+      .pipe(map((data: Page<Photo>) => {
+        data.content = data.content.filter(photo => {
+          return !photo.account.isBlocked;
+        })
+        return data;
+      }));
   }
 
   /**
@@ -50,7 +63,13 @@ export class PhotoService extends ApiService {
     const params = {
       'tag': tag
     };
-    return this.get<Page<Photo>>(ApiConst.PATH.PHOTO, Object.assign(params, pageable));
+    return this.get<Page<Photo>>(ApiConst.PATH.PHOTO, Object.assign(params, pageable))
+      .pipe(map((data: Page<Photo>) => {
+        data.content = data.content.filter(photo => {
+          return !photo.account.isBlocked;
+        })
+        return data;
+      }));
   }
 
   /**
