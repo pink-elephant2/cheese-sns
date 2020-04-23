@@ -30,6 +30,8 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 
 `cd dist/cheese-sns/`
 
+`mv index.prod.html index.html`
+
 `aws s3 sync . s3://sns-cheese-prod/web/ --delete --cache-control "max-age=25200"`
 
 `aws s3 sync --profile cheese . s3://sns-cheese-prod/web/ --delete --cache-control "max-age=25200"`
