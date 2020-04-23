@@ -7,7 +7,6 @@
     "start:local": "ng serve --configuration=stg --proxy-config proxy.conf.local.json",
     "build": "ng build --prod --aot=true",
     "build:local": "ng build --configuration=stg --aot=true --base-href=/cheese-sns/",
-    "build:gh": "ng build --prod --aot=true --base-href=/cheese-sns/ && angular-cli-ghpages -d dist/cheese-sns",
     "test": "ng test",
     "lint": "ng lint --type-check",
     "sasslint": "sass-lint -c .sass-lint.yml -q -v",
