@@ -144,7 +144,7 @@ export class CreateComponent implements OnInit {
             default:
               this.isError = true;
               break;
-          };
+          }
         });
       },
       error(err) {

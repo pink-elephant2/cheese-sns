@@ -8,7 +8,7 @@ import { AuthService } from 'shared/service/auth';
 import { LoadingService } from 'shared/service/loading';
 import { NavigateService } from 'shared/service/navigate';
 import { BookmarkService } from 'shared/service/bookmark';
-import videojs from "video.js";
+import videojs from 'video.js';
 
 /**
  * 写真カード

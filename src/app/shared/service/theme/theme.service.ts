@@ -129,7 +129,7 @@ export class ThemeService {
   ];
 
   /** 選択中のテーマ番号 */
-  public myThemeNo: number = 0;
+  public myThemeNo = 0;
 
   /** テーマ番号変更検知 */
   public myThemeNoChanges = new BehaviorSubject<boolean>(null);

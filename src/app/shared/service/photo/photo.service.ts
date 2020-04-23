@@ -35,7 +35,7 @@ export class PhotoService extends ApiService {
       .pipe(map((data: Page<Photo>) => {
         data.content = data.content.filter(photo => {
           return !photo.account.isBlocked;
-        })
+        });
         return data;
       }));
   }
@@ -51,7 +51,7 @@ export class PhotoService extends ApiService {
       .pipe(map((data: Page<Photo>) => {
         data.content = data.content.filter(photo => {
           return !photo.account.isBlocked;
-        })
+        });
         return data;
       }));
   }
@@ -67,7 +67,7 @@ export class PhotoService extends ApiService {
       .pipe(map((data: Page<Photo>) => {
         data.content = data.content.filter(photo => {
           return !photo.account.isBlocked;
-        })
+        });
         return data;
       }));
   }

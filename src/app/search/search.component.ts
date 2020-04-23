@@ -69,15 +69,17 @@ export class SearchComponent implements OnInit {
           if (typeof IntersectionObserver !== 'undefined') {
             const io = new IntersectionObserver(entries => {
               entries.forEach(entry => {
-                if (!entry.isIntersecting) return;
+                if (!entry.isIntersecting) {
+                  return;
+                }
                 // 次のページへ
                 this.next();
-                io.unobserve(entry.target)
-              })
+                io.unobserve(entry.target);
+              });
             }, {
                 rootMargin: '200px 0px'
-              })
-            io.observe(this.nextLink.nativeElement)
+              });
+            io.observe(this.nextLink.nativeElement);
           } else {
             // なし
           }
