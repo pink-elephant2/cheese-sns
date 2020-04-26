@@ -30,6 +30,7 @@
               "src/.htaccess",
               "src/manifest.json",
               "src/sitemap.xml",
+              "src/sitemap-contents.xml",
               "src/robots.txt"
             ],
             "styles": [
