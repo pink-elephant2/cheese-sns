@@ -23,7 +23,7 @@
               <li><a routerLink="create"><i class="material-icons">photo_camera</i></a></li>
               <li><a routerLink="activity"><i class="material-icons">favorite</i></a></li>
             </ng-container>
-            <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">
+            <li><a class="dropdown-trigger" href="javascript:void(0);" data-target="dropdown1">
                 <i *ngIf="!account" class="material-icons">person</i>
                 <img *ngIf="account" appAccountImage [src]="account.imgUrl | safeHtml" [alt]="account.loginId"
                   class="avatar circle responsive-img white" style="width: 28px; vertical-align: middle;">
