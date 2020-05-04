@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Title } from '@angular/platform-browser';
+import { Title, Meta } from '@angular/platform-browser';
 import { Router, NavigationEnd } from '@angular/router';
 import { SwUpdate } from '@angular/service-worker';
 import { filter } from 'rxjs/operators';
 import { GaService } from 'shared/service/ga';
 import { AuthService } from 'shared/service/auth';
-import { APP_TITLE } from 'shared/const';
+import { APP_DOMAIN, APP_TITLE, APP_DESCRIPTION } from 'shared/const';
 
 @Component({
   selector: 'app-root',
@@ -20,6 +20,7 @@ export class AppComponent implements OnInit {
   constructor(
     private router: Router,
     private titleService: Title,
+    private meta: Meta,
     private gaService: GaService,
     private authService: AuthService,
     private swUpdate: SwUpdate
@@ -49,6 +50,15 @@ export class AppComponent implements OnInit {
       const titles: Array<string> = this.getRouterData(this.router.routerState, this.router.routerState.root, 'title');
       const title = ((titles.length > 0) ? titles.pop() + ' - ' : '') + APP_TITLE;
       this.titleService.setTitle(title);
+
+      // メタ設定
+      this.meta.updateTag({ name: 'description', content: APP_DESCRIPTION });
+      this.meta.updateTag({ name: 'twitter:card', content: 'summary' });
+      this.meta.updateTag({ property: 'og:title', content: title });
+      this.meta.updateTag({ property: 'og:type', content: 'website' });
+      this.meta.updateTag({ property: 'og:url', content: APP_DOMAIN + params.url });
+      this.meta.updateTag({ property: 'og:image', content: 'https://torochee.com/favicon.png' });
+      this.meta.updateTag({ property: 'og:description', content: APP_DESCRIPTION });
 
       // 無限スクロールする画面か判定
       const isInfinityScrolls = this.getRouterData(this.router.routerState, this.router.routerState.root, 'infinityScroll');

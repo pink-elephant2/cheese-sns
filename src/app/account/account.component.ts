@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Title } from '@angular/platform-browser';
+import { Title, Meta } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { Account, AccountService } from 'shared/service/account';
@@ -7,7 +7,7 @@ import { AuthService } from 'shared/service/auth';
 import { FollowService } from 'shared/service/follow';
 import { LoadingService } from 'shared/service/loading';
 import { NavigateService } from 'shared/service/navigate';
-import { APP_TITLE } from 'shared/const';
+import { APP_DOMAIN, APP_TITLE } from 'shared/const';
 import { catchError } from 'rxjs/operators';
 
 /**
@@ -44,6 +44,7 @@ export class AccountComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private router: Router,
     private titleService: Title,
+    private meta: Meta,
     private accountService: AccountService,
     private followService: FollowService,
     private authService: AuthService,
@@ -66,6 +67,7 @@ export class AccountComponent implements OnInit, OnDestroy {
 
         // アカウントが存在しない場合
         if (error.status === 404) {
+          this.meta.addTag({ name: 'robots', content: 'noindex' });
           this.isNotFound = true;
         }
         throw error;
@@ -82,8 +84,17 @@ export class AccountComponent implements OnInit, OnDestroy {
         this.isMe = this.account.loginId === this.authService.loginId;
 
         // タイトル設定
-        const title = this.account.name + 'さん(@' + this.account.loginId + ') - ' + APP_TITLE;
-        this.titleService.setTitle(title);
+        const title = this.account.name + 'さん(@' + this.account.loginId + ')';
+        this.titleService.setTitle(title + ' - ' + APP_TITLE);
+
+        // メタ設定
+        this.meta.updateTag({ name: 'description', content: this.account.description || '' });
+        this.meta.updateTag({ name: 'twitter:card', content: 'summary_large_image' });
+        this.meta.updateTag({ property: 'og:title', content: title });
+        this.meta.updateTag({ property: 'og:type', content: 'article' });
+        this.meta.updateTag({ property: 'og:url', content: APP_DOMAIN + '/' + this.account.loginId });
+        this.meta.updateTag({ property: 'og:image', content: this.account.imgUrl });
+        this.meta.updateTag({ property: 'og:description', content: this.account.description || '' });
 
         // タブ初期化
         const instance = window['M'].Tabs.init(document.querySelectorAll('.tabs'), {});
@@ -100,6 +111,7 @@ export class AccountComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
+    this.meta.removeTag('name=robots');
     this.sub.unsubscribe();
   }
 

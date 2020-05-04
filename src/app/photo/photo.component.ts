@@ -1,12 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Title } from '@angular/platform-browser';
+import { Title, Meta } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { catchError } from 'rxjs/operators';
 
-import { AccountService, Account } from 'shared/service/account';
 import { Photo, PhotoService } from 'shared/service/photo';
 import { LoadingService } from 'shared/service/loading';
-import { APP_TITLE } from 'shared/const';
+import { APP_DOMAIN, APP_TITLE } from 'shared/const';
 
 @Component({
   selector: 'app-photo',
@@ -25,7 +24,7 @@ export class PhotoComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private titleService: Title,
-    private accountService: AccountService,
+    private meta: Meta,
     private photoService: PhotoService,
     private loadingService: LoadingService
   ) { }
@@ -42,6 +41,7 @@ export class PhotoComponent implements OnInit, OnDestroy {
 
         // 写真が存在しない場合
         if (error.status === 404) {
+          this.meta.addTag({ name: 'robots', content: 'noindex' });
           this.isNotFound = true;
         }
         throw error;
@@ -58,14 +58,24 @@ export class PhotoComponent implements OnInit, OnDestroy {
 
         // タイトル設定
         const caption = this.photo.caption ? '「' + this.photo.caption + '」' : '';
-        const title = this.photo.account.name + 'さん(@' + this.photo.account.loginId + ')'
-          + caption + ' - ' + APP_TITLE;
+        const title = caption +
+          this.photo.account.name + 'さん(@' + this.photo.account.loginId + ') - ' + APP_TITLE;
         this.titleService.setTitle(title);
+
+        // メタ設定
+        this.meta.updateTag({ name: 'description', content: this.photo.caption || '' });
+        this.meta.updateTag({ name: 'twitter:card', content: 'summary_large_image' });
+        this.meta.updateTag({ property: 'og:title', content: title });
+        this.meta.updateTag({ property: 'og:type', content: 'article' });
+        this.meta.updateTag({ property: 'og:url', content: APP_DOMAIN + '/photo/' + this.photo.cd });
+        this.meta.updateTag({ property: 'og:image', content: this.photo.imgUrl });
+        this.meta.updateTag({ property: 'og:description', content: this.photo.caption || '' });
       });
     });
   }
 
   ngOnDestroy() {
+    this.meta.removeTag('name=robots');
     this.sub.unsubscribe();
   }
 

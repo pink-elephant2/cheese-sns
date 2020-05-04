@@ -1,3 +1,6 @@
+/** ドメイン */
+export const APP_DOMAIN = 'https://torochee.com'
+
 /** タイトル */
 export const APP_TITLE = '撮ろっとチーズ';
 
