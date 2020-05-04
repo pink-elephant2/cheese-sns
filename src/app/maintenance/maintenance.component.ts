@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Meta } from '@angular/platform-browser';
 import { CommonConst } from 'shared/const';
 
 /**
@@ -9,13 +10,19 @@ import { CommonConst } from 'shared/const';
   templateUrl: './maintenance.component.html',
   styleUrls: ['./maintenance.component.scss']
 })
-export class MaintenanceComponent implements OnInit {
+export class MaintenanceComponent implements OnInit, OnDestroy {
 
   twitter = CommonConst.SNS.Twitter;
 
-  constructor() { }
+  constructor(
+    private meta: Meta
+  ) { }
 
   ngOnInit() {
+    this.meta.addTag({ name: 'robots', content: 'noindex' });
   }
 
+  ngOnDestroy(): void {
+    this.meta.removeTag('name=robots');
+  }
 }
