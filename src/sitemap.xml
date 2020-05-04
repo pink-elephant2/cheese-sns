@@ -2,14 +2,18 @@
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <sitemap>
     <loc>https://torochee.com/sitemap-contents.xml</loc>
-    <lastmod>2020-04-27</lastmod>
+    <lastmod>2020-05-04</lastmod>
   </sitemap>
   <sitemap>
     <loc>https://cdn.torochee.com/sitemap/sitemap-account.xml</loc>
-    <lastmod>2020-04-27</lastmod>
+    <lastmod>2020-05-04</lastmod>
   </sitemap>
   <sitemap>
     <loc>https://cdn.torochee.com/sitemap/sitemap-photo.xml</loc>
-    <lastmod>2020-04-27</lastmod>
+    <lastmod>2020-05-04</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>https://cdn.torochee.com/sitemap/sitemap-hashtag.xml</loc>
+    <lastmod>2020-05-04</lastmod>
   </sitemap>
 </sitemapindex>
