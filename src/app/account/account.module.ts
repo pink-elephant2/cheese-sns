@@ -8,7 +8,7 @@ import { AccountComponent } from './account.component';
 import { AccountPostComponent } from './account-post/account-post.component';
 import { AccountFollowingComponent } from './account-following/account-following.component';
 import { AccountFollowersComponent } from './account-followers/account-followers.component';
-import { AccountCardModule, MyAdsenseModule } from 'shared/component';
+import { AccountCardModule, MyAdsenseModule, ShareModalModule } from 'shared/component';
 import { NavigateService } from 'shared/service/navigate';
 import { AccountImageModule } from 'shared/directive';
 import { AccountMenuComponent } from './account-menu/account-menu.component';
@@ -29,6 +29,7 @@ import { TagLinkModule } from 'shared/component/tag-link';
     PaginationModule,
     ThemeColorModule,
     SafeHtmlModule,
+    ShareModalModule,
     TagLinkModule
   ],
   declarations: [
