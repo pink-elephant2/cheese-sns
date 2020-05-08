@@ -7,7 +7,7 @@ import { AuthService } from 'shared/service/auth';
 import { FollowService } from 'shared/service/follow';
 import { LoadingService } from 'shared/service/loading';
 import { NavigateService } from 'shared/service/navigate';
-import { APP_DOMAIN, APP_TITLE } from 'shared/const';
+import { APP_DOMAIN, APP_TITLE, ACCOUNT_DEFAULT_IMG_PATH } from 'shared/const';
 import { catchError } from 'rxjs/operators';
 
 /**
@@ -93,7 +93,7 @@ export class AccountComponent implements OnInit, OnDestroy {
         this.meta.updateTag({ property: 'og:title', content: title });
         this.meta.updateTag({ property: 'og:type', content: 'article' });
         this.meta.updateTag({ property: 'og:url', content: APP_DOMAIN + '/' + this.account.loginId });
-        this.meta.updateTag({ property: 'og:image', content: this.account.imgUrl });
+        this.meta.updateTag({ property: 'og:image', content: this.account.imgUrl || APP_DOMAIN + ACCOUNT_DEFAULT_IMG_PATH });
         this.meta.updateTag({ property: 'og:description', content: this.account.description || '' });
 
         // タブ初期化

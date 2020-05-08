@@ -1,4 +1,5 @@
 import { Directive, HostListener, Renderer2, ElementRef, Input, HostBinding, OnInit } from '@angular/core';
+import { ACCOUNT_DEFAULT_IMG_PATH } from 'shared/const';
 
 /**
  * アカウント画像ディレクティブ
@@ -19,12 +20,12 @@ export class AccountImageDirective implements OnInit {
   ngOnInit(): void {
     if (this.src === undefined || this.src === null) {
       // デフォルト画像セット
-      this.src = '/assets/images/account.png';
+      this.src = ACCOUNT_DEFAULT_IMG_PATH;
     }
   }
 
   @HostListener('error') onError() {
     // デフォルト画像セット
-    this.renderer.setAttribute(this.el.nativeElement, 'src', '/assets/images/account.png');
+    this.renderer.setAttribute(this.el.nativeElement, 'src', ACCOUNT_DEFAULT_IMG_PATH);
   }
 }

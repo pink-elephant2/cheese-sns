@@ -10,6 +10,9 @@ export const APP_DESCRIPTION = 'コロナウイルスで外出自粛の日々・
 /** 製作者 */
 export const APP_PRODUCER = '撮ろっとチーズ制作委員会';
 
+/** アカウントデフォルト画像パス */
+export const ACCOUNT_DEFAULT_IMG_PATH = '/assets/images/account.png';
+
 /**
  * 共通定数
  */
