@@ -1,9 +1,11 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Title, Meta } from '@angular/platform-browser';
 
 import { Photo, PhotoService } from 'shared/service/photo';
 import { Pageable, Page } from 'shared/model';
 import { LoadingService } from 'shared/service/loading';
+import { APP_DOMAIN, APP_TITLE } from 'shared/const';
 
 /**
  * ハッシュタグ
@@ -34,6 +36,8 @@ export class HashtagComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
+    private title: Title,
+    private meta: Meta,
     private photoService: PhotoService,
     private loadingService: LoadingService
   ) { }
@@ -52,6 +56,15 @@ export class HashtagComponent implements OnInit {
 
       this.loadingService.setLoading(true);
       this.getPhotoList();
+
+      // タイトル設定
+      const title = '#' + this.tag + ' - タグ検索 - ' + APP_TITLE;
+      this.title.setTitle(title);
+      // メタ設定
+      this.meta.updateTag({ name: 'twitter:card', content: 'summary_large_image' });
+      this.meta.updateTag({ property: 'og:title', content: title });
+      this.meta.updateTag({ property: 'og:type', content: 'article' });
+      this.meta.updateTag({ property: 'og:url', content: APP_DOMAIN + '/hashtag/' + this.tag });
     });
   }
 
@@ -84,6 +97,14 @@ export class HashtagComponent implements OnInit {
             // なし
           }
         }, 0);
+      }
+
+      if (this.photoList.length > 0) {
+        // メタ設定
+        const photo = this.photoList[0];
+        this.meta.updateTag({ name: 'description', content: photo.caption || '' });
+        this.meta.updateTag({ property: 'og:image', content: photo.imgUrl });
+        this.meta.updateTag({ property: 'og:description', content: photo.caption || '' });
       }
     }, () => {
       this.loadingService.setLoading(false);
