@@ -4,13 +4,14 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
 import { environment } from 'env/environment';
 import { TopComponent } from './top.component';
 import { AppRoutingModule } from 'src/app/app-routing.module';
-import { PhotoCardModule, MyAdsenseModule } from 'shared/component';
+import { PhotoCardModule, MyAdsenseModule, AdCardModule } from 'shared/component';
 
 @NgModule({
   imports: [
     CommonModule,
     AppRoutingModule,
     PhotoCardModule,
+    AdCardModule,
     MyAdsenseModule,
     ScrollingModule
   ],
