@@ -2,7 +2,7 @@
   <div class="row">
     <ng-container *ngFor="let photo of photoList; let i = index">
       <!-- 広告を挿入 -->
-      <ng-container *ngIf="i === 3">
+      <ng-container *ngIf="i === 3 && isDisplayAdd">
         <div class="col s12 m6 l4 animated fadeIn">
           <app-ad-card></app-ad-card>
         </div>

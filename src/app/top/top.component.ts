@@ -1,4 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+
+import { environment } from 'env/environment';
 import { Photo, PhotoService } from 'shared/service/photo';
 import { Pageable, Page } from 'shared/model';
 import { LoadingService } from 'shared/service/loading';
@@ -25,6 +27,9 @@ export class TopComponent implements OnInit {
 
   /** もっと見るリンク */
   @ViewChild('nextLink', { static: false }) nextLink: ElementRef;
+
+  /** 広告を表示するか */
+  isDisplayAdd = environment.production;
 
   constructor(
     private photoService: PhotoService,
@@ -58,8 +63,8 @@ export class TopComponent implements OnInit {
                 io.unobserve(entry.target);
               });
             }, {
-                rootMargin: '200px 0px'
-              });
+              rootMargin: '200px 0px'
+            });
             io.observe(this.nextLink.nativeElement);
           } else {
             // なし
