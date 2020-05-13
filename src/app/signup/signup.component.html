@@ -9,11 +9,25 @@
 
   <div class="row">
     <div class="col s12">
-      <form [formGroup]="form" (ngSubmit)="onSubmit(form.value, form.valid)">
+      <form [formGroup]="form" (ngSubmit)="onSubmit(form.value, form.valid)" autocapitalize="off" autocorrect="off"
+        autocomplete="off">
+        <div class="row">
+          <div class="col s12 input-field">
+            <input id="name" type="text" class="validate" formControlName="name" required maxlength="30"
+              data-length="30">
+            <label for="name">アカウント名</label>
+            <ng-container *ngIf="form.controls['name'].touched">
+              <span class="helper-text" *ngIf="form.controls['name'].hasError('required')" data-error="入力してください"></span>
+              <span class="helper-text" *ngIf="form.controls['name'].hasError('maxlength')"
+                data-error="30文字以内で入力してください"></span>
+            </ng-container>
+          </div>
+        </div>
+
         <div class="row">
           <div class="col s12 input-field">
             <input id="loginId" type="email" class="validate" formControlName="loginId" required maxlength="30"
-              data-length="30" autocapitalize="off" autocorrect="off">
+              data-length="30">
             <label for="loginId">ログインID</label>
             <ng-container *ngIf="form.controls['loginId'].touched">
               <span class="helper-text" *ngIf="form.controls['loginId'].hasError('required')"
@@ -22,22 +36,10 @@
                 data-error="6文字以上入力してください"></span>
               <span class="helper-text" *ngIf="form.controls['loginId'].hasError('maxlength')"
                 data-error="30文字以内で入力してください"></span>
+              <span class="helper-text" *ngIf="form.controls['loginId'].hasError('pattern')"
+                data-error="使用できない文字が含まれています"></span>
             </ng-container>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col s12 input-field">
-            <input id="mail" type="email" class="validate" formControlName="mail" required maxlength="256"
-              data-length="256">
-            <label for="mail">メールアドレス</label>
-            <ng-container *ngIf="form.controls['mail'].touched">
-              <span class="helper-text" *ngIf="form.controls['mail'].hasError('required')" data-error="入力してください"></span>
-              <span class="helper-text" *ngIf="form.controls['mail'].hasError('email')"
-                data-error="Eメール形式で入力してください"></span>
-              <span class="helper-text" *ngIf="form.controls['mail'].hasError('maxlength')"
-                data-error="256文字以内で入力してください"></span>
-            </ng-container>
+            <span class="helper-text">※半角英数字6文字以上</span>
           </div>
         </div>
 
@@ -53,6 +55,21 @@
                 data-error="30文字以内で入力してください"></span>
             </ng-container>
             <span class="helper-text">※8文字以上</span>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col s12 input-field">
+            <input id="mail" type="email" class="validate" formControlName="mail" required maxlength="256"
+              data-length="256">
+            <label for="mail">メールアドレス</label>
+            <ng-container *ngIf="form.controls['mail'].touched">
+              <span class="helper-text" *ngIf="form.controls['mail'].hasError('required')" data-error="入力してください"></span>
+              <span class="helper-text" *ngIf="form.controls['mail'].hasError('email')"
+                data-error="Eメール形式で入力してください"></span>
+              <span class="helper-text" *ngIf="form.controls['mail'].hasError('maxlength')"
+                data-error="256文字以内で入力してください"></span>
+            </ng-container>
           </div>
         </div>
 
