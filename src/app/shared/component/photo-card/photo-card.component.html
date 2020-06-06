@@ -10,8 +10,8 @@
       </a>
     </p>
     <p class="caption">
-      <app-tag-link [value]="photo.caption" [isBr]="hasInputComment"></app-tag-link>&nbsp;<span
-        class="grey-text right">{{photo.createdAt | pastDate}}</span>
+      <app-tag-link [value]="photo.caption" [isBr]="hasInputComment"></app-tag-link>&nbsp;<span class="grey-text right"
+        [title]="photo.createdAt">{{photo.createdAt | pastDate}}</span>
     </p>
   </li>
   <li class="collection-item center">
